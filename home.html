@@ -13,24 +13,65 @@
 		<nav class="menu">
 			<ul>
 				<li class="logo"> <a href= "home.html" class="log"> Foo<span class="org">d</span>ies </a></li>
-				<li><a href=  "index.html">Log In</a></li>
-				<li><a href = "news.html">Create an Account</a></li>
-				<li><a href = "search.html">Contact Us</a></li>
+				<li><a href=  "#" id ="logM">Log In</a></li>
+				<li><a href = "#" id="createM">Create an Account</a></li>
+				<li><a href = "about.html">Contact Us</a></li>
 			</ul>
 		</nav>
 	</header>
 
 
-
 	<main>
-		
+
+		<div id="signUp" class="modal">
+	  			<form class="modal-form" name="frmSU" id="formSu" method="post">
+	   				<span class="close" title="Close Modal" id="closeM">×</span>
+	   				<fieldset>
+	   					<legend align="center">
+	   						<img class="img-circle" alt="user" src="css/images/homer3.jpg"><br>
+	   					</legend>
+	   					<div id="error"></div>
+	     				<label><b>Email</b></label>
+	       				<input type="text" id="em" placeholder="Enter Email" name="email" required>
+
+	      				<label><b>Password</b></label>
+	      				<input type="password" placeholder="Enter Password (4 or more characters!)" name="psw" id="pw" required>
+
+	      				<label><b>Re-Enter Password</b></label>
+	      				<input type="password" placeholder="We're not looking.." name="psw-repeat" id="rpw" required>
+
+	       				<button type="submit" class="signbtn">Sign Up</button>
+	      			</fieldset>
+
+	      			<br>
+	      			Have an account? <a href="#" id="logHref">Login Here!</a>
+	      	</form>
+	    </div>
+
+
+
+	    <div id="signIn" class="modal">
+			<form class="modal-form" name="frmSI" id="formSi" method="post" action="#">
+	   				<span class="close" title="Close Modal" id="closeSi">×</span>
+	   				<fieldset>
+	   					<legend align="center">
+	   						<img class="img-circle" alt="user" src="css/images/homer3.jpg"><br>
+	   					</legend>
+	   					<div id="errorSi"></div>
+	     				<label><b>Email</b></label>
+	       				<input type="text" id="emIn" placeholder="Enter Email" name="emailIn" required>
+
+	      				<label><b>Password</b></label>
+	      				<input type="password" placeholder="Enter Password" name="pswIn" id="pwIn" required>
+
+	       				<button type="submit" class="signbtn">Log In</button>
+	      			</fieldset>
+	      	</form>	    	
+	    </div>
+	
 	</main>
 
 
-
-	<footer>
-		Sara Hassan 2015/02749
-	</footer>
-
+	<script type="text/javascript" src="js/SignUp.js"></script>
 </body>
 </html>

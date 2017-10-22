@@ -51,12 +51,87 @@ li.logo{
 li.logo a{
 	font-family: 'Chewy', cursive;
 	font-size: 50px;
-	color:#e60000;
+	color:coral;
 }
 
 .org{
 	color:#ffcc00;
 }
+
+/* for the sign up/in */
+
+.modal{
+	display: none;
+	position: fixed;
+	width:100%;
+	height:100%;
+	padding-top: 50px;
+	top:0;
+	left:0;
+	z-index: 1;
+	overflow: auto;
+	background-color:rgba(0,0,0,0.4);
+	overflow: scroll;
+}
+
+
+.modal-form{
+	margin: 5px auto 15px auto;
+	background-color:white;
+	width:50%;
+	padding: 20px 20px 30px 20px;
+	border:1px solid black;
+	position:relative;
+}
+
+.close{
+	position: absolute;
+    right: 25px;
+    top: 0px;
+    color: #000;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.close:hover {
+    color: red;
+    cursor: pointer;
+}
+
+
+.modal-form input[type=text], .modal-form input[type=password]{
+ 	width: 100%;
+    padding: 15px 20px;
+    margin: 10px 0px 20px 0px;
+    display: block;
+    border-radius: 5px;
+    border: 1px solid grey;
+    box-sizing: border-box;
+}
+
+
+.signbtn{
+	border-width: 0px 2px 2px 0px ;
+	border-style: solid;
+	border-color: #00ff55;
+	background-color: #4dff88;
+	width:100%;
+	height:50px;
+	font-size:large;
+	font-weight: bold;
+	cursor:pointer;
+}
+
+.signbtn:hover{
+	background-color: #00cc7a;
+}
+
+.img-circle {
+    border-radius: 50%;
+    width:120px;
+    height:120px;
+}
+
 
 footer {
   position: fixed;
