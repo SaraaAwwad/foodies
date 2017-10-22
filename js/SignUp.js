@@ -45,7 +45,16 @@ function logAcc(){
 }
 
 function closeSi(){
-	
+	pwIn.value="";
+	pwIn.style.borderColor="grey";
+	pwIn.style.borderWidth="1px";
+	pwIn.style.backgroundColor="white";
+
+	emIn.value="";
+	emIn.style.borderColor="grey";
+	emIn.style.backgroundColor="white";
+	emIn.style.borderWidth="1px";
+
 	document.getElementById('signIn').style.display='none';
 }
 
