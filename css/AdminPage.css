@@ -1,0 +1,108 @@
+.sidenav{
+	margin-top:100px;
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  padding-top: 20px;
+  font-size: 17px;
+  text-decoration: none;
+  text-align: center;
+  /*border: 1px solid;
+  border-color: silver;*/
+  
+}
+img {
+    border: 1px solid #ddd;
+	border-radius: 50%;
+    padding: 5px;
+	display: block;
+    margin: auto;
+    width: 40%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 30px;
+}
+
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 160, 186, 0.5);
+}
+.sidenav a{
+	padding-left: 20px;
+    text-decoration: none;
+	text-align: left;
+    font-size: 17px;
+    color: #19263E;
+    display: block;
+}
+.item{
+	
+	padding-top:20px;
+	padding-bottom:20px
+}
+.PanelItem{
+	padding:10px;
+}
+.sidenav a:hover{
+	background-color: #ccc;
+	color: #19263E;
+	
+    text-decoration: none;
+}
+.sidenav a:active{
+	background-color: #ccc;
+	color: #19263E;
+}
+
+button.accordion {
+    background-color: #FFFFFF;
+    padding-top: 20px;
+	padding-bottom:20px;
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+	overflow: hidden;
+	color: silver;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ccc;
+	color: #19263E;
+}
+
+
+
+div.panel {
+    background-color: #455A7D;
+    max-height: 0;
+	width: 100%;
+	color: silver;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    border: 1px solid #FFFFFF;
+}
+div.panel a{
+	font-size: 14px;
+	
+    text-decoration: none;
+}
+div.panel a:active, div.panel a:hover{
+background-color: #ccc;
+	color: #19263E;
+}
+
+button.accordion:after {
+    content: '\02795';
+    font-size: 11px;
+    color: silver;
+    float: right;
+	margin-top: 3px;
+}
+
+button.accordion.active:after {
+    content: "\2796";
+}
