@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> Profile </title>
+<title> Add </title>
 <script type=”text/javascript” src="js/AdminPage.js"></script>
 <link rel="stylesheet" type="text/css" href="css/AdminPage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,7 +18,7 @@
 				
 			</ul>
 </header>
-	
+
 <div class="sidenav" id="mysidenav" >
 <img class="back3" src="css/images/doughnut.svg" alt="profile picture" width="40%">
 <a href="profile.html" class="sidenavitems item"><i class="fa fa-user-circle"></i> Profile</a>
@@ -35,49 +35,50 @@
 <script type="text/javascript" src="js/AdminPage.js"></script>
 
 <div class="main1" style="margin-left:238px;">
-
-
-  <!-- Header -->
- 
-  <div class="container" id="showcase">
-    <h1>Profile</h1>
+<div class="container" id="showcase">
+    <h1 id="con">Adding More Branches</h1>
 	<ul class="breadcrumb">
 	<i class="fa fa-home"></i>
   <li><a href="home.html">Home</a></li>
   <li><a href="AdminPage.html">Admin</a></li>
-  <li>Profile</li>
+  <li>Menu Manager</li>
+  <li><a href="add.html">Add</a></li>
+  <li>Restaurants & Cafes</li>
 </ul>
-    <hr class="round1">
-	<img class="back4" src="css/images/doughnut.svg" alt="profile picture" width="15%">
-    
+ </div>
+ <table class="highlight">
+        <thead>
+          <tr>
+              <th>Restaurant Name</th>
+              <th>City</th>
+              <th>Zip Code</th>
+			  <th>Address</th>
+          </tr>
+        </thead>
 
-	<div class="cards">
-  <div class="cont1">
-    <h4><b>First Name</b></h4> 
-    <p style="padding-left:10px; margin-bottom:0px;">Farah </p> 
-  </div>
-</div>
-<div class="cards">
-  <div class="cont2">
-    <h4><b>Last Name</b></h4> 
-    <p style="padding-left:10px; margin-bottom:0px;">Hisham</p> 
-  </div>
-</div>
-<div class="cards">
-  <div class="cont3">
-    <h4><b>Address</b></h4> 
-    <p style="padding-left:10px; margin-bottom:0px;">Masr El-Gedida, Cairo, Egypt</p> 
-  </div>
-</div>
-<div class="cards">
-  <div class="cont4">
-    <h4><b>Date of Birth</b></h4> 
-    <p style="padding-left:10px; margin-bottom:0px;">7/11/1996</p> 
-  </div>
-</div>
+        <tbody>
+          <tr>
+            <td>Crave</td>
+            <td>Cairo</td>
+            <td>12345</td>
+			<td>21 ,Nasr City</td>
 
-  </div>
-  </div>
-
+          </tr>
+          <tr>
+            <td>Ted's</td>
+            <td>Alexandria</td>
+            <td>28747</td>
+			<td>18 ,Masr El-Gedida</td>
+          </tr>
+          <tr>
+            <td>Espresso Lab</td>
+            <td>Cairo</td>
+            <td>23564</td>
+			<td>112 ,Maadi</td>
+          </tr>
+        </tbody>
+      </table>
+        </div>    
 </body>
+
 </html>

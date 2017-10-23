@@ -5,6 +5,7 @@ overflow-x: hidden;
 
 }
 
+
 .sidenav{
 	margin-top: 110px;
     height: 100%;
@@ -31,20 +32,50 @@ overflow-x: hidden;
     float: center;
 	
 }
- 
-img {
-    border: 1px solid #ddd;
-	border-radius: 50%;
-    padding: 5px;
+img.background1{
+	width: 50%;
+	display: block;
     margin: auto;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+img.bk2
+{ border-radius:50%;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+border: 1px solid #ddd;
+padding: 5px;
+    margin: auto;
 	margin-bottom: 30px;
 	    margin-top: 10px;
 }
 
-img:hover {
+img.back3:hover {
     box-shadow: 0 0 2px 1px rgba(0, 160, 186, 0.5);
 }
+
+img.back3
+{ border-radius:50%;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+border: 1px solid #ddd;
+padding: 5px;
+    margin: auto;
+	margin-bottom: 30px;
+	    margin-top: 10px;
+}
+
+img.bk2:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 160, 186, 0.5);
+}
+
+
+img.back4
+{ border-radius:50%;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+border: 1px solid #ddd;
+padding: 5px;
+    margin: auto;
+	margin-bottom: 30px;
+	    margin-top: 10px;
+}
+
 .sidenav a{
 	padding-left: 20px;
     text-decoration: none;
@@ -224,12 +255,17 @@ ul.breadcrumb li a:hover {
     color: #ff7f50;
     text-decoration: none;
 }
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
 .round1 {
     width: 100%;
     float: left;
 	margin-top: 25px;
-    border: 0.5px solid coral;
+    border: 1px  solid coral;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	
 }
 .menu2{
   width:100%;
@@ -260,6 +296,43 @@ ul.breadcrumb li a:hover {
 	float:left;
 }
 
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+table, th, td {
+  border: none;
+}
+
+table {
+   width: 100%;
+    display: table;
+
+}
+table.highlight > tbody > tr {
+  -webkit-transition: background-color .25s ease;
+  transition: background-color .25s ease;
+}
+
+table.highlight > tbody > tr:hover {
+  background-color: #f2f2f2;
+}
+
+table.centered thead tr th, table.centered tbody tr td {
+  text-align: center;
+}
+
+thead {
+  border-bottom: 1px solid #d0d0d0;
+}
+
+td, th {
+  padding: 15px 5px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  border-radius: 2px;
+}
 
 .menu2 a:hover {
     color: red; 
@@ -284,12 +357,16 @@ li.logo2 a{
 	color:#ffcc00;
 }
 
-.card {
+.cards {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+   
+}
+.card1 {
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
 }
-
 
 /* Add some padding inside the card container */
 .container2 {
@@ -305,4 +382,93 @@ li.logo2 a{
 	
 	margin: 10px 0px 0px 0px;
     padding-left: 10px;
+}
+.card {
+  position: relative;
+  margin: 0.5rem 0 1rem 0;
+  background-color: #fff;
+  transition: -webkit-box-shadow .25s;
+  transition: box-shadow .25s;
+  transition: box-shadow .25s, -webkit-box-shadow .25s;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width:40%;
+  background-color: #ffcc00;
+  color:white;
+  
+}
+.card5 {
+  position: relative;
+  margin: 0.5rem 0 1rem 0;
+  background-color: #fff;
+  transition: -webkit-box-shadow .25s;
+  transition: box-shadow .25s;
+  transition: box-shadow .25s, -webkit-box-shadow .25s;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width:40%;
+  background-color: #ffcc00;
+  color:white;
+  float:right;
+      margin-top: 105px;
+    margin-right: 100px;
+	
+}
+
+.card .card-action {
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+      background-color: rgba(193, 193, 193, 0.93);
+}
+.row .col.s12 {
+  width: 100%;
+  margin-left: auto;
+  left: auto;
+  right: auto;
+}
+.card-action:hover{
+    box-shadow: 0 0 2px 1px rgba(0, 160, 186, 0.5);
+}
+.card-action1:hover{
+    box-shadow: 0 0 2px 1px rgba(0, 160, 186, 0.5);
+}
+img.plate{
+	padding-top:20px;
+	width: 45%;
+	display: block;
+    margin: auto;
+}
+img.plate2{
+	padding-top:20px;
+	width: 65%;
+	display: block;
+    margin: auto;
+}
+span.card-title{
+	padding-left:10px;
+}
+p.resturantdesc{
+	padding-left:10px;
+}
+div.card-action{
+	
+	padding-left:10px;
+	text-decoration:none;
+	padding: 16px 24px;
+	
+}
+div.card-action1{
+	
+	padding-left:10px;
+	text-decoration:none;
+	padding: 16px 24px;
+	background-color: #c5c1b3;
+	
+}
+a.reslink{
+	text-decoration: none;
+    text-align: center;
+    margin: auto;
+    padding-left: 140px;
+    color: #ffffff;
+	font-size:17px;
 }
