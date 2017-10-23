@@ -6,59 +6,6 @@ body {
 	overflow: auto;
 }
 
-.menu{
-  width:100%;
-  padding: 5px 0;
-  position: fixed;
-  justify-content: space-between;
-}
-
-.menu ul{
-	list-style-type: none;
-    overflow: hidden;
-    margin-right: 20px;
-    margin-left: -10px;
-}
-
-.menu li {
-		float: right;
-}
-
-.menu li a{
-	display:inline-block;
-	text-decoration: none;
-	padding: 10px 10px 10px 10px;
-	margin: 0px 10px;
-	color:black;
-	font-weight: bold;
-	font-size:20px;
-	float:left;
-}
-
-
-.menu a:hover {
-    color: red; 
-}
-
-a.active {
-border-bottom: 1px solid red;
-}
-
-li.logo{
-	float:left;
-	margin: -15px 0px;
-}
-
-li.logo a{
-	font-family: 'Chewy', cursive;
-	font-size: 50px;
-	color:coral;
-}
-
-.org{
-	color:#ffcc00;
-}
-
 /* for the sign up/in */
 
 .modal{
@@ -161,8 +108,8 @@ li.logo a{
 }
 
 .cake{
-	margin:10%;
-	font-size: 40px;
+	margin:5%;
+	font-size: 50px;
 	text-align:center;
 }
 
@@ -178,47 +125,6 @@ div.steps p{
 	text-align: center;
 }
 
-.searchBar
-{
-  border-radius: 5px;
-  padding: 30px;
-  background-color:rgba(192,192,192,0.3);
-  position: absolute;
-  left: 360px;
-  top: 300px;
-  width: 260px;  
-}
-#area{
-  font-family: 'Source Sans Pro', sans-serif;
-  padding: 5px;
-  display: inline-block;
-  border-radius: 5px;
-  font-size:25px;
-  color: rgba(0, 0, 0, 0.5);
-}
-
-#goButton{
-  display: inline;
-  background-color: green;
-  padding: 5px;
-  font-family: 'Source Sans Pro', sans-serif;
-  border-radius: 5px;
-  color: beige;
-  font-size:25px;  
-}
-
-.welcome{
-
-  border-radius: 5px;
-  padding: 40px;
-  background: transparent;
-  position: absolute;
-  left: 310px;
-  top: 210px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size:40px;
-  color:coral;
-}
 .footer2 {
  margin-top: 30px;
  width:100%;
