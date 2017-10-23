@@ -5,7 +5,6 @@ overflow-x: hidden;
 
 }
 
-
 .sidenav{
 	margin-top: 110px;
     height: 100%;
@@ -20,7 +19,7 @@ overflow-x: hidden;
     text-decoration: none;
     text-align: center;
  padding-top: 3px;
-  
+      font-family: sans-serif;
   
 }
 .images1{
@@ -302,6 +301,7 @@ table {
 }
 table, th, td {
   border: none;
+  
 }
 
 table {
@@ -309,11 +309,10 @@ table {
     display: table;
 
 }
-table.highlight > tbody > tr {
-  -webkit-transition: background-color .25s ease;
-  transition: background-color .25s ease;
-}
 
+th{
+	
+color:#e2574c;}
 table.highlight > tbody > tr:hover {
   background-color: #f2f2f2;
 }
@@ -347,6 +346,73 @@ li.logo2{
 	margin: -15px 0px;
 }
 
+ .chart {
+    width:900px;
+    height: 600px;
+    position: relative;
+    border: 2px solid coral;
+	margin:auto;
+  }
+  .chart:after {
+      content:' ';
+      display:block;
+      border:1px solid black;
+      position:relative;
+      top:608px;
+      left: -2px;
+  }
+
+  .tick {
+  border-left: 2px solid black;
+  height: 18px;
+  top: 608px;
+  position: absolute;
+}
+.tick:nth-child(1) {
+    left: -2px;
+}
+.tick:nth-child(2) {
+  left: 98px;
+}
+.tick:nth-child(3) {
+  left: 198px;
+}
+.tick:nth-child(4) {
+  left: 298px;
+}
+.tick:nth-child(3n+1) {
+  border-left: 4px solid darkred;
+  height: 24px;
+}
+.tick > span {
+  position:relative;
+  left: -5px;
+  top: 26px;
+  font: 1em Arial, Helvetica, sans-serif;
+}
+.tick:nth-child(3n+1) > span {
+  left: -6px;
+  font-weight: bold;
+}
+.tick:nth-child(5) {
+  left: 398px;
+}
+.tick:nth-child(6) {
+  left: 498px;
+}
+.tick:nth-child(7) {
+  left: 598px;
+}
+.tick:nth-child(8) {
+  left: 698px;
+}
+.tick:nth-child(9) {
+  left: 798px;
+}
+.tick:nth-child(10) {
+  left: 898px;
+}
+
 li.logo2 a{
 	font-family: 'Chewy', cursive;
 	font-size: 50px;
@@ -374,9 +440,7 @@ li.logo2 a{
 }
 .container {
     padding-right: 15px;
-    /* padding-left: 15px; */
-    /* margin-right: auto; */
-    /* margin-left: auto; */
+	font-family: sans-serif;
 }
 .h4, h4{
 	
@@ -407,10 +471,10 @@ li.logo2 a{
   border-radius: 2px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   width:40%;
-  background-color: #ffcc00;
+  background-color: #ff7f50;
   color:white;
   float:right;
-      margin-top: 105px;
+      margin-top: 100px;
     margin-right: 100px;
 	
 }
@@ -443,6 +507,12 @@ img.plate2{
 	display: block;
     margin: auto;
 }
+img.plate3{
+	padding-top:20px;
+	width: 69%;
+	display: block;
+    margin: auto;
+}
 span.card-title{
 	padding-left:10px;
 }
@@ -469,6 +539,14 @@ a.reslink{
     text-align: center;
     margin: auto;
     padding-left: 140px;
+    color: #ffffff;
+	font-size:17px;
+}
+a.reslink1{
+	text-decoration: none;
+    text-align: center;
+    margin: auto;
+    padding-left: 155px;
     color: #ffffff;
 	font-size:17px;
 }

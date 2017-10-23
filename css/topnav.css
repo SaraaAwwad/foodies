@@ -3,6 +3,7 @@
   padding: 5px 0;
   position: fixed;
   justify-content: space-between;
+  position: relative;
 }
 
 .menu ul{
