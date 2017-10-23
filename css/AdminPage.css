@@ -1,26 +1,42 @@
+body{
+	height: 900px; 
+overflow-y: auto;
+overflow-x: hidden;
+
+}
+
 .sidenav{
-	margin-top:100px;
-  height: 100%;
-  width: 200px;
-  position: fixed;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  background-color: #FFFFFF;
-  overflow: hidden;
-  padding-top: 20px;
-  font-size: 17px;
-  text-decoration: none;
-  text-align: center;
-  /*border: 1px solid;
-  border-color: silver;*/
+	    margin-top: 100px;
+    height: 100%;
+    width: 250px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    padding-top: 20px;
+    font-size: 17px;
+    text-decoration: none;
+    text-align: center;
+ 
+  
   
 }
+.images1{
+	border-radius: 50%;
+    padding: 5px;
+    display: block;
+    width: 40%;
+    margin-bottom: 0px;
+    float: center;
+	
+}
+ 
 img {
     border: 1px solid #ddd;
 	border-radius: 50%;
     padding: 5px;
-	display: block;
     margin: auto;
     width: 40%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -47,43 +63,44 @@ img:hover {
 	padding:10px;
 }
 .sidenav a:hover{
-	background-color: #ccc;
+	background-color: #ff7f50;
 	color: #19263E;
 	
     text-decoration: none;
 }
 .sidenav a:active{
-	background-color: #ccc;
+	background-color: #ff7f50;
 	color: #19263E;
 }
 
 button.accordion {
     background-color: #FFFFFF;
     padding-top: 20px;
-	padding-bottom:20px;
+    padding-bottom: 20px;
     width: 100%;
-    text-align: center;
+    text-align: left;
     border: none;
     outline: none;
-	overflow: hidden;
-	color: silver;
+    overflow: hidden;
+    color: #19263E;
+    padding-left: 17px;
 }
 
 button.accordion.active, button.accordion:hover {
-    background-color: #ccc;
+    background-color: #ff7f50;
 	color: #19263E;
 }
 
 
 
 div.panel {
-    background-color: #455A7D;
+    background-color: #FFFFFF;
     max-height: 0;
 	width: 100%;
-	color: silver;
+	color: #19263E;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    border: 1px solid #FFFFFF;
+    border: 0px solid #FFFFFF;
 }
 div.panel a{
 	font-size: 14px;
@@ -91,18 +108,191 @@ div.panel a{
     text-decoration: none;
 }
 div.panel a:active, div.panel a:hover{
-background-color: #ccc;
+background-color: #ff7f50;
 	color: #19263E;
 }
 
 button.accordion:after {
     content: '\02795';
-    font-size: 11px;
-    color: silver;
+    font-size: 9px;
+    color: #19263E;
     float: right;
-	margin-top: 3px;
+    margin-top: 7px;
 }
 
 button.accordion.active:after {
-    content: "\2796";
+    content: '\2796';
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    padding-right: 10px;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.menu1{
+  width:100%;
+  padding: 18px 0;
+  justify-content: space-between;
+}
+
+.menu1 ul{
+	list-style-type: none;
+    overflow: hidden;
+    margin-right: 0px;
+    margin-left: -10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.menu1 li {
+		float: right;
+}
+
+.menu1 li a{
+	display:inline-block;
+	text-decoration: none;
+	padding: 10px 10px 10px 10px;
+	margin: 0px 10px;
+	color:black;
+	font-weight: bold;
+	font-size:20px;
+	float:left;
+}
+
+.menu1 a:hover {
+    color: red; 
+}
+
+a.active {
+border-bottom: 1px solid red;
+}
+
+li.logo1{
+	float:left;
+	margin: -15px 0px;
+}
+
+li.logo1 a{
+	font-family: 'Chewy', cursive;
+	font-size: 50px;
+	color:coral;
+}
+
+.org1{
+	color:#ffcc00;
+}
+.h1, h1 {
+    font-size: 20px;
+}
+ul.breadcrumb {
+   
+    padding: 4px 1px;
+    margin-right: 350px;
+    list-style: none;
+    background-color: rgb(255, 255, 255);
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+    font-size: 15px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "≫";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+        color: #333333;
+    text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #ff7f50;
+    text-decoration: none;
+}
+.round1 {
+    width: 100%;
+    float: left;
+	margin-top: 25px;
+    border: 0.5px solid coral;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.menu2{
+  width:100%;
+  padding: 18px 0;
+  justify-content: space-between;
+}
+
+.menu2 ul{
+	list-style-type: none;
+    overflow: hidden;
+    margin-right: 0px;
+    margin-left: -10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.menu2 li {
+		float: right;
+}
+
+.menu2 li a{
+	display:inline-block;
+	text-decoration: none;
+	padding: 10px 10px 10px 10px;
+	margin: 0px 10px;
+	color:black;
+	font-weight: bold;
+	font-size:20px;
+	float:left;
+}
+
+
+.menu2 a:hover {
+    color: red; 
+}
+
+a.active {
+border-bottom: 1px solid red;
+}
+
+li.logo2{
+	float:left;
+	margin: -15px 0px;
+}
+
+li.logo2 a{
+	font-family: 'Chewy', cursive;
+	font-size: 50px;
+	color:coral;
+}
+
+.org2{
+	color:#ffcc00;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+
+/* Add some padding inside the card container */
+.container2 {
+    padding: 2px 16px;
+}
+.container {
+    padding-right: 15px;
+    /* padding-left: 15px; */
+    /* margin-right: auto; */
+    /* margin-left: auto; */
 }
