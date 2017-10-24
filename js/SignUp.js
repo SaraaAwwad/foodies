@@ -204,7 +204,6 @@ function checkIn(evt){
 	//Should process to ensure user entry is found on database -- !
 	
 	if(I_Evalid && I_Pvalid){
-		alert("Congrats, Signed In!");
 		return true;
 	}
 	else{
