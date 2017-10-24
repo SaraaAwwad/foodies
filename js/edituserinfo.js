@@ -1,4 +1,3 @@
-
 var centerView = document.getElementById("cvId");
 
 var fCont = document.getElementById("fCont");
@@ -11,30 +10,65 @@ var lname = document.getElementById("lname");
 var add = document.getElementById("add");
 var num = document.getElementById("phonenum");
 
-var saveBtn = document.getElementById("saveBtn");
-
-var fTxt = document.createElement("input");
-fTxt.type = "text";
+var fTxt = document.getElementById("ftext");
 fTxt.value= fname.innerHTML;
-
-var lTxt = document.createElement("input");
-lTxt.type = "text";
+var lTxt = document.getElementById("ltext");
 lTxt.value= lname.innerHTML;
-
-var addTxt = document.createElement("input");
-addTxt.type = "text";
+var addTxt = document.getElementById("addtext");
 addTxt.value= add.innerHTML;
-
-var numTxt = document.createElement("input");
-numTxt.type = "text";
+var numTxt = document.getElementById("numtext");
 numTxt.value= num.innerHTML;
 
-saveBtn.addEventListener("click", saveInfo);
+var saveBtn = document.getElementById("saveBtn");
 
 var editBtn= document.getElementById("edit");
 editBtn.addEventListener("click", editInfo);
 
+fTxt.addEventListener("keyup", checkVal);
+addTxt.addEventListener("keyup", checkVal);
+lTxt.addEventListener("keyup", checkVal);
+
+numTxt.addEventListener("keyup", checkNum);
+
 document.getElementById("formIn").addEventListener("submit", checkInfo);
+
+var Evalid=true;
+var Nvalid=true;
+
+function checkVal(event){
+
+ 	var x = event.target || event.srcElement;
+	var xVal = x.value;
+	
+	if(xVal.length < 1)
+	{
+		x.style.borderWidth = "3px";
+		x.style.borderColor = "#ff4d4d";
+		x.style.backgroundColor = "#ffcccc";
+		Evalid=false;
+	}
+	else{
+		x.style.borderColor = "#99ff99";
+		x.style.backgroundColor = "#ccffcc";
+		Evalid=true;
+	}
+}
+
+function checkNum(){
+	var x = numTxt.value;
+	var re = /^\d+$/;
+
+	if (x.length < 11 || re.test(x)==false){
+		numTxt.style.borderWidth = "3px";
+		numTxt.style.borderColor = "#ff4d4d";
+		numTxt.style.backgroundColor = "#ffcccc";
+		Nvalid=false;
+	}else{
+		numTxt.style.borderColor = "#99ff99";
+		numTxt.style.backgroundColor = "#ccffcc";
+		Nvalid=true;
+	}
+}
 
 function editInfo(){
 
@@ -42,56 +76,55 @@ function editInfo(){
 
 	saveBtn.style.display="block";
 
-	fCont.replaceChild(fTxt,fname);
+	fTxt.type="text";
+	lTxt.type="text";
+	addTxt.type="text";
+	numTxt.type="text";
 
-	lCont.replaceChild(lTxt,lname);
-
-	aCont.replaceChild(addTxt,add);
-
-	nCont.replaceChild(numTxt,num);	
+	fname.style.display="none";
+	lname.style.display="none";
+	add.style.display="none";
+	num.style.display="none";
 }
 
 function saveInfo(){
 
-	if(fTxt.value=="" || lTxt.value=="" || addTxt.value=="" || numTxt.value==""){
-		document.getElementById("err").innerHTML="Please enter valid inputs!";
-	}
-	else{
 	editBtn.disabled= false;
 
 	document.getElementById("err").innerHTML="";
 
-	centerView.appendChild(saveBtn);
-
 	fname.innerHTML = fTxt.value;
-	fCont.replaceChild(fname,fTxt);
-
 	lname.innerHTML = lTxt.value;
-	lCont.replaceChild(lname,lTxt);
-
 	add.innerHTML = addTxt.value;
-	aCont.replaceChild(add,addTxt);
-
 	num.innerHTML = numTxt.value;
-	nCont.replaceChild(num,numTxt);
+
+
+	fTxt.type="hidden";
+	lTxt.type="hidden";
+	addTxt.type="hidden";
+	numTxt.type="hidden";
+
+	fname.style.display="block";
+	lname.style.display="block";
+	add.style.display="block";
+	num.style.display="block";
 
 	saveBtn.style.display="none";
-	}
+	
 }
 
 function checkInfo(evt){
-	if(fTxt.value=="" || lTxt.value=="" || addTxt.value=="" || numTxt.value==""){
-		document.getElementById("err").innerHTML="Please enter all fields!";
+
+	if(Nvalid && Evalid){
+		//So the edited form doesn't change on reloading with resubmitting(till be connected with php) 
 		evt.preventDefault();
-		return false;
-	}else if(isNan(numTxt) || numTxt.length<11){
-		document.getElementById("err").innerHTML="Please Enter a proper Phone Number!";
-		evt.preventDefault();
-		return false;
-	}else{
-		document.getElementById("success").innerHTML="Successfully Changed!";
-		//evt.preventDefault();
-		alert("success");
+		alert("Success!");
+		saveInfo();
 		return true;
+
+	}else{
+		document.getElementById("err").innerHTML="Please enter valid values!";
+		evt.preventDefault();
+		return false;
 	}
 }
