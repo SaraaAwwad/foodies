@@ -1,0 +1,145 @@
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.searchBar
+{
+  border-radius: 5px;
+  padding: 30px;
+  background-color:rgba(192,192,192,0.3);
+  position: absolute;
+  left: 360px;
+  top: 300px;
+  width: 260px;  
+}
+#area{
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 5px;
+  display: inline-block;
+  border-radius: 5px;
+  font-size:25px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+#goButton{
+  display: inline;
+  background-color: green;
+  padding: 5px;
+  font-family: 'Source Sans Pro', sans-serif;
+  border-radius: 5px;
+  color: beige;
+  font-size:25px;  
+}
+
+.welcome{
+
+  border-radius: 5px;
+  padding: 40px;
+  background: transparent;
+  position: absolute;
+  left: 310px;
+  top: 210px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size:40px;
+  color:coral;
+}
+
+
+.sidenav{
+  position:absolute;
+  margin: 10% 3%;
+  width:20%;
+  background-color:#E8E8E8;
+}
+
+.sidenav ul{
+  list-style-type: none;
+  overflow: hidden;
+  margin-right: 0px;
+  margin-left: -40px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.sidenav li{
+  display: block;
+}
+
+.sidenav li a{
+  display:block;
+  text-decoration: none;
+  text-align: center;
+  color:black;
+  font-weight: bold;
+  font-size:20px;
+  padding: 20px 10px;
+}
+
+.sidenav li a:hover{
+  background-color:#F8F8F8;
+}
+
+.sidenav li a.sub{
+  background-color: #DCDCDC;
+  font-size:15px;
+}
+
+.sidenav li a.subactive{
+  background-color: #DCDCDC;
+  font-size:15px;
+  border-left: 1px solid red;
+}
+
+.sidenav li a.sub:hover{
+  background-color: #e6ffe6;
+}
+
+.centview{
+  position:absolute;
+  background-color: #e0ebeb;
+  margin: 10% 30%;
+  width:60%;
+}
+
+.sideactive{
+  background-color:#D0D0D0;
+  border-left: 8px solid #99ff99;
+}
+
+.card {
+    background-color: #d0e1e1;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.editbtn{
+  float:right;
+  background-color:#cce5ff;
+  width:80px;
+  height:50px;
+}
+
+.centview input[type=text], .centview input[type=password]{
+    width: 100%;
+    padding: 15px 20px;
+    margin: 10px 0px 20px 0px;
+    display: block;
+    border-radius: 5px;
+    border: 1px solid grey;
+    box-sizing: border-box;
+}
+
+.error{
+  color:red;
+}
+
+.success{
+  color:#00b300;
+}
+
+.savebtn{
+  display: none;
+  float:right;
+  width:80px;
+  height:50px;
+  background-color: pink;
+}
