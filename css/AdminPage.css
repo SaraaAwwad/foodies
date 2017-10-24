@@ -5,6 +5,10 @@ overflow-x: hidden;
 
 }
 
+header{
+	padding-bottom: 100px;
+}
+
 .sidenav{
 	margin-top: 110px;
     height: 100%;
