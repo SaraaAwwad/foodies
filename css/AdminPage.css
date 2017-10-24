@@ -1,5 +1,5 @@
 body{
-	height: 900px; 
+/*height: 900px;*/ 
 overflow-y: auto;
 overflow-x: hidden;
 
@@ -18,18 +18,16 @@ overflow-x: hidden;
     font-size: 17px;
     text-decoration: none;
     text-align: center;
- padding-top: 3px;
-  
-  
+    padding-top: 3px;  
 }
+
 .images1{
 	border-radius: 50%;
     padding: 5px;
     display: block;
     width: 40%;
     margin-bottom: 0px;
-    float: center;
-	
+    float: center;	
 }
  
 img {
@@ -133,59 +131,6 @@ button.accordion.active:after {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.menu1{
-  width: 100%;
-    padding: 5px 0;
-    justify-content: space-between;
-}
-
-.menu1 ul{
-	height: 60px;
-    list-style-type: none;
-    overflow: hidden;
-    margin-right: 0px;
-    margin-left: -10px;
-    margin-top: 14px;
-    box-shadow: 0 7px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.menu1 li {
-		float: right;
-}
-
-.menu1 li a{
-	display:inline-block;
-	text-decoration: none;
-	padding: 10px 10px 10px 10px;
-	margin: 0px 10px;
-	color:black;
-	font-weight: bold;
-	font-size:20px;
-	float:left;
-}
-
-.menu1 a:hover {
-    color: red; 
-}
-
-a.active {
-border-bottom: 1px solid red;
-}
-
-li.logo1{
-	float: left;
-    margin: -13px 0px;
-}
-
-li.logo1 a{
-	font-family: 'Chewy', cursive;
-	font-size: 50px;
-	color:coral;
-}
-
-.org1{
-	color:#ffcc00;
-}
 .h1, h1 {
 	
 	
