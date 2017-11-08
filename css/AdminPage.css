@@ -170,6 +170,9 @@ button.accordion.active:after {
     padding-right: 10px;
     font-size: inherit;
     text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 }
 
 .h1, h1 {
@@ -194,7 +197,7 @@ ul.breadcrumb li {
 ul.breadcrumb li+li:before {
     padding: 8px;
     color: black;
-    content: "≫";
+    content: ">";
 }
 
 /* Add a color to all links inside the list */

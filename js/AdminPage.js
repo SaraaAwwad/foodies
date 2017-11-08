@@ -9,6 +9,5 @@ function show(){
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
     } 
-   
-
+  
 }
