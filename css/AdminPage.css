@@ -2,7 +2,7 @@ body{
 /*height: 900px;*/ 
 overflow-y: auto;
 overflow-x: hidden;
-
+font-family: sans-serif;
 }
 
 header{
@@ -23,7 +23,7 @@ header{
     text-decoration: none;
     text-align: center;
     padding-top: 3px;  
-  
+    font-family: "Source Sans";
 }
 
 .images1{
@@ -39,8 +39,9 @@ img.background1{
 	display: block;
     margin: auto;
 }
-img.bk2
-{ border-radius:50%;
+
+img.bk2{ 
+border-radius:50%;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 border: 1px solid #ddd;
 padding: 5px;
@@ -85,21 +86,26 @@ padding: 5px;
     font-size: 17px;
     color: #19263E;
     display: block;
+	font-family: sans-serif;
+	font-weight: bold;
 }
+
 .item{
 	
 	padding-top:20px;
 	padding-bottom:20px
 }
+
 .PanelItem{
 	padding:10px;
 }
+
 .sidenav a:hover{
 	background-color: #ff7f50;
 	color: #19263E;
-	
     text-decoration: none;
 }
+
 .sidenav a:active{
 	background-color: #ff7f50;
 	color: #19263E;
@@ -117,13 +123,13 @@ button.accordion {
     color: #19263E;
     padding-left: 20px;
 	font-size: 17px;
+	font-weight: bold;
 }
 
 button.accordion.active, button.accordion:hover {
     background-color: #ff7f50;
 	color: #19263E;
 }
-
 
 
 div.panel {
@@ -135,11 +141,13 @@ div.panel {
     transition: max-height 0.2s ease-out;
     border: 0px solid #FFFFFF;
 }
+
 div.panel a{
 	font-size: 14px;
-	
     text-decoration: none;
+	font-weight: bold;
 }
+
 div.panel a:active, div.panel a:hover{
 background-color: #ff7f50;
 	color: #19263E;
@@ -162,18 +170,14 @@ button.accordion.active:after {
     padding-right: 10px;
     font-size: inherit;
     text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 .h1, h1 {
-	
-	
     font-size: 30px;
 	color: #e2574c;
 }
+
 ul.breadcrumb {
-   
     padding: 4px 1px;
     margin-right: 350px;
     list-style: none;
@@ -195,7 +199,7 @@ ul.breadcrumb li+li:before {
 
 /* Add a color to all links inside the list */
 ul.breadcrumb li a {
-        color: #333333;
+    color: #333333;
     text-decoration: none;
 }
 
@@ -204,10 +208,12 @@ ul.breadcrumb li a:hover {
     color: #ff7f50;
     text-decoration: none;
 }
+
 div.desc {
     padding: 15px;
     text-align: center;
 }
+
 .round1 {
     width: 100%;
     float: left;
@@ -216,6 +222,7 @@ div.desc {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	
 }
+
 .menu2{
   width:100%;
   padding: 18px 0;
@@ -249,6 +256,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 table, th, td {
   border: none;
   
@@ -263,6 +271,7 @@ table {
 th{
 	
 color:#e2574c;}
+
 table.highlight > tbody > tr:hover {
   background-color: #f2f2f2;
 }
@@ -303,7 +312,7 @@ li.logo2{
     border: 2px solid coral;
 	margin:auto;
   }
-  .chart:after {
+ .chart:after {
       content:' ';
       display:block;
       border:1px solid black;
@@ -312,6 +321,7 @@ li.logo2{
       left: -2px;
   }
 
+/* Statistics Ticks */ 
   .tick {
   border-left: 2px solid black;
   height: 18px;
@@ -390,10 +400,8 @@ li.logo2 a{
 }
 .container {
     padding-right: 15px;
-	font-family: sans-serif;
 }
 .h4, h4{
-	
 	margin: 10px 0px 0px 0px;
     padding-left: 10px;
 }
