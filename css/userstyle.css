@@ -215,6 +215,7 @@ td p{
 
 .right-info{
 float:left;
+width: 60%;
 margin-top: -10px;
 padding-left: 25px;
 }
@@ -253,4 +254,36 @@ h1{
 .cent-prodc{
   margin-left: 3%;
   margin-top: 10%;
+}
+
+.add-prd{
+  background: url("images/addicon.png") no-repeat transparent;
+  width:30px;
+  height: 30px;
+  border-radius: 15px;
+}
+
+.shop-cart{
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  overflow:auto;
+  width:90%;
+  height: 90%;
+}
+
+.shop-cart h3{
+  border-bottom: : 2px solid #ddd;
+}
+
+.shop-cart img{
+  padding-top: 10%;
+}
+
+.container-shop{
+ position:fixed;
+  padding:7px;
+  width:30%;
+  height:60%; 
+  margin: 10% 35% 10% 68%;
 }
