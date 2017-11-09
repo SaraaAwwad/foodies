@@ -3,6 +3,14 @@ body{
 overflow-y: auto;
 overflow-x: hidden;
 font-family: sans-serif;
+background-color: #f0f5f5;
+}
+
+.main2{
+	
+	position: absolute;
+    margin: 3% 30%;
+    width: 60%;
 }
 
 header{
@@ -10,19 +18,11 @@ header{
 }
 
 .sidenav{
-	margin-top: 110px;
-    height: 100%;
-    width: 230px;
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    background-color: #FFFFFF;
-    overflow: hidden;
-    font-size: 17px;
-    text-decoration: none;
-    text-align: center;
-    padding-top: 3px;  
+	position: absolute;
+    margin: 3% 3%;
+    width: 20%;
+
+    background-color: #d9d9d9;
     font-family: "Source Sans";
 }
 
@@ -48,6 +48,7 @@ padding: 5px;
     margin: auto;
 	margin-bottom: 30px;
 	    margin-top: 10px;
+		    margin-left: 25%;
 }
 
 img.back3:hover {
@@ -83,7 +84,7 @@ padding: 5px;
 	padding-left: 20px;
     text-decoration: none;
 	text-align: left;
-    font-size: 17px;
+    font-size: 20px;
     color: #19263E;
     display: block;
 	font-family: sans-serif;
@@ -112,7 +113,7 @@ padding: 5px;
 }
 
 button.accordion {
-    background-color: #FFFFFF;
+    background-color: #d9d9d9;
     padding-top: 20px;
     padding-bottom: 20px;
     width: 100%;
@@ -122,18 +123,23 @@ button.accordion {
     overflow: hidden;
     color: #19263E;
     padding-left: 20px;
-	font-size: 17px;
+	font-size: 20px;
 	font-weight: bold;
 }
 
 button.accordion.active, button.accordion:hover {
     background-color: #ff7f50;
 	color: #19263E;
+    overflow: hidden;
 }
 
+.cards p{
+	padding-left:10px; margin-bottom:0px;
+	
+}
 
 div.panel {
-    background-color: #FFFFFF;
+    background-color: #f2f2f2;
     max-height: 0;
 	width: 100%;
 	color: #19263E;
@@ -143,7 +149,7 @@ div.panel {
 }
 
 div.panel a{
-	font-size: 14px;
+	font-size: 15px;
     text-decoration: none;
 	font-weight: bold;
 }
@@ -159,6 +165,7 @@ button.accordion:after {
     color: #19263E;
     float: right;
     margin-top: 3px;
+	
 }
 
 button.accordion.active:after {
@@ -184,7 +191,7 @@ ul.breadcrumb {
     padding: 4px 1px;
     margin-right: 350px;
     list-style: none;
-    background-color: rgb(255, 255, 255);
+    background-color: #f0f5f5;
 }
 
 /* Display list items side by side */
