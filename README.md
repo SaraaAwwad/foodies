@@ -2,9 +2,8 @@
 is a program to order food online.
 
 Team Members:
-Sara Hassan	Awwad
-Farrah Hisham
-Menna Mohamed
+Sara Hassan	Awwad, Farrah Hisham, Menna Mohamed
+
 -----
 To access admin panel:
 *open the adminlogin.html
