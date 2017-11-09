@@ -1,21 +1,15 @@
 var buttonaccr = document.getElementById("buttontoggle");
 buttonaccr.addEventListener("click",show);
 
-
 var buttondelete1 = document.getElementById("deletebutton1");
 var buttondelete2 = document.getElementById("deletebutton2");
 var buttondelete3 = document.getElementById("deletebutton3");
 
-var cancelBtn = document.getElementById("cancelrest");
 
-cancelBtn.addEventListener("click", cancelFunc);
 buttondelete1.addEventListener("click",deleterow);
 buttondelete2.addEventListener("click",deleterow);
 buttondelete3.addEventListener("click",deleterow);
 
-function cancelFunc(){
-  window.location.href="addrestaurant.html";
-}
 
 function deleterow(){
 	
@@ -51,6 +45,7 @@ function addRest()
 {
   window.location.href = "newrestaurant.html";
 }
+
 
 /* function update(id){
     //Get contents off cell clicked
