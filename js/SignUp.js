@@ -39,6 +39,26 @@ var Cvalid = false;
 var I_Evalid = true;
 var I_Pvalid = false;
 
+function timeFunc(){
+	var t = document.getElementById("fTitle");
+	var d = new Date();
+	var hr = d.getHours();
+    var min = d.getMinutes();
+
+    if (min < 10){
+    	min="0"+min;
+    }
+
+    if(hr < 11){
+    	t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about breakfast?"+"<br/>"+" We are too!";}
+    else if (hr < 17){
+   		t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about lunch?"+"<br/>"+ "We are too!";
+    } else {
+    	t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about dinner?"+"<br/>"+" We are too!";
+    } 
+}
+
+
 function logAcc(){
 	closeMod();
 	document.getElementById('signIn').style.display='block';

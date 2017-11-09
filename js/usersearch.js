@@ -27,15 +27,12 @@ function tblSrch(){
       } else {
         tr[i].style.display = "none";
       }
+    }else if (h2){
+      if(h2.innerHTML.toUpperCase().indexOf(filter) > -1){
+        tr[i].style.display="";
+      }else{
+        tr[i].style.display="none";
+      }
     }       
   }
 }
-
-/*function getEventTarget(e) {
-    e = e || window.event;
-    return e.target || e.srcElement; 
-}
-
-function imgSrch(event){
- var target = getEventTarget(event);
-}*/

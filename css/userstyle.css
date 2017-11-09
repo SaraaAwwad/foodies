@@ -233,7 +233,7 @@ td a{
   margin-top: 15%;
 }
 
-.srch input[type="text"]{
+.srch input[type="text"], .cent-prodc input[type="text"]{
   background-image: url('../css/images/searchico.png');
   background-position: 10px 10px;
   background-repeat: no-repeat;
