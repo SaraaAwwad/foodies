@@ -32,11 +32,11 @@ document.getElementById("closeSi").addEventListener("click", closeSi);
 
 
 var pw1="";
-var Evalid = false;
+var Evalid = true;
 var Pvalid = false;
 var Cvalid = false;
 
-var I_Evalid = false;
+var I_Evalid = true;
 var I_Pvalid = false;
 
 function logAcc(){
