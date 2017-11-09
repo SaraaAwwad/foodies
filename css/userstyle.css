@@ -1,6 +1,10 @@
 body{
     font-family: 'Source Sans Pro', sans-serif;
+    background-image: url("../css/images/carto.png");
+    background-position: fixed;
+    background-repeat: repeat;
 }
+
 .searchBar
 {
   border-radius: 5px;
@@ -17,21 +21,23 @@ body{
   display: inline-block;
   border-radius: 5px;
   font-size:25px;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 #goButton{
   display: inline;
-  background-color: green;
-  padding: 5px;
-  font-family: 'Source Sans Pro', sans-serif;
-  border-radius: 5px;
-  color: beige;
-  font-size:25px;  
+  background-color: #00ff99;
+  padding: 10px;
+  border-radius: 5px; 
+}
+
+.gobtn{
+    text-decoration: none;
+    color:black;
+    font-size:20px;
 }
 
 .welcome{
-
   border-radius: 5px;
   padding: 40px;
   background: transparent;
@@ -43,12 +49,23 @@ body{
   color:coral;
 }
 
+div{
+  overflow: auto;
+}
 
 .sidenav{
   position:absolute;
-  margin: 10% 3%;
+  margin: 8% 3%;
   width:20%;
-  background-color:#E8E8E8;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  overflow:auto;
+
+}
+
+.sidecu{
+  overflow-y: auto;
+  height: 80%;
 }
 
 .sidenav ul{
@@ -90,13 +107,31 @@ body{
 }
 
 .sidenav li a.sub:hover{
-  background-color: #e6ffe6;
+  background-color: #e6fff3;
+}
+
+.sidenav li p{
+  font-size:20px;
+  padding: 0px 10px;
+  text-align: center;
+}
+
+.sidenav li img{
+  display: block;
+  margin:0 auto;
+  opacity: 0.5;
+}
+
+.sidenav li img:hover {
+   opacity: 1.0;
+  cursor: pointer;
 }
 
 .centview{
   position:absolute;
-  background-color: #e0ebeb;
-  margin: 10% 30%;
+  border-radius: 10px;
+  background-color: white;
+  margin: 8% 30%;
   width:60%;
 }
 
@@ -106,14 +141,16 @@ body{
 }
 
 .card {
-    background-color: #d0e1e1;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: #FFFCF2;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.3);
+    margin-bottom: 10px;
     transition: 0.3s;
 }
 
 .editbtn{
   float:right;
-  background-color:#cce5ff;
+  background: url("images/addicon.png") no-repeat transparent;
+  background-color: #80d4ff;
   width:80px;
   height:50px;
 }
@@ -141,5 +178,62 @@ body{
   float:right;
   width:80px;
   height:50px;
-  background-color: pink;
+  background-color: #99ffcc;
+}
+
+.sbtn{
+  float:right;
+  width:80px;
+  height:50px;
+  background-color: #99ffcc;
+}
+
+table{
+  width:95%;
+  margin:20px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+td, th{
+    border: 2px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+td div{
+  float:left;
+}
+
+td p{
+  font-style: italic;
+}
+
+.right-info{
+float:left;
+margin-top: -10px;
+padding-left: 25px;
+}
+
+h2{
+  margin-bottom: -10px;
+}
+
+td a{
+  text-decoration: none;
+  color: black;
+}
+
+.srch input[type="text"]{
+  background-image: url('../css/images/searchico.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 15px 40px;
+  margin:20px;
+  width: 95%;
+  border-color: #ddd;
+}
+
+.checked{
+  color:orange;
 }
