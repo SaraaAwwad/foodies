@@ -160,3 +160,35 @@ div.footerCol p{
 	font-size:20px;
 	line-height:200%;
 }	
+
+/*el feeh bey2olo order in a few easy steps*/
+.instruct{
+
+	 border-radius: 5px;
+  padding: 40px;
+  background: transparent;
+  position: absolute;
+  left: 260px;
+  top: 230px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size:40px;
+  color:coral;
+  text-align: center;
+  font-weight: bold;
+}
+
+/*el tahto*/
+.instruct2{
+	border-radius: 5px;
+  padding: 40px;
+  background: transparent;
+  position: absolute;
+  left: 350px;
+  top: 340px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size:30px;
+  color:black;
+  text-align: center;
+  font-weight: bold;
+  color: orange;
+}

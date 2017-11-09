@@ -12,7 +12,7 @@ body{
   background-color:rgba(192,192,192,0.3);
   position: absolute;
   left: 360px;
-  top: 300px;
+  top: 330px;
   width: 260px;  
 }
 #area{
@@ -21,11 +21,13 @@ body{
   display: inline-block;
   border-radius: 5px;
   font-size:25px;
+
   color: rgba(0, 0, 0, 0.6);
 }
 
 #goButton{
   display: inline;
+
   background-color: #00ff99;
   padding: 10px;
   border-radius: 5px; 
@@ -47,6 +49,8 @@ body{
   font-family: 'Source Sans Pro', sans-serif;
   font-size:40px;
   color:coral;
+  font-weight: bold;
+
 }
 
 div{
