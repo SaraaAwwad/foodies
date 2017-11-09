@@ -31,15 +31,21 @@
 	      	</select>
 		  
       	  	<button type="button" id="goButton">
-      	  		<a href="userrest.html" class="gobtn">GO!</a>
+      	  		GO!
       	  	</button>
     	</div>
 
 		</nav>
 
 	<main>
-	
 	</main>
+<script>
+	var btn = document.getElementById("goButton");
+	btn.addEventListener("click", goBtn);
 
+	function goBtn(){
+		window.location.href="userrest.html";
+	}
+</script>
 </body>
 </html>
