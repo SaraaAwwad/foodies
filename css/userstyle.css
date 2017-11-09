@@ -224,6 +224,10 @@ td a{
   color: black;
 }
 
+.srch {
+  margin-top: 15%;
+}
+
 .srch input[type="text"]{
   background-image: url('../css/images/searchico.png');
   background-position: 10px 10px;
@@ -236,4 +240,13 @@ td a{
 
 .checked{
   color:orange;
+}
+
+h1{
+  text-align: center;
+}
+
+.cent-prodc{
+  margin-left: 3%;
+  margin-top: 10%;
 }
