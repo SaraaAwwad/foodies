@@ -20,4 +20,4 @@ To acces user panel:
 	you can have a faster access by:
 		fast typing into the search bar by restaurant name
 		or choose category from icons on the left
-	then click on the restaurant that appears, so you can go to its menu(ex: Mcdonalds menu is working)
+	then click on the restaurant that appears, so you can go to its menu(ex: Mcdonalds menu is working)!!
