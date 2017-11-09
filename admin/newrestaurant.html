@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> View </title>
+<title> Add </title>
 <link rel="stylesheet" type="text/css" href="../css/topnav.css">
 <link rel="stylesheet" type="text/css" href="../css/AdminPage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -9,13 +9,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: #f0f5f5;">
 <header>
 		<nav class="menu">
 			<ul>
 				<li class="logo"> <a href= "home.html" class="log"> Foo<span class="org">d</span>ies </a></li>
 				
 			</ul>
+			</nav>
 </header>
 <main>
 <div class="sidenav" id="mysidenav" >
@@ -30,51 +31,40 @@
 <a href="statistics.html" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
 </div>
 
+
 <div class="main2">
 <div class="container" id="showcase">
-    <h1 id="con">Viewing Branches</h1>
+    <h1 id="con">New Restaurant</h1>
 	<ul class="breadcrumb">
 	<i class="fa fa-home"></i>
   <li><a href="../admin/AdminPage.html">Admin</a></li>
-  <li>Restaurant</li>
-  <li><a href="view.html">View</a></li>
+  <li>Restaurants</li>
+  <li>Manage</li>
+  <li>New Restaurant</li>
 </ul>
+<b style="color: green;">Name</b>
+<br>
+<input type="text" id="restarea">
+<br>
+<b style="color: green;">City</b>
+<br>
+<input type="text" id="restarea">
+<br>
+<b style="color: green;">Zip Code</b>
+<br>
+<input type="text" id="restarea">
+<br>
+<b style="color: green;">Address</b>
+<br>
+<input type="text" id="restarea">
+<br>
+<button type="submit" id="saverest" onclick="alert('Restaurant added!')">Add</button>
+<button type="submit" id="cancelrest">Cancel</button>
  </div>
- <table class="highlight">
-        <thead>
-          <tr>
-              <th>Restaurant Name</th>
-              <th>City</th>
-              <th>Zip Code</th>
-			  <th>Address</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Crave</td>
-            <td>Cairo</td>
-            <td>12345</td>
-			<td>21 ,Nasr City</td>
-
-          </tr>
-          <tr>
-            <td>Ted's</td>
-            <td>Alexandria</td>
-            <td>28747</td>
-			<td>18 ,Masr El-Gedida</td>
-          </tr>
-          <tr>
-            <td>Espresso Lab</td>
-            <td>Cairo</td>
-            <td>23564</td>
-			<td>112 ,Maadi</td>
-          </tr>
-        </tbody>
-      </table>
-        </div>   
-</main>		
+ 
+        </div>    
+		</main>
 		<script type="text/javascript" src="../js/AdminPage.js"></script>
-		</body>
+</body>
 
 </html>

@@ -1,11 +1,30 @@
 body{
 /*height: 900px;*/ 
-overflow-y: auto;
+overflow-y: scroll;
 overflow-x: hidden;
 font-family: sans-serif;
 background-color: #f0f5f5;
 }
 
+#editbutton{
+	background-color: #f0f5f5;
+    border-radius: 20px / 17px;
+    width: 50px;
+	cursor: pointer;
+	float:center;
+	
+}
+#editbutton i,#deletebutton i{
+	margin-left:10px;
+}
+#deletebutton{
+	background-color: #f0f5f5;
+    border-radius: 20px / 20px;
+    width: 60px;
+	cursor: pointer;
+	text-align:center;
+	float:center;
+}
 .main2{
 	
 	position: absolute;
@@ -262,32 +281,20 @@ div.desc {
 	float:left;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-table, th, td {
-  border: none;
-  
-}
 
 table {
    width: 100%;
-    display: table;
-
+   display: table;
+   border-collapse: collapse;
+  border-spacing: 0;
 }
 
-th{
-	
-color:#e2574c;}
+th{	
+color:#e2574c;
+}
 
 table.highlight > tbody > tr:hover {
-  background-color: #f2f2f2;
-}
-
-table.centered thead tr th, table.centered tbody tr td {
-  text-align: center;
+  background-color: lime; 
 }
 
 thead {
@@ -517,4 +524,44 @@ a.reslink1{
     padding-left: 155px;
     color: #ffffff;
 	font-size:17px;
+}
+
+/*button that adds restaurant*/
+#addrest{
+
+  font-family: sans-serif;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgba(124,252,0,1.0);
+  margin-left: 78%;
+  font-size:18px;
+}
+
+/*input area in new restaurant*/
+#restarea{
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 45%;
+
+}
+
+/*adding button to add new restaurant*/
+#saverest{
+  padding: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  background-color:  rgba(124,252,0,1.0);
+  margin-top: 25px;
+
+}
+
+/*cancel button to cancel adding restaurant*/
+#cancelrest{
+   padding: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  background-color:  rgba(255,0,0,0.8);
+  margin-top: 25px;
 }

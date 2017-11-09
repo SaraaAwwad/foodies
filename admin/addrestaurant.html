@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../css/style1.css">
 <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 </head>
 <body>
@@ -40,6 +39,7 @@
   <li>Restaurants</li>
   <li>Manage</li>
 </ul>
+<button id="addrest"><i class="fa fa-plus"></i>Add Restaurant</button>
  </div>
  <table class="highlight">
         <thead>
@@ -48,28 +48,36 @@
               <th>City</th>
               <th>Zip Code</th>
 			  <th>Address</th>
+</div>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <td>Crave</td>
-            <td>Cairo</td>
-            <td>12345</td>
-			<td>21 ,Nasr City</td>
+            <td contenteditable='true'>Crave</td>
+            <td contenteditable='true'>Cairo</td>
+            <td contenteditable='true'>12345</td>
+			<td contenteditable='true'>21 ,Nasr City</td>
+			<td ><button type="button" id="editbutton"><i class="fa fa-edit"></i>Edit</td>
+			<td ><button type="button" id="deletebutton"><i class="fa fa-trash"></i>Delete</td>
+
 
           </tr>
           <tr>
-            <td>Ted's</td>
-            <td>Alexandria</td>
-            <td>28747</td>
-			<td>18 ,Masr El-Gedida</td>
+            <td contenteditable='true'>Ted's</td>
+            <td contenteditable='true'>Alexandria</td>
+            <td contenteditable='true'>28747</td>
+			<td contenteditable='true'>18 ,Masr El-Gedida</td>
+			<td ><button type="button" id="editbutton"><i class="fa fa-edit"></i>Edit</td>
+			<td ><button type="button" id="deletebutton"><i class="fa fa-trash"></i>Delete</td>
           </tr>
           <tr>
-            <td>Espresso Lab</td>
-            <td>Cairo</td>
-            <td>23564</td>
-			<td>112 ,Maadi</td>
+            <td contenteditable='true'>Espresso Lab</td>
+            <td contenteditable='true'>Cairo</td>
+            <td contenteditable='true'>23564</td>
+			<td contenteditable='true'>112 ,Maadi</td>
+			<td ><button type="button" id="editbutton"><i class="fa fa-edit"></i>Edit</td>
+			<td ><button type="button" id="deletebutton"><i class="fa fa-trash"></i>Delete</td>
           </tr>
         </tbody>
       </table>
