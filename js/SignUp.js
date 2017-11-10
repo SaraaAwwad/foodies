@@ -49,8 +49,8 @@ function timeFunc(){
     	min="0"+min;
     }
 
-    if(hr < 11){
-    	t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about breakfast?"+"<br/>"+" We are too!";}
+    if(hr < 10){
+    	t.innerHTML = "It's 0"+hr+" : "+min+"<br/>"+ "Are you thinking about breakfast?"+"<br/>"+" We are too!";}
     else if (hr < 17){
    		t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about lunch?"+"<br/>"+ "We are too!";
     } else {

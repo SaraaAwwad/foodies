@@ -1,8 +1,12 @@
+html{
+  height:100%;
+}
 body{
     font-family: 'Source Sans Pro', sans-serif;
     background-image: url("../css/images/carto.png");
     background-position: fixed;
     background-repeat: repeat;
+    
 }
 
 .searchBar
@@ -67,7 +71,6 @@ div{
 }
 
 .sidecu{
-  overflow-y: auto;
   height: 80%;
 }
 
@@ -121,6 +124,7 @@ div{
 
 .sidenav li img{
   display: block;
+    padding: 20px 10px;
   margin:0 auto;
   opacity: 0.5;
 }

@@ -1,11 +1,42 @@
 var srch = document.getElementById("searchInput");
 srch.addEventListener("keyup", tblSrch);
 
+document.getElementById("im1").addEventListener("click", icoSrch);
+document.getElementById("im2").addEventListener("click", icoSrch);
+document.getElementById("im3").addEventListener("click", icoSrch);
+document.getElementById("im4").addEventListener("click", icoSrch);
+document.getElementById("im5").addEventListener("click", icoSrch);
 /*var ul = document.getElementById("searchImg");
 ul.addEventListener("click", imgSrch);
 
 var li = ul.getElementsByTagName("li");
 */
+
+function icoSrch(event){
+
+	 var img = event.target || event.srcElement;
+	 var img = img.alt;
+	 var input, filter, table, tr, td, div, p, i;
+
+  	var filter = img.toUpperCase();
+  	var table = document.getElementById("rTable");
+  	var tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    div = td.getElementsByTagName("div")[1];
+    p = div.getElementsByTagName("p")[0];
+    if (p) {
+      if (p.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+
+
+}
 
 function tblSrch(){
  var input, filter, table, tr, td, div, h2, a, i;
