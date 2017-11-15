@@ -1,5 +1,5 @@
 # foodies
-is a program to order food online.
+is a website to order food online.
 
 Team Members:
 Sara Hassan	Awwad, Farrah Hisham, Menna Mohamed
