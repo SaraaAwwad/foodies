@@ -50,11 +50,11 @@ function timeFunc(){
     }
 
     if(hr < 10){
-    	t.innerHTML = "It's 0"+hr+" : "+min+"<br/>"+ "Are you thinking about breakfast?"+"<br/>"+" We are too!";}
+    	t.innerHTML = "It's 0"+hr+" : "+min+"<br/>"+ "Are you thinking about <br> breakfast?"+" We are too!";}
     else if (hr < 17){
-   		t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about lunch?"+"<br/>"+ "We are too!";
+   		t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about <br> lunch?"+ "We are too!";
     } else {
-    	t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about dinner?"+"<br/>"+" We are too!";
+    	t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about <br> dinner?"+" We are too!";
     } 
 }
 
