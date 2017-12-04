@@ -5,13 +5,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" type="text/css" href="css/style1.css">
 	<link rel="stylesheet" type="text/css" href="css/topnav.css">
-	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro|Gochi+Hand|Delius+Unicase:700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro|Raleway" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Foodies</title>	
 </head>
 
 <body onload="timeFunc()">
 	<header class="homepage">
-		<nav class="menu">
+		<nav class="menu" id="navmenu">
 			<ul>
 				<li class="logo"> <a href= "home.html" class="log"> Foo<span class="org">d</span>ies </a></li>
 				<li><a href=  "#" id ="logM">Log In</a></li>
@@ -26,10 +27,16 @@
 
 	<div class="instruct" id="fTitle">Order from your favorite<br> restaurants!</div>
      <br>
-     <div class="instruct2">order in a few easy steps</div>
      
-	<div class="steps">
-		<h1 class="cake">Order now, It's a piece of cake!</h1>
+     <a href="#steps" class="bttn">Order Now</a>
+     
+	<a href="#steps" >
+	  	<span id="arrow-down">
+	    <i class="fa fa-chevron-down"></i></span>
+	</a>
+
+	<div class="steps" id="steps">
+		<h1 class="cake">Order now, It's a piece of cake!<hr></h1>
 		<div class="smallcol">
 			<img src="css/images/search.png" alt="burger">
 					<img src="css/images/arr1.png">
@@ -46,7 +53,7 @@
 		<div class="smallcol">
 			<img src="css/images/computer.png" alt="burger">
 				<img src="css/images/arr3.png">
-			<p>Your order is a few clicks away</p>
+			<p>Confirm your order</p>
 		</div>
 		<div class="smallcol">
 			<img src="css/images/car.png" alt="burger">
