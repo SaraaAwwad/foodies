@@ -60,11 +60,11 @@ function timeFunc(){
     }
 
     if(hr < 10){
-    	t.innerHTML = "0"+hr+" : "+min+ " is The Perfect <br> Time For Breakfast!<br> Don't You Agree? <hr>";}
+    	t.innerHTML = "0"+hr+" : "+min+ " Is the Perfect <br> Time for Breakfast!<br> Don't You Agree? <hr>";}
     else if (hr < 17){
-   		t.innerHTML = ""+hr+" : "+min+"<br/>"+ " is The Perfect <br> Time For Lunch! Don't You Agree? <hr>";
+   		t.innerHTML = ""+hr+" : "+min+"<br/>"+ " Is the Perfect <br> Time for Lunch! Don't You Agree? <hr>";
     } else {
-    	t.innerHTML = ""+hr+" : "+min+ " is The Perfect <br> Time For Dinner!<br> Don't You Agree? <hr> ";
+    	t.innerHTML = ""+hr+" : "+min+ " Is the Perfect <br> Time for Dinner!<br> Don't You Agree? <hr> ";
     } 
 }
 
