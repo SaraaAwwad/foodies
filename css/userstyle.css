@@ -12,11 +12,11 @@ body{
 {
   border-radius: 5px;
   padding: 30px;
-  background-color:rgba(192,192,192,0.3);
+  background-color:rgba(192,192,192,0.4);
   position: absolute;
-  left: 360px;
+  right: 360px;
   top: 330px;
-  width: 260px;  
+  width: 330px;  
 }
 #area{
   font-family: 'Source Sans Pro', sans-serif;
@@ -24,7 +24,6 @@ body{
   display: inline-block;
   border-radius: 5px;
   font-size:25px;
-
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -32,6 +31,7 @@ body{
   display: inline;
   background-color: #00ff99;
   padding: 15px 10px 10px 10px;
+  margin-left: 10px;
   border-radius: 5px; 
 }
 
@@ -46,13 +46,11 @@ body{
   padding: 40px;
   background: transparent;
   position: absolute;
-  left: 310px;
+  right: 310px;
   top: 210px;
-  font-family: 'Source Sans Pro', sans-serif;
   font-size:40px;
-  color:coral;
-  font-weight: bold;
-
+  color:white;
+  font-family: 'Raleway', sans-serif;
 }
 
 div{
@@ -60,9 +58,9 @@ div{
 }
 
 .sidenav{
-  position:absolute;
-  margin: 8% 3%;
-  width:20%;
+  width:70%;
+  margin-top:10%;
+  margin-left: 5%;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   overflow:auto;
@@ -123,7 +121,6 @@ div{
 
 .sidenav li img{
   display: block;
-    padding: 20px 10px;
   margin:0 auto;
   opacity: 0.5;
 }
@@ -134,11 +131,10 @@ div{
 }
 
 .centview{
-  position:absolute;
+  margin-top: 5%;
   border-radius: 10px;
   background-color: white;
-  margin: 8% 30%;
-  width:60%;
+  width:85%;
 }
 
 .sideactive{
@@ -232,7 +228,7 @@ td a{
 }
 
 .srch {
-  margin-top: 15%;
+  margin-top: 5%;
 }
 
 .srch input[type="text"], .cent-prodc input[type="text"]{
@@ -283,9 +279,41 @@ h1{
 }
 
 .container-shop{
- position:fixed;
-  padding:7px;
+  position:absolute;
+  padding:0px 7px;
   width:30%;
   height:60%; 
-  margin: 10% 35% 10% 68%;
+  margin: 7% 35% 0% 0%;
+}
+
+.restheader{
+  width:100%;
+  height: 400px;
+  background-image: url('images/rasp.jpg');
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: cover;
+  opacity: 0.8;
+}
+
+.menuhead{
+  width:100%;
+  height: 400px;
+  background-image: url('images/chickenburger.png');
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: cover;
+  opacity: 0.8;
+}
+
+#descheader{
+    position:relative;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    top:355px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.17);
+    padding: 10px;
+    width: 60%;
 }

@@ -39,6 +39,16 @@ var Cvalid = false;
 var I_Evalid = true;
 var I_Pvalid = false;
 
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.documentElement.scrollTop > 180) {
+        document.getElementById("navmenu").style.backgroundColor = "white";
+    } else {
+        document.getElementById("navmenu").style.backgroundColor = "";
+    }
+}
+
 function timeFunc(){
 	var t = document.getElementById("fTitle");
 	var d = new Date();
@@ -50,11 +60,11 @@ function timeFunc(){
     }
 
     if(hr < 10){
-    	t.innerHTML = "It's 0"+hr+" : "+min+"<br/>"+ "Are you thinking about breakfast?"+"<br/>"+" We are too!";}
+    	t.innerHTML = "0"+hr+" : "+min+ " is The Perfect <br> Time For Breakfast!<br> Don't You Agree? <hr>";}
     else if (hr < 17){
-   		t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about lunch?"+"<br/>"+ "We are too!";
+   		t.innerHTML = ""+hr+" : "+min+"<br/>"+ " is The Perfect <br> Time For Lunch! Don't You Agree? <hr>";
     } else {
-    	t.innerHTML = "It's "+hr+" : "+min+"<br/>"+ "Are you thinking about dinner?"+"<br/>"+" We are too!";
+    	t.innerHTML = ""+hr+" : "+min+ " is The Perfect <br> Time For Dinner!<br> Don't You Agree? <hr> ";
     } 
 }
 

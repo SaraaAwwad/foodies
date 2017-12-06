@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" type="text/css" href="../css/topnav.css">
 	<link rel="stylesheet" type="text/css" href="../css/userstyle.css">
+		<link rel="stylesheet" type="text/css" href="../css/style1.css">
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 	<title>User-Profile</title>	
 </head>
@@ -22,17 +23,21 @@
 	</header>
 	
 	<main>
-	
-	<div class="sidenav">
-		<ul>
-			<li><a href="userprofile.html" class="sideactive">My Account</a></li>
-			<li><a href="userprofile.html" class="sub subactive">Profile Information</a></li>
-			<li><a href="usrchangepw.html" class="sub">Change Password</a></li>
-			<li><a href="useractivity.html">View Activity</a></li>
-			<li><a href="userhistory.html">View History</a></li>
-		</ul>
+
+<div class="row">
+	<div class="col-4">
+		<div class="sidenav">
+			<ul>
+				<li><a href="userprofile.html" class="sideactive">My Account</a></li>
+				<li><a href="userprofile.html" class="sub subactive">Profile Information</a></li>
+				<li><a href="usrchangepw.html" class="sub">Change Password</a></li>
+				<li><a href="useractivity.html">View Activity</a></li>
+				<li><a href="userhistory.html">View History</a></li>
+			</ul>
+		</div>
 	</div>
 
+	<div class="col-8">
 	<div class="centview" id="cvId">
 		<form name="formInfo" id="formIn" method="get" action="userprofile.html">
 		<div class="error" id="err"></div>
@@ -65,6 +70,40 @@
 		<button type="submit" class="savebtn" id="saveBtn">Save</button>
 		</form>  
   	</div>
+  </div>
+</div>
+<div class="row-gap"></div>
+<div class="row">
+		<div class="col-12">
+		<footer>
+		<div class="footerCol">
+			<b id="head">Restaurants</b>
+			<p>Domino's Pizza</p>
+			<p>Shabrawy</p>
+			<p>McDonald's</p>
+			<p>Pizza Hut</p>
+			<p>Khayrat El Sham</p>
+		</div>
+	
+		<div class="footerCol">
+		<b id="head">Popular Cuisines</b>
+			<p>Pizza</p>
+			<p>Burger</p>
+			<p>Shawerma</p>
+			<p>Feteer</p>
+			<p>Sushi</p>
+		</div>
+	
+		<div class="footerCol">
+			<b id="head">Foodies</b>
+			<p>About Us</p>
+			<p>Contact Us</p>
+			<p>Meet the Team</p>
+		</div>
+	</footer>
+	</div>
+	</div>
+
 </main>
 
 <script type="text/javascript" src="../js/edituserinfo.js"></script>
