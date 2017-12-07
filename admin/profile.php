@@ -14,7 +14,7 @@
 <header>
 		<nav class="menu">
 			<ul>
-			  <li class="logo"> <a href= "AdminPage.html" class="log"> Foo<span class="org">d</span>ies </a></li>
+			  <li class="logo"> <a href= "AdminPage.php" class="log"> Foo<span class="org">d</span>ies </a></li>
         <li><a href="../adminlogin.html">Logout</a></li>
 			</ul>
 			</nav>
@@ -23,14 +23,14 @@
 <div class="sidenav" id="mysidenav" >
 <img class="bk2" src="../css/images/HS.jpg" alt="profile picture" >
 <hr id="sidenavhr"> 
-<a href="profile.html" class="sidenavitems item"><i class="fa fa-user-circle-o"></i> Profile</a>
-<a href="teammembers.html" class="sidenavitems item"><i class="fa fa-group"></i> Team Members</a>
+<a href="profile.php" class="sidenavitems item"><i class="fa fa-user-circle-o"></i> Profile</a>
+<a href="teammembers.php" class="sidenavitems item"><i class="fa fa-group"></i> Team Members</a>
 <button id ="buttontoggle" class="accordion"><i class="fa fa-glass"></i> Restaurants</button>
 <div class="panel" style="margin-bottom:0px" id ="paneltoggle" >
-  <a href="addrestaurant.html" class="sidenavitems PanelItem"><i class="	fa fa-user-plus"></i> Manage </a>
- <a href="viewrest.html" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View </a>
+  <a href="addrestaurant.php" class="sidenavitems PanelItem"><i class="	fa fa-user-plus"></i> Manage </a>
+ <a href="viewrest.php" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View </a>
 </div>
-<a href="statistics.html" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
+<a href="statistics.php" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
 </div>
 
 
@@ -44,7 +44,7 @@
     <h1 id="Profileh" >Profile</h1>
 	<ul class="breadcrumb">
 	<i class="fa fa-home"></i>
-  <li><a href="../admin/AdminPage.html">Admin</a></li>
+  <li><a href="../admin/AdminPage.php">Admin</a></li>
   <li>Profile</li>
 </ul>
     <hr class="round1">
