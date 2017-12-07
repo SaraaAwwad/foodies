@@ -1,3 +1,6 @@
+<?php
+require ("dbconnect.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +13,12 @@
 <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 </head>
 <body>
+
+<?php 
+$db_obj = new dbconnect;
+$sql = "SELECT ID, Name, Hotline, DelvFees, DelvTime, Image, AdminID FROM restaurant";
+$qresult = $db_obj->executesql($sql);
+?>
 <header>
 		<nav class="menu">
 			<ul>
@@ -53,43 +62,36 @@
  <table class="highlight" >
         <thead>
           <tr>
-              <th>Restaurant Name</th>
-              <th>City</th>
-              <th>Zip Code</th>
-			  <th>Address</th>
+              <th>ID</th>
+              <th>Logo</th>
+              <th>Name</th>
+			  <th>Hotline</th>
+			  <th>Delivery Fees</th>
+			  <th>Delivery Time</th>
+			  <th></th>
+			  <th></th>
 </div>
           </tr>
         </thead>
 
         <tbody id="restaurantTable">
+		<?php 
+		if($qresult->num_rows>0){
+		while($row = mysqli_fetch_array($qresult)){ ?>
           <tr id="row1">
-            <td contenteditable='true'>Crave</td>
-            <td contenteditable='true'>Cairo</td>
-            <td contenteditable='true'>12345</td>
-			<td contenteditable='true'>21 ,Nasr City</td>
-			<td ><button type="button" id="editbutton1"><i class="fa fa-edit"></i>Edit</td>
-			<td ><button type="button" id="deletebutton1"><i class="fa fa-trash"></i>Delete</td>
-
-
+            <td><?php echo $row['ID'];?></td>
+            <td><?php echo $row['Image'];?></td>
+             <td><?php echo $row['Name'];?></td>
+			<td><?php echo $row['Hotline'];?></td>
+			<td><?php echo $row['DelvFees'];?></td>
+			<td><?php echo $row['DelvTime'];?></td>
+			<?php echo "<td><form action='editForm.php?id=" . $row['ID'] . "' method='POST'><input type='hidden' name='tempId' value='".$row['ID']."'/><input type='submit' name='submit-btn' value='Update Details' /></form></td>"; ?>
+			<?php echo "<td><form action='delete.php?id=" . $row['ID'] . "' method='POST'><input type='hidden' name='tempId' value='".$row['ID']."'/><input type='submit' name='submit-btn' value='Delete' /></form></td>"; ?>
           </tr>
-          <tr id="row2">
-            <td contenteditable='true'>Ted's</td>
-            <td contenteditable='true'>Alexandria</td>
-            <td contenteditable='true'>28747</td>
-			<td contenteditable='true'>18 ,Masr El-Gedida</td>
-			<td ><button type="button" id="editbutton2"><i class="fa fa-edit"></i>Edit</td>
-			<td ><button type="button" id="deletebutton2"><i class="fa fa-trash"></i>Delete</td>
-          </tr>
-          <tr id="row3">
-            <td contenteditable='true'>Espresso Lab</td>
-            <td contenteditable='true'>Cairo</td>
-            <td contenteditable='true'>23564</td>
-			<td contenteditable='true'>112 ,Maadi</td>
-			<td ><button type="button" id="editbutton3"><i class="fa fa-edit"></i>Edit</td>
-			<td ><button type="button" id="deletebutton3"><i class="fa fa-trash"></i>Delete</td>
-          </tr>
+		  <?php }} ?>
         </tbody>
       </table>
+
         </div>    
 		</div>
 		</main>

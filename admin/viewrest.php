@@ -1,3 +1,6 @@
+<?php
+require ("dbconnect.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +13,11 @@
 <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 </head>
 <body>
+<?php 
+$db_obj = new dbconnect;
+$sql = "SELECT ID, Name, Hotline, DelvFees, DelvTime, Image, AdminID FROM restaurant";
+$qresult = $db_obj->executesql($sql);
+?>
 <header>
 		<nav class="menu">
 			<ul>
@@ -52,35 +60,29 @@
  <table class="highlight">
         <thead>
           <tr>
-              <th>Restaurant Name</th>
-              <th>City</th>
-              <th>Zip Code</th>
-			  <th>Address</th>
+              <th>ID</th>
+              <th>Logo</th>
+              <th>Name</th>
+			  <th>Hotline</th>
+			  <th>Delivery Fees</th>
+			  <th>Delivery Time</th>
 </div>
           </tr>
         </thead>
 
         <tbody>
+		<?php 
+		if($qresult->num_rows>0){
+		while($row = mysqli_fetch_array($qresult)){ ?>
           <tr>
-            <td>Crave</td>
-            <td>Cairo</td>
-            <td>12345</td>
-			<td>21 ,Nasr City</td>
-
-
+            <td><?php echo $row['ID'];?></td>
+            <td><?php echo $row['Image'];?></td>
+            <td><?php echo $row['Name'];?></td>
+			<td><?php echo $row['Hotline'];?></td>
+			<td><?php echo $row['DelvFees'];?></td>
+			<td><?php echo $row['DelvTime'];?></td>
           </tr>
-          <tr>
-            <td>Ted's</td>
-            <td>Alexandria</td>
-            <td>28747</td>
-			<td>18 ,Masr El-Gedida</td>
-          </tr>
-          <tr>
-            <td>Espresso Lab</td>
-            <td>Cairo</td>
-            <td>23564</td>
-			<td>112 ,Maadi</td>
-          </tr>
+		<?php }} ?>
         </tbody>
       </table>
         </div>    
