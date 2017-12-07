@@ -24,7 +24,7 @@ class dbconnect{
 	}
 	}
 	function disconnect(){
-		return $con->close();
+		return $this->$con->close();
 	}
 	function executesql($sql){
 		if($this->con->query($sql) == TRUE){
