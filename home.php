@@ -139,7 +139,7 @@ require("classes/user.php");
 	<header class="homepage">
 		<nav class="menu" id="navmenu">
 			<ul>
-				<li class="logo"> <a href= "home.html" class="log"> Foo<span class="org">d</span>ies </a></li>
+				<li class="logo"> <a href= "home.php" class="log"> Foo<span class="org">d</span>ies </a></li>
 				<li><a href=  "#" id ="logM">Log In</a></li>
 				<li><a href = "#" id="createM">Create an Account</a></li>
 				<li><a href = "#">Contact Us</a></li>

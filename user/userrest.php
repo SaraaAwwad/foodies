@@ -14,9 +14,9 @@
 <body>
 		<nav class="menu">
 			<ul>
-				<li class="logo"> <a href= "userhome.html" class="log"> Foo<span class="org">d</span>ies </a></li>
-				<li><a href="../home.html">Logout</a></li>
-				<li><a href="userprofile.html">Profile</a></li>
+				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
+				<li><a href="../home.php">Logout</a></li>
+				<li><a href="userprofile.php">Profile</a></li>
 				<li><a href="#">Help</a></li>
 			</ul>
 		</nav>
@@ -31,7 +31,7 @@
 		<div class="col-4">
 			<div class="sidenav sidecu">
 				<ul id="searchImg">
-					<li><a href="userrest.html" title="Click Here To Show All!">Search By Cuisine</a></li>
+					<li><a href="userrest.php" title="Click Here To Show All!">Search By Cuisine</a></li>
 					<li>
 						<img id="im1" src="../css/images/sidepizza.svg" alt="pizza" title="Pizza" width="70" height="100">
 					</li>
