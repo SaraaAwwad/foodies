@@ -1,7 +1,7 @@
 <?php
 
 // connect to the database
-include_once('dbconnect.php');
+include_once('\..\db\db_connect.php');
 
 $id = $_GET['id'];
 $db_obj = new dbconnect;

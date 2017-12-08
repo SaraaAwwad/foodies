@@ -1,5 +1,5 @@
 <?php
-include_once ("C:/wamp64/www/foodies/db/db_connect.php");
+include_once ("\..\db\db_connect.php");
 $table = "restaurant";
 $id = $_GET['id'];
 $db_obj = new dbconnect;
