@@ -37,9 +37,8 @@ class dbconnect{
 
 	function selectsql($sql){
 
-			 $result = mysqli_query($this->con, $sql);
-			 //$rowcount=mysqli_num_rows($result);
-			 return $result;
+		$result = mysqli_query($this->con, $sql);
+		return $result;
 	}
 
 	function disconnect(){

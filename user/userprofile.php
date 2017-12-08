@@ -1,3 +1,8 @@
+<?php 
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,18 +15,25 @@
 	<title>User-Profile</title>	
 </head>
 
+	
+<?php
+	if(!isset($_SESSION["userID"])){
+		echo '<h1> Sorry, You Can\'t View This Page Without Logging In!</h1>';
+		exit();
+	}
+?>
 <body>
 	<header>
 		<nav class="menu">
 			<ul>
 				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
 				<li><a href="../home.php">Logout</a></li>
-				<li><a href="userprofile.php" class="active">Profile</a></li>
+				<li><a href="userprofile.php" class="active"><?php echo $_SESSION['userFN']?></a></li>
 				<li><a href="#">Help</a></li>
 			</ul>
 		</nav>
 	</header>
-	
+
 	<main>
 <div class="row-gap"></div>
 <div class="row">
@@ -44,19 +56,19 @@
 		<div class="success" id="success"></div>
 			<div class="card" id ="fCont">
 				    <h4><b>First Name</b></h4> 
-				    <p name="first" id= "fname" style="padding-left:10px; margin-bottom:0px;">Sara</p> 
+				    <p name="first" id= "fname" style="padding-left:10px; margin-bottom:0px;"><?php echo $_SESSION['userFN']; ?></p> 
 				    <input type="hidden" name="firstName" id="ftext" required>
 			</div>
 
 				<div class="card" id="lCont">
 				    <h4><b>Last Name</b></h4> 
-				    <p name="last" id="lname" style="padding-left:10px; margin-bottom:0px;">Hassan</p> 
+				    <p name="last" id="lname" style="padding-left:10px; margin-bottom:0px;"><?php echo $_SESSION['userLN']; ?></p> 
 				    <input type="hidden" name="lastName" id="ltext" required>
 				</div>
 
 				<div class="card" id="aCont">
 				    <h4><b>Address</b></h4> 
-				    <p name="address" id="add" style="padding-left:10px; margin-bottom:0px;">Masr El-Gedida, Cairo, Egypt</p> 
+				    <p name="address" id="add" style="padding-left:10px; margin-bottom:0px;"><?php echo $_SESSION['userAREA'] . ', ' . $_SESSION['userSTREET'] . ', '. $_SESSION["userBUILDING"];?></p> 
 				    <input type="hidden" name="addName" id="addtext" required>
 				</div>
 
