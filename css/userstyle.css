@@ -5,7 +5,11 @@ body{
     font-family: 'Source Sans Pro', sans-serif;
     background-image: url("../css/images/carto.png");
     background-position: fixed;
-    background-repeat: repeat;   
+    background-repeat: repeat;
+    padding-top: 0px;
+    margin: 0px;
+    overflow: auto;
+  -webkit-font-smoothing: antialiased;  
 }
 
 .searchBar
