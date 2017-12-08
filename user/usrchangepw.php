@@ -14,9 +14,9 @@
 	<header>
 		<nav class="menu">
 			<ul>
-				<li class="logo"> <a href= "userhome.html" class="log"> Foo<span class="org">d</span>ies </a></li>
-				<li><a href="../home.html">Logout</a></li>
-				<li><a href="userprofile.html" class="active">Profile</a></li>
+				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
+				<li><a href="../home.php">Logout</a></li>
+				<li><a href="userprofile.php" class="active">Profile</a></li>
 				<li><a href="#">Help</a></li>
 			</ul>
 		</nav>
@@ -28,11 +28,11 @@
 		<div class="col-4">
 			<div class="sidenav">
 				<ul>
-					<li><a href="userprofile.html" class="sideactive">My Account</a></li>
-					<li><a href="userprofile.html" class="sub">Profile Information</a></li>
-					<li><a href="usrchangepw.html" class="sub subactive">Change Password</a></li>
-					<li><a href="useractivity.html">View Activity</a></li>
-					<li><a href="userhistory.html">View History</a></li>
+					<li><a href="userprofile.php" class="sideactive">My Account</a></li>
+					<li><a href="userprofile.php" class="sub">Profile Information</a></li>
+					<li><a href="usrchangepw.php" class="sub subactive">Change Password</a></li>
+					<li><a href="useractivity.php">View Activity</a></li>
+					<li><a href="userhistory.php">View History</a></li>
 				</ul>
 			</div>
 		</div>
