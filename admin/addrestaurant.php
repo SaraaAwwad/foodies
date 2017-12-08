@@ -1,12 +1,12 @@
 <?php
-require ("dbconnect.php");
+include_once ("C:/wamp64/www/foodies/db/db_connect.php");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title> Add </title>
-<link rel="stylesheet" type="text/css" href="../css/topnav.css">
-<link rel="stylesheet" type="text/css" href="../css/AdminPage.css">
+<link rel="stylesheet" type="text/css" href="..//css/topnav.css">
+<link rel="stylesheet" type="text/css" href="..//css/AdminPage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,8 +16,8 @@ require ("dbconnect.php");
 
 <?php 
 $db_obj = new dbconnect;
-$sql = "SELECT ID, Name, Hotline, DelvFees, DelvTime, Image, AdminID FROM restaurant";
-$qresult = $db_obj->executesql($sql);
+$sql = "SELECT ID,Name, Hotline, DelvFees, DelvTime, Image, AdminID FROM restaurant";
+$qresult = $db_obj->selectsql($sql);
 ?>
 <header>
 		<nav class="menu">
@@ -63,13 +63,12 @@ $qresult = $db_obj->executesql($sql);
         <thead>
           <tr>
               <th>ID</th>
-              <th>Logo</th>
+			  <th>Logo</th>
               <th>Name</th>
 			  <th>Hotline</th>
 			  <th>Delivery Fees</th>
 			  <th>Delivery Time</th>
-			  <th></th>
-			  <th></th>
+			  <th colspan="2"></th>
 </div>
           </tr>
         </thead>
@@ -80,14 +79,14 @@ $qresult = $db_obj->executesql($sql);
 		while($row = mysqli_fetch_array($qresult)){ ?>
           <tr id="row1">
             <td><?php echo $row['ID'];?></td>
-            <td><?php echo $row['Image'];?></td>
+			<td><img src="../css/images/<?php echo $row['Image'];?>" width="50" height="50"></td>
              <td><?php echo $row['Name'];?></td>
 			<td><?php echo $row['Hotline'];?></td>
 			<td><?php echo $row['DelvFees'];?></td>
 			<td><?php echo $row['DelvTime'];?></td>
-			<?php echo "<td><form action='editForm.php?id=" . $row['ID'] . "' method='POST'><input type='hidden' name='tempId' value='".$row['ID']."'/><input type='submit' name='submit-btn' value='Update Details' /></form></td>"; ?>
-			<?php echo "<td><form action='delete.php?id=" . $row['ID'] . "' method='POST'><input type='hidden' name='tempId' value='".$row['ID']."'/><input type='submit' name='submit-btn' value='Delete' /></form></td>"; ?>
-          </tr>
+			 <td align="center"><a class="butt" href="editForm.php?id=<?php echo $row['ID']; ?>">Update</a></td>
+            <td align="center"><a class="butt" href="delete.php?id=<?php echo $row['ID']; ?>">Delete</a></td>
+			</tr>
 		  <?php }} ?>
         </tbody>
       </table>
