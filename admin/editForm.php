@@ -52,7 +52,7 @@ $qresult = $db_obj->executesql($sql);
   <li>New Restaurant</li>
 </ul>
 <?php 
-$id = $_GET['id'];
+		$id = $_GET['id'];
 		if($qresult->num_rows>0){
 		while($row = mysqli_fetch_array($qresult)){ 
 		if($row['ID'] == $id){
