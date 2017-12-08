@@ -34,5 +34,10 @@ class dbconnect{
 			echo "Error Executing: " .$this->con->error;
 		}
 }
+function executesqlto($sql){
+		$this->con->query($sql);
+		return $result = mysqli_query($this->con,$sql);
+	
+}
 }
 ?>

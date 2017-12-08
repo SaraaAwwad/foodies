@@ -51,49 +51,52 @@ $qresult = $db_obj->executesql($sql);
   <li>Manage</li>
   <li>New Restaurant</li>
 </ul>
+
+		
+<form action="addrestaurant.php" method="POST">
 <?php 
 $id = $_GET['id'];
 		if($qresult->num_rows>0){
 		while($row = mysqli_fetch_array($qresult)){ 
 		if($row['ID'] == $id){
-		?>
-		
-<form action="addrestaurant.php" method="post">
+?>
 <b style="color: green;">Name</b>
 <br>
-<input type="text" name="namearea" id="namearea" value="<?php echo $row['Name']; ?>" >
+<input type="text" name="namearea" value="<?php echo $row['Name']; ?>" >
 <br>
 <b style="color: green;">Hotline</b>
 <br>
-<input type="text" name="hotarea"  id="hotarea" value="<?php echo $row['Hotline']; ?>">
+<input type="text" name="hotarea" value="<?php echo $row['Hotline']; ?>">
 <br>
 <b style="color: green;">Delivery Fees</b>
 <br>
-<input type="text" name="feesarea" id="feesarea" value="<?php echo $row['DelvFees'];?>">
+<input type="text" name="feesarea" value="<?php echo $row['DelvFees'];?>">
 <br>
 <b style="color: green;">Delivery Time</b>
 <br>
-<input type="text" name="timearea" id="timearea" value="<?php echo $row['DelvTime'];?>">
+<input type="text" name="timearea" value="<?php echo $row['DelvTime'];?>">
 <br>
 <input type="submit" name="sub" id="saverest" value="Edit">
 <button type="button" id="cancelrest">Cancel</button>
 </form>  
-<?php }}} ?>
-
-<?php if(isset($_POST['sub'])){
+<?php }}} 
+if(isset($_POST['sub'])){
 	$rname = $_POST['namearea'];
 	$hnum = $_POST['hotarea'];
 	$fnum = $_POST['feesarea'];
 	$tnum = $_POST['timearea'];
-	$sql2 = "UPDATE restaurant SET Name = '$rname', Hotline = '$hnum', DelvFees = '$fnum', DelvTime = '$tnum' WHERE ID = '$id'";
-    $db_obj->executesql($sql2);
-} ?>	
+	$db_objj = new dbconnect;
+	$sqll = "UPDATE restaurant SET Name = '$rname', Hotline = '$hnum', DelvFees = '$fnum', DelvTime = '$tnum' WHERE ID = $id";
+    $db_objj->executesql($sqll);
+}
+?>
+
 <script type="text/javascript" src="../js/AdminPage.js"></script>
 <script type="text/javascript">
-	var cncl = document.getElementById("cancelrest");
+var cncl = document.getElementById("cancelrest");
 cncl.addEventListener("click", cnclFunc);
 function cnclFunc(){
-  window.location.href="addrestaurant.php";
+ window.location.href="addrestaurant.php";
 }
 </script>
 </body>
