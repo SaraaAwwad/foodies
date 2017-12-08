@@ -1,12 +1,12 @@
 <?php
-require ("dbconnect.php");
+include_once ("C:/wamp64/www/foodies/db/db_connect.php");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title> Add </title>
-<link rel="stylesheet" type="text/css" href="../css/topnav.css">
-<link rel="stylesheet" type="text/css" href="../css/AdminPage.css">
+<link rel="stylesheet" type="text/css" href="..//css/topnav.css">
+<link rel="stylesheet" type="text/css" href="..//css/AdminPage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,13 +16,13 @@ require ("dbconnect.php");
 <?php 
 $db_obj = new dbconnect;
 $sql = "SELECT ID, Name, Hotline, DelvFees, DelvTime, Image, AdminID FROM restaurant";
-$qresult = $db_obj->executesql($sql);
+$qresult = $db_obj->selectsql($sql);
 ?>
 <header>
 		<nav class="menu">
 			<ul>
         <li class="logo"> <a href= "AdminPage.php" class="log"> Foo<span class="org">d</span>ies </a></li>
-        <li><a href="../adminlogin.html">Logout</a></li>
+        <li><a href="../adminlogin.php">Logout</a></li>
 			</ul>
 </header>
 <h1 id="imagedesc">Viewing All Restaurants</h1>
@@ -61,7 +61,7 @@ $qresult = $db_obj->executesql($sql);
         <thead>
           <tr>
               <th>ID</th>
-              <th>Logo</th>
+			  <th>Logo</th>
               <th>Name</th>
 			  <th>Hotline</th>
 			  <th>Delivery Fees</th>
@@ -76,7 +76,7 @@ $qresult = $db_obj->executesql($sql);
 		while($row = mysqli_fetch_array($qresult)){ ?>
           <tr>
             <td><?php echo $row['ID'];?></td>
-            <td><?php echo $row['Image'];?></td>
+			<td><img src="../css/images/<?php echo $row['Image'];?>" width="50" height="50"></td>
             <td><?php echo $row['Name'];?></td>
 			<td><?php echo $row['Hotline'];?></td>
 			<td><?php echo $row['DelvFees'];?></td>

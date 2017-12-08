@@ -39,5 +39,10 @@ function executesqlto($sql){
 		return $result = mysqli_query($this->con,$sql);
 	
 }
+public function delete($table, $id)
+  {
+  $res=mysql_query("delete from $table where user_id=".$id);
+  return $res;
+  }
 }
 ?>

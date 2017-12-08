@@ -1,21 +1,23 @@
 <?php
-require ("dbconnect.php");
+include_once ("C:/wamp64/www/foodies/db/db_connect.php");
+$table = "restaurant";
+$id = $_GET['id'];
+$db_obj = new dbconnect;
+$sql = "SELECT ID, Name, Hotline, DelvFees, DelvTime, Image, AdminID FROM restaurant WHERE ID = $id";
+$qresult = $db_obj->selectsql($sql);
+$row = mysqli_fetch_array($qresult)
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title> Add </title>
-<link rel="stylesheet" type="text/css" href="../css/topnav.css">
-<link rel="stylesheet" type="text/css" href="../css/AdminPage.css">
+<link rel="stylesheet" type="text/css" href="..//css/topnav.css">
+<link rel="stylesheet" type="text/css" href="..//css/AdminPage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 </head>
 <body>
-<?php 
-$db_obj = new dbconnect;
-$sql = "SELECT ID, Name, Hotline, DelvFees, DelvTime, Image, AdminID FROM restaurant";
-$qresult = $db_obj->executesql($sql);
-?>
+
 <header>
 		<nav class="menu">
 			<ul>
@@ -43,7 +45,7 @@ $qresult = $db_obj->executesql($sql);
 
 <div class="main2" >
 <div class="container" id="showcase">
-    <h1 id="con">New Restaurant</h1>
+    <h1 id="con">Update Restaurant</h1>
 	<ul class="breadcrumb">
 	<i class="fa fa-home"></i>
   <li><a href="../admin/AdminPage.php">Admin</a></li>
@@ -54,40 +56,34 @@ $qresult = $db_obj->executesql($sql);
 
 		
 <form action="addrestaurant.php" method="POST">
-<?php 
-		$id = $_GET['id'];
-		if($qresult->num_rows>0){
-		while($row = mysqli_fetch_array($qresult)){ 
-		if($row['ID'] == $id){
-?>
 <b style="color: green;">Name</b>
 <br>
-<input type="text" name="namearea" value="<?php echo $row['Name']; ?>" >
+<input type="text" name="namearea" id="restarea" value="<?php echo $row['Name']; ?>" >
 <br>
 <b style="color: green;">Hotline</b>
 <br>
-<input type="text" name="hotarea" value="<?php echo $row['Hotline']; ?>">
+<input type="text" name="hotarea" id="restarea" value="<?php echo $row['Hotline']; ?>">
 <br>
 <b style="color: green;">Delivery Fees</b>
 <br>
-<input type="text" name="feesarea" value="<?php echo $row['DelvFees'];?>">
+<input type="text" name="feesarea" id="restarea" value="<?php echo $row['DelvFees'];?>">
 <br>
 <b style="color: green;">Delivery Time</b>
 <br>
-<input type="text" name="timearea" value="<?php echo $row['DelvTime'];?>">
+<input type="text" name="timearea" id="restarea" value="<?php echo $row['DelvTime'];?>">
 <br>
-<input type="submit" name="sub" id="saverest" value="Edit">
+<button type="submit" name="update" id="saverest">Update</button>
 <button type="button" id="cancelrest">Cancel</button>
 </form>  
-<?php }}} 
-if(isset($_POST['sub'])){
-	$rname = $_POST['namearea'];
-	$hnum = $_POST['hotarea'];
-	$fnum = $_POST['feesarea'];
-	$tnum = $_POST['timearea'];
-	$db_objj = new dbconnect;
-	$sqll = "UPDATE restaurant SET Name = '$rname', Hotline = '$hnum', DelvFees = '$fnum', DelvTime = '$tnum' WHERE ID = $id";
-    $db_objj->executesql($sqll);
+<?php
+if(isset($_POST['update'])){
+	
+	$a = $_POST['namearea'];
+	$b = $_POST['hotarea'];
+	$c = $_POST['feesarea'];
+	$d = $_POST['timearea'];
+	$id = $_GET['id'];
+    $db_obj->update($table,$id,$a,$b ,$c,$d);
 }
 ?>
 
