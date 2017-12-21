@@ -1,48 +1,83 @@
 <?php 
-class dbconnect{
-	private $servername;
-	private $username;
-	private $password;
-	private $db;
-	private $con;
+class dbconnect {
 	
+
+	public $link;
+
+	public $host 	 = "localhost";
+	public $username = "root";
+	public $password = "";
+	public $database = "foodies2"; 
+
 	function __construct(){
-		$this->servername = "localhost";
-		$this->username = "root";
-		$this->password="";
-		$this->db = "foodies";
-		$this->con = $this->Connect();
+		global $connection;
+		$this->link = new mysqli( $this->host, $this->username, $this->password, $this->database );
+	}
+
+	public function __destruct() {
+
+		$this->disconnect();
+
+	}
+
+	public function query($query) {
+
+		$result = mysqli_query($query, $this->link) or die ("Invalid query: " . mysqli_error());
+		return $result;
+		$this->disconnect();
+
+	}
+
+	public function fetch($query) {
+
+	 	$data = array();
+		$result = $this->link->query($query);
+			while($row = mysqli_fetch_assoc($result)) {
+				$data[] = $row;
+			}
+
+	  	return $data;
+	  	$this->disconnect();
+	  	
 	}
 	
-	function connect(){
-		$this->con = mysqli_connect($this->servername, $this->username, $this->password, $this->db);
-		if($this->con->connect_error){
-			die("Failed to connect: " .$this->con->connect_error);
+	public function add_rest($Name, $hotline, $fees, $time, $image, $admin){
+
+				$this->link->query("INSERT INTO `restaurant` SET Name = '$Name', Hotline = '$hotline', DelvFees = '$fees', DelvTime = '$time', Image = '$image', AdminID = '$admin'");
 	}
-	else{
-		return $this->con;
+
+	public function add_cuisine($RID, $type){
+
+				$this->link->query("INSERT INTO cuisine (RestID,Type)
+				 VALUES ('$RID', '$type')");
 	}
+
+	public function add_area($RID, $AID){
+
+				$this->link->query("INSERT INTO rest_area (RID,AID)
+				  VALUES ('$RID', '$AID')");
 	}
-	function disconnect(){
-		return $this->$con->close();
+
+
+	public function SelectMaxID($_TableName) {
+	 $result = mysqli_query($this->link,"SELECT MAX(ID) FROM ".$_TableName);
+	 $row1 = mysqli_fetch_array($result);
+	 return $row1[0];
+    }
+
+
+
+    public function SelectAll($_TableName) {
+        $data = $this->fetch("SELECT * FROM ".$_TableName);
+			return $data;
+    }
+
+
+
+  	public function disconnect() {
+
+		$this->link->close();
+
 	}
-	function executesql($sql){
-		if($this->con->query($sql) == TRUE){
-			return $result = mysqli_query($this->con,$sql);
-		}
-		else{
-			echo "Error Executing: " .$this->con->error;
-		}
-}
-function executesqlto($sql){
-		$this->con->query($sql);
-		return $result = mysqli_query($this->con,$sql);
-	
-}
-public function delete($table, $id)
-  {
-  $res=mysql_query("delete from $table where user_id=".$id);
-  return $res;
-  }
 }
 ?>
