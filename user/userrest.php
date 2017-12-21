@@ -72,7 +72,7 @@
 								<img src="../css/images/mac.png" width="100" height="100">
 							</div>
 							<div class="right-info"> 
-								<h2><a href="userviewmenu.html">McDonald's</a></h2>
+								<h2><a href="userviewmenu.php">McDonald's</a></h2>
 								<p>Sandwiches, Beverages, Desserts</p>
 							</div>
 						</td>

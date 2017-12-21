@@ -44,15 +44,14 @@ class dbconnect{
 	}
 
 	function selectsql($sql){
-
+		
 		$result = mysqli_query($this->con, $sql);
 		return $result;
 	}
 
-	function update($table,$id,$k,$l,$m,$f)
-  {
-   mysqli_query($this->con,"update $table set Name='$k', Hotline='$l',DelvFees='$m',DelvTime='$f' where ID =".$id);
-  }	
+	function update($table,$id,$k,$l,$m,$f){
+   		mysqli_query($this->con,"update $table set Name='$k', Hotline='$l',DelvFees='$m',DelvTime='$f' where ID =".$id);
+  	}	
   
 	function disconnect(){
 		return $this->con->close();

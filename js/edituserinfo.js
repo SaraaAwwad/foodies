@@ -24,11 +24,11 @@ var saveBtn = document.getElementById("saveBtn");
 var editBtn= document.getElementById("edit");
 editBtn.addEventListener("click", editInfo);
 
-fTxt.addEventListener("keyup", checkVal);
-addTxt.addEventListener("keyup", checkVal);
-lTxt.addEventListener("keyup", checkVal);
+fTxt.addEventListener("change", checkVal);
+addTxt.addEventListener("change", checkVal);
+lTxt.addEventListener("change", checkVal);
 
-numTxt.addEventListener("keyup", checkNum);
+numTxt.addEventListener("change", checkNum);
 
 document.getElementById("formIn").addEventListener("submit", checkInfo);
 
