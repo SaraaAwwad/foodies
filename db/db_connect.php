@@ -12,7 +12,7 @@ class dbconnect{
 		$this->username = "root";
 		$this->password = "";
 		$this->db = "foodies";
-		$this->con = $this->connect();
+		$this->con = $this->Connect();
 	}
 
 	function connect(){
@@ -47,14 +47,10 @@ class dbconnect{
 
 			 $result = mysqli_query($this->con, $sql);
 			 //$rowcount=mysqli_num_rows($result);
+			 
 			 return $result;
 	}
 
-	function update($table,$id,$k,$l,$m,$f)
-  {
-   mysqli_query($this->con,"update $table set Name='$k', Hotline='$l',DelvFees='$m',DelvTime='$f' where ID =".$id);
-  }	
-  
 	function disconnect(){
 		return $this->con->close();
 	}

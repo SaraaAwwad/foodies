@@ -62,12 +62,12 @@ $qresult = $db_obj->selectsql($sql);
           <tr>
               <th>ID</th>
 			  <th>Logo</th>
-              <th>Name</th>
+        <th>Name</th>
 			  <th>Hotline</th>
 			  <th>Delivery Fees</th>
 			  <th>Delivery Time</th>
 </div>
-          </tr>
+        </tr>
         </thead>
 
         <tbody>
@@ -75,9 +75,9 @@ $qresult = $db_obj->selectsql($sql);
 		if($qresult->num_rows>0){
 		while($row = mysqli_fetch_array($qresult)){ ?>
           <tr>
-            <td><?php echo $row['ID'];?></td>
+          <td><?php echo $row['ID'];?></td>
 			<td><img src="../css/images/<?php echo $row['Image'];?>" width="50" height="50"></td>
-            <td><?php echo $row['Name'];?></td>
+          <td><?php echo $row['Name'];?></td>
 			<td><?php echo $row['Hotline'];?></td>
 			<td><?php echo $row['DelvFees'];?></td>
 			<td><?php echo $row['DelvTime'];?></td>
