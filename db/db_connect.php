@@ -26,7 +26,7 @@ class dbconnect{
 	}
 
 	 function executesql($sql){
-		if($this->con->query($sql) === TRUE){
+		if($this->con->query($sql) == TRUE){
 			//$result = mysqli_query($this->con, $sql);
 			return true;
 		}else{
@@ -59,6 +59,11 @@ class dbconnect{
 		return $this->con->close();
 	}
 
-	
+ 	function test_input($data) {
+		  $data = trim($data);
+		  $data = stripslashes($data);
+		  $data = htmlspecialchars($data);
+		  return $data;
+	}
 }
 ?>

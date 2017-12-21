@@ -10,7 +10,7 @@
 	public $Area;
 	public $Street;
 	public $Building;
-
+	public $Password;
 	public $dbobj;
 
 	public function __construct(){
@@ -47,11 +47,6 @@
 				//try to comment it?
 				session_start();
 				$_SESSION["userID"] = $row['UID'];
-				/*$_SESSION["userFN"] = $row[FName];
-				$_SESSION["userLN"] = $row[LName];
-				$_SESSION["userAREA"] = $row[Area];
-				$_SESSION["userSTREET"] = $row[Street];
-				$_SESSION["userBUILDING"] = $row[Building];*/
 				return true;
 			}
 		}
@@ -59,8 +54,39 @@
 		return false;
 	}
 
-	public function update(){
+	public function updateInfo($id, $fn, $ln, $bld, $st, $ar){
 
+		$sql = "UPDATE user SET FName= '$fn' ,LName='$ln',Area='$ar', Street= '$st', Building='$bld' WHERE UID='$id'";
+		$res = $this->dbobj->executesql2($sql);
+
+		if($res){
+			$this->getInfo($id);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function updatePw($oldpw, $newpw, $id){
+		//trim data first
+		$old = $this->dbobj->test_input($oldpw);
+		$new = $this->dbobj->test_input($newpw);
+		$storePw = password_hash($new, PASSWORD_BCRYPT, array('cost'=>8));
+
+		if(!password_verify($old, $this->Password)){
+			return false;
+		}
+
+		$sql = "UPDATE user SET Password = '$storePw' WHERE UID='$id' ";
+		$res = $this->dbobj->executesql($sql);
+
+		if($res){
+			$this->getInfo($id);
+			return true;
+		}else{
+			return false;
+		}
+			
 	}
 
 	public function getInfo($id){
@@ -75,6 +101,7 @@
 			$this->Area = $row['Area'];
 			$this->Street = $row['Street'];
 			$this->Building = $row['Building'];
+			$this->Password = $row['Password'];
 		}
 	}
 }
