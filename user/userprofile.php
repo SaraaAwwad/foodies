@@ -23,11 +23,11 @@ $user->getInfo($id);
 <?php
 	if (isset($_GET['saveInfo'])){
 
-		$fn = test_input($_GET["firstName"]);
-		$ln = test_input($_GET["lastName"]);
-		$bld = test_input($_GET["buildName"]);
-		$st = test_input($_GET["streetName"]);
-		$ar = test_input($_GET["areaName"]);
+		$fn = $_GET["firstName"];
+		$ln = $_GET["lastName"];
+		$bld = $_GET["buildName"];
+		$st = $_GET["streetName"];
+		$ar = $_GET["areaName"];
 
 		if($user->updateInfo($id, $fn, $ln, $bld, $st, $ar)){
 			 echo'<script>$.notify("granted","success");</script>';
@@ -35,15 +35,7 @@ $user->getInfo($id);
 			echo 'fail';
 		}
 	}
-
- 	function test_input($data) {
-		  $data = trim($data);
-		  $data = stripslashes($data);
-		  $data = htmlspecialchars($data);
-		  return $data;
-	}
 ?>
-
 
 	
 <?php

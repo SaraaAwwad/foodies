@@ -56,6 +56,12 @@
 
 	public function updateInfo($id, $fn, $ln, $bld, $st, $ar){
 
+		$fn = $this->dbobj->test_input($fn);
+		$ln = $this->dbobj->test_input($ln);
+		$bld = $this->dbobj->test_input($bld);
+		$st = $this->dbobj->test_input($st);
+		$ar = $this->dbobj->test_input($ar);
+		
 		$sql = "UPDATE user SET FName= '$fn' ,LName='$ln',Area='$ar', Street= '$st', Building='$bld' WHERE UID='$id'";
 		$res = $this->dbobj->executesql2($sql);
 
