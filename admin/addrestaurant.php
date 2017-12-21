@@ -1,5 +1,5 @@
 <?php
-include_once ("C:/wamp64/www/foodies/db/db_connect.php");
+include_once ("\..\db\db_connect.php");
 ?>
 <!DOCTYPE html>
 <html>

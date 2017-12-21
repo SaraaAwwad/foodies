@@ -47,7 +47,6 @@ class dbconnect{
 
 			 $result = mysqli_query($this->con, $sql);
 			 //$rowcount=mysqli_num_rows($result);
-			 
 			 return $result;
 	}
 
