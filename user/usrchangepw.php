@@ -37,7 +37,7 @@ $user->getInfo($id);
 			<ul>
 				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
 				<li><a href="../home.php">Logout</a></li>
-				<li><a href="userprofile.php" class="active">Profile</a></li>
+				<li><a href="userprofile.php" class="active"><?php echo $user->FirstName;?></a></li>
 				<li><a href="#">Help</a></li>
 			</ul>
 		</nav>
