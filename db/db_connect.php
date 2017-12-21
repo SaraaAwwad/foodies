@@ -12,7 +12,7 @@ class dbconnect{
 		$this->username = "root";
 		$this->password = "";
 		$this->db = "foodies";
-		$this->con = $this->connect();
+		$this->con = $this->Connect();
 	}
 
 	function connect(){
@@ -44,6 +44,7 @@ class dbconnect{
 	}
 
 	function selectsql($sql){
+
 		
 		$result = mysqli_query($this->con, $sql);
 		return $result;

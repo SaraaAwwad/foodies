@@ -3,8 +3,8 @@
 <head>
 <title> Admin Page </title>
 
-<link rel="stylesheet" type="text/css" href="../css/topnav.css">
-<link rel="stylesheet" type="text/css" href="../css/AdminPage.css">
+<link rel="stylesheet" type="text/css" href="..//css/topnav.css">
+<link rel="stylesheet" type="text/css" href="..//css/AdminPage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,9 +30,9 @@
 <button id ="buttontoggle" class="accordion"><i class="fa fa-glass"></i> Restaurants</button>
 <div class="panel" style="margin-bottom:0px" id ="paneltoggle" >
   <a href="addrestaurant.php" class="sidenavitems PanelItem"><i class="	fa fa-user-plus"></i> Manage </a>
- <a href="viewrest.php" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View </a>
+  <a href="viewrest.php" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View </a>
 </div>
-<a href="statistics.php" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
+  <a href="statistics.php" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
 </div>
 
 <div class="main2">
