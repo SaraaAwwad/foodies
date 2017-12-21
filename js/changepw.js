@@ -51,8 +51,7 @@ function reppwVal(){
 
 function checkPw(evt){
 	if(Cvalid && Pvalid){
-		document.getElementById("success").innerHTML="Successfully Changed!";
-		evt.preventDefault();
+		
 		return true;
 	}
 	else{

@@ -1,3 +1,24 @@
+<?php
+session_start();
+require("../classes/user.php");
+$user = new User;
+$id = $_SESSION['userID'];
+$user->getInfo($id);
+
+	if (isset($_POST['savepsw'])){
+
+		$old = $_POST["oldpw"];
+		$new = $_POST["newpw"];
+
+		if($user->updatePw($old, $new ,$id)){
+			echo 'success';
+		}else{
+			echo 'fail';
+		}
+	}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +62,7 @@
 			<div class="centview">
 				<div class="success" id="success"></div>
 				<div class="error" id="err"></div>
-				<form name="pwform" id="formPw" method="post" action="usrchangepw.html">
+				<form name="pwform" id="formPw" method="post" action="">
 					<div class="card" id ="opwCont">
 						    <h4><b>Enter Old Password:</b></h4> 
 						    <input type="password" name="oldpw" id="oldpw" placeholder="old password here" required>
@@ -57,7 +78,7 @@
 						    <input type="password" name="rnewpw" id="rnewpw" placeholder="we're not looking.." required>
 						</div>
 			
-					<button type="submit" class="sbtn" id="savepw">Save</button>  
+					<button type="submit" class="sbtn" id="savepw" name="savepsw">Save</button>  
 				</form>
 			</div>
 		</div>

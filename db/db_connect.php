@@ -12,7 +12,7 @@ class dbconnect{
 		$this->username = "root";
 		$this->password = "";
 		$this->db = "foodies";
-		$this->con = $this->connect();
+		$this->con = $this->Connect();
 	}
 
 	function connect(){
@@ -26,7 +26,7 @@ class dbconnect{
 	}
 
 	 function executesql($sql){
-		if($this->con->query($sql) === TRUE){
+		if($this->con->query($sql) == TRUE){
 			//$result = mysqli_query($this->con, $sql);
 			return true;
 		}else{
@@ -45,19 +45,25 @@ class dbconnect{
 
 	function selectsql($sql){
 
-		$result = mysqli_query($this->con, $sql);
+		if($result = mysqli_query($this->con, $sql))
 		return $result;
+		else
+		return false;
 	}
 
-	function update($table,$id,$k,$l,$m,$f)
-  {
-   mysqli_query($this->con,"update $table set Name='$k', Hotline='$l',DelvFees='$m',DelvTime='$f' where ID =".$id);
-  }	
+	function update($table,$id,$k,$l,$m,$f){
+   		mysqli_query($this->con,"update $table set Name='$k', Hotline='$l',DelvFees='$m',DelvTime='$f' where ID =".$id);
+  	}	
   
 	function disconnect(){
 		return $this->con->close();
 	}
 
-	
+ 	function test_input($data) {
+		  $data = trim($data);
+		  $data = stripslashes($data);
+		  $data = htmlspecialchars($data);
+		  return $data;
+	}
 }
 ?>

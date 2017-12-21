@@ -1,7 +1,11 @@
 <?php 
 session_start();
-?>
+require("../classes/user.php");
 
+$user = new User;
+$id = $_SESSION['userID'];
+$user->getInfo($id);
+?>
 
 <!DOCTYPE html>
 <html>
@@ -10,10 +14,28 @@ session_start();
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" type="text/css" href="../css/topnav.css">
 	<link rel="stylesheet" type="text/css" href="../css/userstyle.css">
-		<link rel="stylesheet" type="text/css" href="../css/style1.css">
+	<link rel="stylesheet" type="text/css" href="../css/style1.css">
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 	<title>User-Profile</title>	
 </head>
+
+
+<?php
+	if (isset($_GET['saveInfo'])){
+
+		$fn = $_GET["firstName"];
+		$ln = $_GET["lastName"];
+		$bld = $_GET["buildName"];
+		$st = $_GET["streetName"];
+		$ar = $_GET["areaName"];
+
+		if($user->updateInfo($id, $fn, $ln, $bld, $st, $ar)){
+			 echo'<script>$.notify("granted","success");</script>';
+		}else{
+			echo 'fail';
+		}
+	}
+?>
 
 	
 <?php
@@ -28,7 +50,7 @@ session_start();
 			<ul>
 				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
 				<li><a href="../home.php">Logout</a></li>
-				<li><a href="userprofile.php" class="active"><?php echo $_SESSION['userFN']?></a></li>
+				<li><a href="userprofile.php" class="active"><?php echo $user->FirstName;?></a></li>
 				<li><a href="#">Help</a></li>
 			</ul>
 		</nav>
@@ -51,35 +73,50 @@ session_start();
 
 	<div class="col-8">
 	<div class="centview" id="cvId">
-		<form name="formInfo" id="formIn" method="get" action="userprofile.hphp">
+		<form name="formInfo" id="formIn" method="get" action="">
 		<div class="error" id="err"></div>
 		<div class="success" id="success"></div>
 			<div class="card" id ="fCont">
 				    <h4><b>First Name</b></h4> 
-				    <p name="first" id= "fname" style="padding-left:10px; margin-bottom:0px;"><?php echo $_SESSION['userFN']; ?></p> 
+				    <p name="first" id= "fname" style="padding-left:30px; margin-bottom:0px;"><?php echo $user->FirstName; ?></p> 
 				    <input type="hidden" name="firstName" id="ftext" required>
 			</div>
 
 				<div class="card" id="lCont">
 				    <h4><b>Last Name</b></h4> 
-				    <p name="last" id="lname" style="padding-left:10px; margin-bottom:0px;"><?php echo $_SESSION['userLN']; ?></p> 
+				    <p name="last" id="lname" style="padding-left:30px; margin-bottom:0px;"><?php echo $user->LastName; ?></p> 
 				    <input type="hidden" name="lastName" id="ltext" required>
 				</div>
 
 				<div class="card" id="aCont">
 				    <h4><b>Address</b></h4> 
-				    <p name="address" id="add" style="padding-left:10px; margin-bottom:0px;"><?php echo $_SESSION['userAREA'] . ', ' . $_SESSION['userSTREET'] . ', '. $_SESSION["userBUILDING"];?></p> 
-				    <input type="hidden" name="addName" id="addtext" required>
+				    <span name ="addBuilding" id ="build" style="padding-left:30px; margin-bottom:0px;"><?php echo $user->Building; ?></span>
+				    <span name ="addStreet" id ="street" style="padding-left:10px;"><?php echo $user->Street; ?></span>
+				    <span name="addArea" id="areaUser" style="padding-left:10px;"><?php echo $user->Area;?></span> 
+				    
+				    
+				    <div class="row">
+				    	<div class="col-4">
+				    		<input type="hidden" name="buildName" id="buildtext" required>
+				    	</div>
+				    	<div class="col-4">
+				    		<input type="hidden" name="streetName" id="streettext" required>
+				    	</div>
+				    	<div class="col-4">
+				    		<input type="hidden" name="areaName" id="areatext" required>
+				    	</div>				   
+				    </div> 
 				</div>
 
 				<div class="card" id="nCont">
 				    <h4><b>Phone Number</b></h4> 
-				    <p name="phone" id="phonenum" style="padding-left:10px; margin-bottom:0px;">01091279903</p>
-				    <input type="hidden" name="phoneName" id="numtext" required> 
+				    <p name="phone" id="phonenum" style="padding-left:30px; margin-bottom:0px;">01091279903</p>
+				    <input type="hidden" name="phoneName" id="numtext" required>
+				    
 				</div>		
 
 		<button type="button" class="editbtn" id="edit" title="edit">Edit</button>
-		<button type="submit" class="savebtn" id="saveBtn">Save</button>
+		<button type="submit" class="savebtn" id="saveBtn" name="saveInfo">Save</button>
 		</form>  
   	</div>
   </div>

@@ -7,28 +7,44 @@ var nCont = document.getElementById("nCont");
 
 var fname = document.getElementById("fname");
 var lname = document.getElementById("lname");
-var add = document.getElementById("add");
+var build = document.getElementById("build");
+var street = document.getElementById("street");
+var areaUser = document.getElementById("areaUser");
 var num = document.getElementById("phonenum");
 
+//take prev values
 var fTxt = document.getElementById("ftext");
 fTxt.value= fname.innerHTML;
+
 var lTxt = document.getElementById("ltext");
 lTxt.value= lname.innerHTML;
-var addTxt = document.getElementById("addtext");
-addTxt.value= add.innerHTML;
+
+var buildTxt = document.getElementById("buildtext");
+buildTxt.value= build.innerHTML;
+
+var streetTxt = document.getElementById("streettext");
+streetTxt.value= street.innerHTML;
+
+var areaTxt = document.getElementById("areatext");
+areaTxt.value= areaUser.innerHTML;
+
 var numTxt = document.getElementById("numtext");
 numTxt.value= num.innerHTML;
+//
+
 
 var saveBtn = document.getElementById("saveBtn");
 
 var editBtn= document.getElementById("edit");
 editBtn.addEventListener("click", editInfo);
 
-fTxt.addEventListener("keyup", checkVal);
-addTxt.addEventListener("keyup", checkVal);
-lTxt.addEventListener("keyup", checkVal);
+fTxt.addEventListener("change", checkVal);
+buildTxt.addEventListener("change", checkVal);
+streetTxt.addEventListener("change", checkVal);
+areaTxt.addEventListener("change", checkVal);
+lTxt.addEventListener("change", checkVal);
 
-numTxt.addEventListener("keyup", checkNum);
+numTxt.addEventListener("change", checkNum);
 
 document.getElementById("formIn").addEventListener("submit", checkInfo);
 
@@ -78,12 +94,16 @@ function editInfo(){
 
 	fTxt.type="text";
 	lTxt.type="text";
-	addTxt.type="text";
+	buildTxt.type="text";
+	streetTxt.type="text";
+	areaTxt.type="text";
 	numTxt.type="text";
 
 	fname.style.display="none";
 	lname.style.display="none";
-	add.style.display="none";
+	build.style.display="none";
+	street.style.display="none";
+	areaUser.style.display="none";
 	num.style.display="none";
 }
 
@@ -95,19 +115,24 @@ function saveInfo(){
 
 	fname.innerHTML = fTxt.value;
 	lname.innerHTML = lTxt.value;
-	add.innerHTML = addTxt.value;
+	build.innerHTML = buildTxt.value;
+	street.innerHTML = streetTxt.value;
+	areaUser.innerHTML = areaTxt.value;	
 	num.innerHTML = numTxt.value;
-
 
 	fTxt.type="hidden";
 	lTxt.type="hidden";
-	addTxt.type="hidden";
+	buildTxt.type="hidden";
+	streetTxt.type="hidden";
+	areaTxt.type="hidden";
 	numTxt.type="hidden";
 
 	fname.style.display="block";
 	lname.style.display="block";
-	add.style.display="block";
+	build.style.display="inline-block";
 	num.style.display="block";
+	street.style.display="inline-block";
+	areaUser.style.display="inline-block";
 
 	saveBtn.style.display="none";
 	
@@ -115,10 +140,7 @@ function saveInfo(){
 
 function checkInfo(evt){
 
-	if(Nvalid && Evalid){
-		//So the edited form doesn't change on reloading with resubmitting(till be connected with php) 
-		evt.preventDefault();
-		alert("Success!");
+	if(Nvalid && Evalid){ 
 		saveInfo();
 		return true;
 
