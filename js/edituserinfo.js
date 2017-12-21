@@ -140,10 +140,7 @@ function saveInfo(){
 
 function checkInfo(evt){
 
-	if(Nvalid && Evalid){
-		//So the edited form doesn't change on reloading with resubmitting(till be connected with php) 
-		evt.preventDefault();
-		alert("Success!");
+	if(Nvalid && Evalid){ 
 		saveInfo();
 		return true;
 

@@ -3,7 +3,8 @@ session_start();
 require("../classes/user.php");
 
 $user = new User;
-$user->getInfo($_SESSION['userID']);
+$id = $_SESSION['userID'];
+$user->getInfo($id);
 ?>
 
 <!DOCTYPE html>
@@ -13,10 +14,36 @@ $user->getInfo($_SESSION['userID']);
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" type="text/css" href="../css/topnav.css">
 	<link rel="stylesheet" type="text/css" href="../css/userstyle.css">
-		<link rel="stylesheet" type="text/css" href="../css/style1.css">
+	<link rel="stylesheet" type="text/css" href="../css/style1.css">
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 	<title>User-Profile</title>	
 </head>
+
+
+<?php
+	if (isset($_GET['saveInfo'])){
+
+		$fn = test_input($_GET["firstName"]);
+		$ln = test_input($_GET["lastName"]);
+		$bld = test_input($_GET["buildName"]);
+		$st = test_input($_GET["streetName"]);
+		$ar = test_input($_GET["areaName"]);
+
+		if($user->updateInfo($id, $fn, $ln, $bld, $st, $ar)){
+			 echo'<script>$.notify("granted","success");</script>';
+		}else{
+			echo 'fail';
+		}
+	}
+
+ 	function test_input($data) {
+		  $data = trim($data);
+		  $data = stripslashes($data);
+		  $data = htmlspecialchars($data);
+		  return $data;
+	}
+?>
+
 
 	
 <?php
@@ -54,7 +81,7 @@ $user->getInfo($_SESSION['userID']);
 
 	<div class="col-8">
 	<div class="centview" id="cvId">
-		<form name="formInfo" id="formIn" method="get" action="userprofile.hphp">
+		<form name="formInfo" id="formIn" method="get" action="">
 		<div class="error" id="err"></div>
 		<div class="success" id="success"></div>
 			<div class="card" id ="fCont">
@@ -97,7 +124,7 @@ $user->getInfo($_SESSION['userID']);
 				</div>		
 
 		<button type="button" class="editbtn" id="edit" title="edit">Edit</button>
-		<button type="submit" class="savebtn" id="saveBtn">Save</button>
+		<button type="submit" class="savebtn" id="saveBtn" name="saveInfo">Save</button>
 		</form>  
   	</div>
   </div>
