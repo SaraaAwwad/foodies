@@ -45,9 +45,10 @@ class dbconnect{
 
 	function selectsql($sql){
 
-		
-		$result = mysqli_query($this->con, $sql);
+		if($result = mysqli_query($this->con, $sql))
 		return $result;
+		else
+		return false;
 	}
 
 	function update($table,$id,$k,$l,$m,$f){

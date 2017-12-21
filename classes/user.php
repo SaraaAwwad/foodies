@@ -63,6 +63,20 @@
 
 	}
 
+	public function getInfo($id){
+
+		$sql = "SELECT * FROM user Where UID = '$id' ";
+		$userinfo = $this->dbobj->selectsql($sql);
+		if($userinfo){
+			$row = mysqli_fetch_array($userinfo);
+			$this->FirstName = $row['FName'];
+			$this->LastName = $row['LName'];
+			$this->Email = $row['Email'];
+			$this->Area = $row['Area'];
+			$this->Street = $row['Street'];
+			$this->Building = $row['Building'];
+		}
+	}
 }
 
 ?>
