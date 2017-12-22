@@ -10,6 +10,8 @@
 	<title>User-Menu</title>	
 </head>
 
+<?php include("header.php"); ?>
+
 <body>
 		<nav class="menu">
 			<ul>

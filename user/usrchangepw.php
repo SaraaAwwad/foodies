@@ -2,8 +2,12 @@
 session_start();
 require("../classes/user.php");
 $user = new User;
-$id = $_SESSION['userID'];
-$user->getInfo($id);
+$id=null;
+
+ if(isset($_SESSION['userID'])){
+ 	$id=$_SESSION['userID'];
+		$user->getInfo($id);
+	}
 
 	if (isset($_POST['savepsw'])){
 
@@ -30,7 +34,7 @@ $user->getInfo($id);
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 	<title>User-Profile</title>	
 </head>
-
+<?php include("header.php"); ?>
 <body>
 	<header>
 		<nav class="menu">

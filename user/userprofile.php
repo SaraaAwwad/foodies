@@ -3,8 +3,28 @@ session_start();
 require("../classes/user.php");
 
 $user = new User;
-$id = $_SESSION['userID'];
-$user->getInfo($id);
+$id = null;
+
+ if(isset($_SESSION['userID'])){
+ 		$id=$_SESSION['userID'];
+		$user->getInfo($id);
+	}
+
+	if (isset($_GET['saveInfo'])){
+
+		$fn = $_GET["firstName"];
+		$ln = $_GET["lastName"];
+		$bld = $_GET["buildName"];
+		$st = $_GET["streetName"];
+		$ar = $_GET["areaName"];
+
+		if($user->updateInfo($id, $fn, $ln, $bld, $st, $ar)){
+			 echo'success';
+		}else{
+			echo 'fail';
+		}
+	}
+
 ?>
 
 <!DOCTYPE html>
@@ -19,37 +39,14 @@ $user->getInfo($id);
 	<title>User-Profile</title>	
 </head>
 
+<?php include("header.php"); ?>
 
-<?php
-	if (isset($_GET['saveInfo'])){
-
-		$fn = $_GET["firstName"];
-		$ln = $_GET["lastName"];
-		$bld = $_GET["buildName"];
-		$st = $_GET["streetName"];
-		$ar = $_GET["areaName"];
-
-		if($user->updateInfo($id, $fn, $ln, $bld, $st, $ar)){
-			 echo'<script>$.notify("granted","success");</script>';
-		}else{
-			echo 'fail';
-		}
-	}
-?>
-
-	
-<?php
-	if(!isset($_SESSION["userID"])){
-		echo '<h1> Sorry, You Can\'t View This Page Without Logging In!</h1>';
-		exit();
-	}
-?>
 <body>
 	<header>
 		<nav class="menu">
 			<ul>
 				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
-				<li><a href="../home.php">Logout</a></li>
+				<li><a href="logout.php">Logout</a></li>
 				<li><a href="userprofile.php" class="active"><?php echo $user->FirstName;?></a></li>
 				<li><a href="#">Help</a></li>
 			</ul>

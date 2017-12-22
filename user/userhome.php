@@ -9,6 +9,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro|Raleway" rel="stylesheet">
 	<title>User-HomePage</title>	
 </head>
+<?php include("header.php"); ?>
 
 <body>
 	<header class="homepage">

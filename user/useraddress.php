@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 	<title>User-Profile</title>	
 </head>
-
+<?php include("header.php"); ?>
 <body>
 	<header>
 		<nav class="menu">
