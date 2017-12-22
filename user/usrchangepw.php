@@ -1,3 +1,28 @@
+<?php
+session_start();
+require("../classes/user.php");
+$user = new User;
+$id=null;
+
+ if(isset($_SESSION['userID'])){
+ 	$id=$_SESSION['userID'];
+		$user->getInfo($id);
+	}
+
+	if (isset($_POST['savepsw'])){
+
+		$old = $_POST["oldpw"];
+		$new = $_POST["newpw"];
+
+		if($user->updatePw($old, $new ,$id)){
+			echo 'success';
+		}else{
+			echo 'fail';
+		}
+	}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +34,14 @@
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 	<title>User-Profile</title>	
 </head>
-
+<?php include("header.php"); ?>
 <body>
 	<header>
 		<nav class="menu">
 			<ul>
 				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
 				<li><a href="../home.php">Logout</a></li>
-				<li><a href="userprofile.php" class="active">Profile</a></li>
+				<li><a href="userprofile.php" class="active"><?php echo $user->FirstName;?></a></li>
 				<li><a href="#">Help</a></li>
 			</ul>
 		</nav>
@@ -41,7 +66,7 @@
 			<div class="centview">
 				<div class="success" id="success"></div>
 				<div class="error" id="err"></div>
-				<form name="pwform" id="formPw" method="post" action="usrchangepw.html">
+				<form name="pwform" id="formPw" method="post" action="">
 					<div class="card" id ="opwCont">
 						    <h4><b>Enter Old Password:</b></h4> 
 						    <input type="password" name="oldpw" id="oldpw" placeholder="old password here" required>
@@ -57,13 +82,16 @@
 						    <input type="password" name="rnewpw" id="rnewpw" placeholder="we're not looking.." required>
 						</div>
 			
-					<button type="submit" class="sbtn" id="savepw">Save</button>  
+					<button type="submit" class="sbtn" id="savepw" name="savepsw">Save</button>  
 				</form>
 			</div>
 		</div>
 	</div>
-	
 	</main>
+	
+<div class="row-gap"></div>
+<?php include("footer.php") ?>
+	
 <script type="text/javascript" src="../js/changepw.js"></script>
 </body>
 </html>

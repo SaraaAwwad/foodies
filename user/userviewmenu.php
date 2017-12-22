@@ -10,6 +10,8 @@
 	<title>User-Menu</title>	
 </head>
 
+<?php include("header.php"); ?>
+
 <body>
 		<nav class="menu">
 			<ul>
@@ -99,10 +101,10 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="row-gap"></div>
 	</main>
 
+<div class="row-gap"></div>
+<?php include("footer.php") ?>
 <script type="text/javascript" src="../js/usersearch.js"></script>
 </body>
 </html>

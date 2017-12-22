@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 	<title>User-Profile</title>	
 </head>
-
+<?php include("header.php"); ?>
 <body>
 	<header>
 		<nav class="menu">
@@ -46,9 +46,10 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="row-gap"></div>
 	</main>
+	
+<div class="row-gap"></div>	
+<?php include("footer.php") ?>
 
 </body>
 </html>

@@ -8,14 +8,20 @@ var eIn = document.getElementById("emIn");
 var pwIn = document.getElementById("pwIn");
 
 //checks validity when you leave the key
-pass.addEventListener("keyup", pwVal);
-pass.addEventListener("keyup", reppwVal);
-e.addEventListener("keyup", eVal);
+pass.addEventListener("change", pwVal);
+pass.addEventListener("change", reppwVal);
+e.addEventListener("change", eVal);
 reppass.addEventListener("keyup", reppwVal);
 
+document.getElementById("streetID").addEventListener("change", checkrest);
+document.getElementById("areaID").addEventListener("change", checkrest);
+document.getElementById("buildID").addEventListener("change", checkrest);
+document.getElementById("fnID").addEventListener("change", checkrest);
+document.getElementById("lnID").addEventListener("change", checkrest);
+
 //log in validity
-eIn.addEventListener("keyup", eInVal);
-pwIn.addEventListener("keyup", pwInVal);
+eIn.addEventListener("change", eInVal);
+pwIn.addEventListener("change", pwInVal);
 
 //sign up submission
 document.getElementById("formSu").addEventListener('submit', checkUp);
@@ -68,6 +74,22 @@ function timeFunc(){
     } 
 }
 
+function checkrest(event){
+	var x = event.target || event.srcElement;
+	var xVal = x.value;
+	
+	if(xVal.length < 1)
+	{
+		x.style.borderWidth = "3px";
+		x.style.borderColor = "#ff4d4d";
+		x.style.backgroundColor = "#ffcccc";
+	}
+	else{
+		x.style.borderWidth = "3px";
+		x.style.borderColor = "#99ff99";
+		x.style.backgroundColor = "#ccffcc";
+	}
+}
 
 function logAcc(){
 	closeMod();
@@ -84,6 +106,8 @@ function closeSi(){
 	emIn.style.borderColor="grey";
 	emIn.style.backgroundColor="white";
 	emIn.style.borderWidth="1px";
+	
+	var error = document.getElementById("errorSi").innerHTML="";
 
 	document.getElementById('signIn').style.display='none';
 }
@@ -113,7 +137,6 @@ function closeMod(){
 	document.getElementById('signUp').style.display='none';
 }
 
-
 function eInVal(){
 	var re = /\S+@\S+\.\S+/;
 	var x = eIn.value;
@@ -127,11 +150,11 @@ function eInVal(){
 		I_Evalid= false;
 	}
 	else{
+		eIn.style.borderWidth = "3px";
 		eIn.style.borderColor = "#99ff99";
 		eIn.style.backgroundColor = "#ccffcc";
 		I_Evalid=true;
 	}
-
 }
 
 function pwInVal(){
@@ -147,13 +170,12 @@ function pwInVal(){
 		I_Pvalid=false;
 	}
 	else{
+		pwIn.style.borderWidth = "3px";
 		pwIn.style.borderColor = "#99ff99";
 		pwIn.style.backgroundColor = "#ccffcc";
 		I_Pvalid=true;
 	}
-
 }
-
 
 function eVal(){
 
@@ -170,6 +192,8 @@ function eVal(){
 		Evalid= false;
 	}
 	else{
+		e.style.borderWidth = "3px";
+		e.style.borderWidth = "3px";
 		e.style.borderColor = "#99ff99";
 		e.style.backgroundColor = "#ccffcc";
 		Evalid=true;
@@ -189,11 +213,11 @@ function pwVal(){
 		Pvalid=false;
 	}
 	else{
+		pass.style.borderWidth = "3px";
 		pass.style.borderColor = "#99ff99";
 		pass.style.backgroundColor = "#ccffcc";
 		Pvalid=true;
 	}
-
 }
 
 function reppwVal(){
@@ -207,6 +231,7 @@ function reppwVal(){
 		Cvalid=false;
 	}
 	else{
+		reppass.style.borderWidth = "3px";
 		reppass.style.borderColor = "#99ff99";
 		reppass.style.backgroundColor = "#ccffcc";
 		Cvalid=true;
@@ -214,8 +239,8 @@ function reppwVal(){
 }
 
 function checkUp(evt){
+
 	if(Evalid && Pvalid && Cvalid){
-		alert("Congrats, Signed Up!");
 		return true;
 	}
 	else{
@@ -226,12 +251,9 @@ function checkUp(evt){
 		evt.preventDefault();
 		return false;
 	}
-
 }
 
 function checkIn(evt){
-
-	//Should process to ensure user entry is found on database -- !
 	
 	if(I_Evalid && I_Pvalid){
 		return true;

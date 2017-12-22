@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>User-Restaurants</title>	
 </head>
+<?php include("header.php"); ?>
 
 <body>
 		<nav class="menu">
@@ -72,7 +73,7 @@
 								<img src="../css/images/mac.png" width="100" height="100">
 							</div>
 							<div class="right-info"> 
-								<h2><a href="userviewmenu.html">McDonald's</a></h2>
+								<h2><a href="userviewmenu.php">McDonald's</a></h2>
 								<p>Sandwiches, Beverages, Desserts</p>
 							</div>
 						</td>
@@ -131,10 +132,10 @@
 	</div>
 </div>
 </div>
-
-<div class="row-gap"></div>
 	
-	</main>
+</main>
+<div class="row-gap"></div>
+<?php include("footer.php") ?>
 
 <script type="text/javascript" src="../js/usersearch.js"></script>
 </body>
