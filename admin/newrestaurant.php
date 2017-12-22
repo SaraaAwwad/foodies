@@ -69,7 +69,13 @@ require_once('dbconnect.php');
 
 	<b id="greenField">Delivery Area</b>
 	<br>
+<!--changed here-->
+<!--<select multiple="multiple" name="Area" id="restarea[]">
+	
+-->
 
+
+</select>
 <select name="Area" id="restarea" required>
 
 <?php
@@ -80,8 +86,9 @@ require_once('dbconnect.php');
                                                     
         echo  "<option  value='".$_Area[$i]['ID']."'>".$_Area[$i]['Area']."</option>";
     }
-    ?>
+    ?> 
 </select>
+<!--<button type="button" name="addagain" id="again">Add Again</button>-->
 	<br>
 
 <b class="addNewRest">Hotline</b>
