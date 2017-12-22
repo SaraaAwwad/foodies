@@ -1,5 +1,4 @@
 <?php
-
 class dbconnect{
 	private $servername;
 	private $username;
@@ -49,6 +48,7 @@ class dbconnect{
 			 //$rowcount=mysqli_num_rows($result);
 			 return $result;
 	}
+
 
 	function disconnect(){
 		return $this->con->close();
