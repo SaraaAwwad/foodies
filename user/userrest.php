@@ -131,10 +131,10 @@
 	</div>
 </div>
 </div>
-
-<div class="row-gap"></div>
 	
-	</main>
+</main>
+<div class="row-gap"></div>
+<?php include("footer.php") ?>
 
 <script type="text/javascript" src="../js/usersearch.js"></script>
 </body>

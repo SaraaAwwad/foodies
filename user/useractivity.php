@@ -46,9 +46,10 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="row-gap"></div>
 	</main>
+	
+<div class="row-gap"></div>	
+<?php include("footer.php") ?>
 
 </body>
 </html>

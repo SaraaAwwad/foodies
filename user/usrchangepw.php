@@ -83,8 +83,11 @@ $user->getInfo($id);
 			</div>
 		</div>
 	</div>
-	
 	</main>
+	
+<div class="row-gap"></div>
+<?php include("footer.php") ?>
+	
 <script type="text/javascript" src="../js/changepw.js"></script>
 </body>
 </html>
