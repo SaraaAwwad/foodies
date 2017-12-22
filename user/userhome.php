@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +12,12 @@
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro|Raleway" rel="stylesheet">
 	<title>User-HomePage</title>	
 </head>
+
 <?php include("header.php"); ?>
 
 <body>
+	
 	<header class="homepage">
-		<nav class="menu">
-			<ul>
-				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
-				<li><a href="../home.php">Logout</a></li>
-				<li><a href="userprofile.php">Profile</a></li>
-				<li><a href="#">Help</a></li>
-			</ul>
-		</nav>
 	</header>
 
 	<div class="welcome">Find what's near you</div>
