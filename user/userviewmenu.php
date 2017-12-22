@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +13,10 @@
 	<title>User-Menu</title>	
 </head>
 
-<body>
-		<nav class="menu">
-			<ul>
-				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
-				<li><a href="../home.php">Logout</a></li>
-				<li><a href="userprofile.php">Profile</a></li>
-				<li><a href="#">Help</a></li>
-			</ul>
-		</nav>
+<?php include("header.php"); ?>
 
+<body>
+	
 	<header class="menuhead">
 		<h3 id="descheader">foodies offer a reliable service</h3>
 	</header>
@@ -99,10 +96,10 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="row-gap"></div>
 	</main>
 
+<div class="row-gap"></div>
+<?php include("footer.php") ?>
 <script type="text/javascript" src="../js/usersearch.js"></script>
 </body>
 </html>

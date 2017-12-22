@@ -1,5 +1,6 @@
 <?php
 include_once ("\..\db\db_connect.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -84,8 +85,8 @@ $qresult = $db_obj->selectsql($sql);
 			<td><?php echo $row['Hotline'];?></td>
 			<td><?php echo $row['DelvFees'];?></td>
 			<td><?php echo $row['DelvTime'];?></td>
-			 <td align="center"> <a class="butt" href="editForm.php?id=<?php echo $row['ID']; ?>">Update</a></td>
-             <td align="center"> <a class="butt" href="delete.php?id=<?php echo $row['ID']; ?>">Delete</a></td>
+			 <td align="center"><?php echo '<a class = "butt" href="editForm.php?id='.$row['ID'].'">Update</a>'; ?></td>
+             <td align="center"><?php echo '<a class = "butt" href="delete.php?id='.$row['ID'].'">Delete</a>'; ?></td>
 			</tr>
 		  <?php }} ?>
         </tbody>

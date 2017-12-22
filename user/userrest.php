@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +13,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>User-Restaurants</title>	
 </head>
+<?php include("header.php"); ?>
 
 <body>
-		<nav class="menu">
-			<ul>
-				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
-				<li><a href="../home.php">Logout</a></li>
-				<li><a href="userprofile.php">Profile</a></li>
-				<li><a href="#">Help</a></li>
-			</ul>
-		</nav>
 	
 	<header class="restheader">
 		<h3 id="descheader">foodies offer a variety of restaurants</h3>
@@ -131,10 +127,10 @@
 	</div>
 </div>
 </div>
-
-<div class="row-gap"></div>
 	
-	</main>
+</main>
+<div class="row-gap"></div>
+<?php include("footer.php") ?>
 
 <script type="text/javascript" src="../js/usersearch.js"></script>
 </body>

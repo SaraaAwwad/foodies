@@ -1,12 +1,8 @@
 <?php
 include_once ("\..\db\db_connect.php");
-$table = "restaurant";
-$id = $_GET['id'];
-$db_obj = new dbconnect;
-$sql = "SELECT ID, Name, Hotline, DelvFees, DelvTime, Image, AdminID FROM restaurant WHERE ID = $id";
-$qresult = $db_obj->selectsql($sql);
-$row = mysqli_fetch_array($qresult)
+session_start();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +37,6 @@ $row = mysqli_fetch_array($qresult)
 <a href="statistics.php" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
 </div>
 
-<script type="text/javascript" src="js/AdminPage.js"></script>
 
 <div class="main2" >
 <div class="container" id="showcase">
@@ -50,41 +45,59 @@ $row = mysqli_fetch_array($qresult)
 	<i class="fa fa-home"></i>
   <li><a href="../admin/AdminPage.php">Admin</a></li>
   <li>Restaurants</li>
-  <li>Manage</li>
-  <li>New Restaurant</li>
+  <li><a href="../admin/addrestaurant.php">Manage</a></li>
+  <li>Update</li>
 </ul>
 
+<?php 
+$id = $_GET['id'];
+$db_obj = new dbconnect;
+$sql = "SELECT * FROM restaurant WHERE ID= '$id'";
+$qresult = $db_obj->selectsql($sql);
+$row = mysqli_fetch_array($qresult);
+$name = $row['Name'];
+$hot = $row['Hotline'];
+$delvfees = $row['DelvFees'];
+$delvtime = $row['DelvTime'];
+$id = $row['ID'];
+$image = $row['Image'];
+render($id,$name,$hot,$delvfees,$delvtime,$image);
+?>
+
+<?php function render($id,$name,$hot,$delvfees,$delvtime,$image){ ?>
 		
-<form action="addrestaurant.php" method="POST">
-<b style="color: green;">Name</b>
-<br>
-<input type="text" name="namearea" id="restarea" value="<?php echo $row['Name']; ?>" >
-<br>
-<b style="color: green;">Hotline</b>
-<br>
-<input type="text" name="hotarea" id="restarea" value="<?php echo $row['Hotline']; ?>">
-<br>
-<b style="color: green;">Delivery Fees</b>
-<br>
-<input type="text" name="feesarea" id="restarea" value="<?php echo $row['DelvFees'];?>">
-<br>
-<b style="color: green;">Delivery Time</b>
-<br>
-<input type="text" name="timearea" id="restarea" value="<?php echo $row['DelvTime'];?>">
-<br>
-<button type="submit" name="update" id="saverest">Update</button>
-<button type="button" id="cancelrest">Cancel</button>
-</form>  
+<form action="" method="POST">
+<b style="color: green;">ID</b><br>
+<input type="text" name="idarea" id="restarea" value="<?php echo $id; ?>" disabled="true"><br>	
+<b style="color: green;">Name</b><br>
+<input type="text" name="namearea" id="restarea" value="<?php echo $name; ?>" ><br>
+<b style="color: green;">Hotline</b><br>
+<input type="text" name="hotarea" id="restarea" value="<?php echo $hot; ?>"><br>
+<b style="color: green;">Delivery Fees</b><br>
+<input type="text" name="feesarea" id="restarea" value="<?php echo $delvfees;?>"><br>
+<b style="color: green;">Delivery Time</b><br>
+<input type="text" name="timearea" id="restarea" value="<?php echo $delvtime;?>"><br>
+<b style="color: green;">Image (With its Extension)</b><br>
+<input type="text" name="imagearea" id="restarea" value="<?php echo $image;?>"><br>
+
+<input type="submit" name="update" id="saverest" value="Update"/>
+<input type="button" id="cancelrest" value="Cancel"/>
+</form>
+
+<?php  }  ?>
 <?php
 if(isset($_POST['update'])){
-	
+	$id = $_GET['id'];
 	$a = $_POST['namearea'];
 	$b = $_POST['hotarea'];
 	$c = $_POST['feesarea'];
 	$d = $_POST['timearea'];
-	$id = $_GET['id'];
-    $db_obj->update($table,$id,$a,$b ,$c,$d);
+	$e = $_POST['imagearea'];
+	$sql1 = "UPDATE restaurant SET Name = '$a' , Hotline = '$b', DelvFees = '$c', DelvTime = '$d',Image = '$e' WHERE ID = '$id'";
+    $db_obj->selectsql($sql1);
+    header("Location: addrestaurant.php");
 }
+
 ?>
 
 <script type="text/javascript" src="../js/AdminPage.js"></script>

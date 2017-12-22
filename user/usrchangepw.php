@@ -2,8 +2,12 @@
 session_start();
 require("../classes/user.php");
 $user = new User;
-$id = $_SESSION['userID'];
-$user->getInfo($id);
+$id=null;
+
+ if(isset($_SESSION['userID'])){
+ 	$id=$_SESSION['userID'];
+		$user->getInfo($id);
+	}
 
 	if (isset($_POST['savepsw'])){
 
@@ -30,18 +34,8 @@ $user->getInfo($id);
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 	<title>User-Profile</title>	
 </head>
-
+<?php include("header.php"); ?>
 <body>
-	<header>
-		<nav class="menu">
-			<ul>
-				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
-				<li><a href="../home.php">Logout</a></li>
-				<li><a href="userprofile.php" class="active">Profile</a></li>
-				<li><a href="#">Help</a></li>
-			</ul>
-		</nav>
-	</header>
 	
 	<main>
 	<div class="row-gap"></div>
@@ -83,8 +77,11 @@ $user->getInfo($id);
 			</div>
 		</div>
 	</div>
-	
 	</main>
+	
+<div class="row-gap"></div>
+<?php include("footer.php") ?>
+	
 <script type="text/javascript" src="../js/changepw.js"></script>
 </body>
 </html>

@@ -202,43 +202,19 @@ require("classes/user.php");
 			<p>Enjoy your food right at your doorstep!</p>
 		</div>
 	</div>
-
-	
-	<footer>
-		<div class="footerCol">
-			<b id="head">Restaurants</b>
-			<p>Domino's Pizza</p>
-			<p>Shabrawy</p>
-			<p>McDonald's</p>
-			<p>Pizza Hut</p>
-			<p>Khayrat El Sham</p>
-		</div>
-	
-		<div class="footerCol">
-		<b id="head">Popular Cuisines</b>
-			<p>Pizza</p>
-			<p>Burger</p>
-			<p>Shawerma</p>
-			<p>Feteer</p>
-			<p>Sushi</p>
-		</div>
-	
-		<div class="footerCol">
-			<b id="head">Foodies</b>
-			<p>About Us</p>
-			<p>Contact Us</p>
-			<p>Meet the Team</p>
-		</div>
-	</footer>
 	</main>
+<div class="row-gap"></div>
 
-		<?php
+	<?php
+
+	include("user/footer.php");
+	
 		if($inmode<1)
 		{outputsignin('none');}
 
 		if($upmode<1)
 		{outputsignup('none');}
-		?>
+	?>
 	
 	<script type="text/javascript" src="js/SignUp.js"></script>
 </body>

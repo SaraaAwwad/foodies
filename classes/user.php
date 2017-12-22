@@ -11,7 +11,8 @@
 	public $Street;
 	public $Building;
 	public $Password;
-	public $dbobj;
+	
+	private $dbobj;
 
 	public function __construct(){
 		$this->dbobj = new dbconnect;
