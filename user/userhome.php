@@ -10,6 +10,7 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="../css/topnav.css">
 	<link rel="stylesheet" type="text/css" href="../css/userstyle.css">
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro|Raleway" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<title>User-HomePage</title>	
 </head>
 
@@ -44,7 +45,8 @@ session_start();
 	btn.addEventListener("click", goBtn);
 
 	function goBtn(){
-		window.location.href="userrest.php";
+		var place = $('#area :selected').text();
+		window.location.href='userrest.php?area='+place;
 	}
 </script>
 </body>

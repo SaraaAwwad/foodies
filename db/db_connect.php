@@ -33,6 +33,7 @@ class dbconnect{
 			return false;
 		}
 	}
+
 	function executesql2($sql){
 		if($this->con->query($sql) == TRUE){
 			return $result = mysqli_query($this->con,$sql);
@@ -41,6 +42,23 @@ class dbconnect{
 			return false;
 		}
 	}
+
+	/*function getDataWithSQL($sql){
+		if($this->con->query($sql) == TRUE){	
+			$Data = [];
+            $i = 0;
+            $res = mysqli_query($this->conn,$sql);
+
+            while($ROW = mysqli_fetch_assoc($res)){
+                $Data[$i] = $ROW;
+                $i++;
+            }
+            return $Data;
+		}else{
+		   echo "Error: ". $this->con->error;
+			return false;
+		}
+	}*/
 
 	function selectsql($sql){
 

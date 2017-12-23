@@ -1,5 +1,5 @@
 <?php 
-	require("\..\db\db_connect.php");
+	require_once("\..\db\db_connect.php");
 	
 	class User{
 
@@ -11,7 +11,7 @@
 	public $Street;
 	public $Building;
 	public $Password;
-	
+
 	private $dbobj;
 
 	public function __construct(){

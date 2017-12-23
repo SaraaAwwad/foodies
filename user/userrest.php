@@ -1,5 +1,16 @@
 <?php 
 session_start();
+require_once("../classes/restaurant.php");
+
+$rest = new Restaurant;
+$allRest = array();
+
+if(isset($_GET['area'])){
+	$place =$_GET['area'];
+
+$allRest = $rest->getByArea($place);
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,7 +62,7 @@ session_start();
 		<div class="row">
 			<div class="col-12">
 				<div class="centview">
-					<h1>We Found (3) Restaurants That Deliver to Your Doorstep!</h1>
+					<h1>We Found (<?php echo count($allRest); ?>) Restaurants That Deliver to Your Doorstep!</h1>
 				</div>
 			</div>
 		</div>
@@ -62,14 +73,17 @@ session_start();
 				<input type="text" placeholder="Search for Restaurants Here.." id="searchInput">
 
 				<table id="rTable">
-					<tr>
+				<?php
+					
+					for($i=0; $i<count($allRest); $i++){
+					echo'<tr>
 						<td>
 							<div>
-								<img src="../css/images/mac.png" width="100" height="100">
+								<img src="../css/images/'.$allRest[$i]['Image'].'" width="100" height="100">
 							</div>
 							<div class="right-info"> 
-								<h2><a href="userviewmenu.php">McDonald's</a></h2>
-								<p>Sandwiches, Beverages, Desserts</p>
+								<h2><a href="userviewmenu.php?Rest='.$allRest[$i]['ID'].'">'.$allRest[$i]['Name'].'</a></h2>
+								<p>'.implode(", ", $rest->type[$i]).'</p>
 							</div>
 						</td>
 						<td>					
@@ -78,11 +92,12 @@ session_start();
 							<span class="fa fa-star checked"></span>
 							<span class="fa fa-star checked"></span>
 							<span class="fa fa-star"></span>
-							<p>Delivers in 15 mins</p>
+							<p>Delivers in '.$allRest[$i]['DelvTime'].'</p>
+							<p>'.$allRest[$i]['Hotline'].'</p>
 						</td>
-					</tr>
-
-					<tr>
+					</tr>';
+				 }?>
+					<!--<tr>
 						<td>
 							<div>
 								<img src="../css/images/pizzahut.png" width="100" height="100">
@@ -120,7 +135,7 @@ session_start();
 							<span class="fa fa-star"></span>
 							<p>Delivers in 45 mins</p>
 						</td>
-					</tr>
+					</tr> -->
 				</table>
 			</div>
 		</div>
