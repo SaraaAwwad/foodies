@@ -1,5 +1,16 @@
 <?php
 session_start();
+require_once("../classes/product.php");
+$prod = new Product;
+
+$allProd = array();
+
+if(isset($_GET['Rest'])){
+	$place =$_GET['Rest'];
+
+$allProd = $prod->getProduct($place);
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,56 +39,29 @@ session_start();
 			<div class="centview cent-prodc">
 				<input type="text" placeholder="Search for Products Here.." id="searchInput">
 				<table id="rTable">
-					<tr>
-						<td style="width: 80%;">
+					<?php 
+					for($i=0; $i<count($allProd); $i++){
+					echo'<tr>
+						<td style="width: 70%;">
 							<div>
-								<img src="../css/images/chickenmac.png" width="100" height="100">
+								<img src="../css/images/'.$allProd[$i]['Image'].'" width="100" height="100">
 							</div>
 							<div class="right-info"> 
-								<h2>Chicken MACDO ® </h2>
-								<p>Crispy, tender spicy chicken Pattie seasoned <br/>
-								with a bold mix of spices,<br/>
-							    topped with shredded iceberg lettuce,<br/>
-								mayonnaise and served on a perfectly toasty bun</p>
+								<h2>'.$allProd[$i]['Name'].'</h2>
+								<p>'.$allProd[$i]['Description'].'</p>
 							</div>
 						</td>
-						<td style="width:20%;">
-							<button class="add-prd"></button>
-							30.0 EGP
-						</td>
-					</tr>
+						<td style="width:30%;">';
 
-					<tr>
-						<td>
-							<div>
-								<img src="../css/images/friesmac.png" width="100" height="100">
-							</div>
-							<div class="right-info"> 
-								<h2>McDonald's ® Fries - Regular</h2>
-								<p>Regular size of the world famous fries; golden on the outside, soft and fluffy on the inside. Made with quality potatoes and cooked in our 100% vegetable oil (partially hydrogenated)</p>
-							</div>
-						</td>
-						<td>
-							<button class="add-prd"></button>
-							15.0 EGP
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							<div>
-								<img src="../css/images/applemac.png" width="100" height="100">
-							</div>
-							<div class="right-info"> 
-								<h2>Apple Pie</h2>
-								<p>We're pretty sure this needs no introduction…because you two have met before, many times. But just in case you haven't…meet our humble Apple Pie. We know you two will be inseparable soon enough.</p>
-							</div>
-						</td>
-						<td>
-							<button class="add-prd"></button>
-							12.50 EGP
-						</td>
-					</tr>
+						for ($j=0; $j<count($prod->values[$i]); $j+=2){
+							echo'<button class="add-prd"></button>
+							 <span>'.$prod->values[$i][$j].'</span> EGP -
+							<span>'.$prod->values[$i][$j+1].'</span> <hr>'
+							;}
+						echo'</td>
+						</tr>';
+						}
+					?>
 				</table>
 			</div>
 		</div>
@@ -99,6 +83,8 @@ session_start();
 	</main>
 
 <div class="row-gap"></div>
+<div class="row-gap"></div>
+
 <?php include("footer.php") ?>
 <script type="text/javascript" src="../js/usersearch.js"></script>
 </body>
