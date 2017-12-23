@@ -27,6 +27,7 @@
 		$userinfo = $this->dbobj->selectsql($sql);
 		return $userinfo;
 	}
+
 	public function updateInfo3($id,$area){
 		$area = $this->dbobj->test_input($area);
 		$sql = "UPDATE areas SET Area= '$area' WHERE RestID='$id'";
@@ -49,8 +50,31 @@
 		}
 	}
 
+public function getRestAreas($restID){
+		$sql = "SELECT DISTINCT Area from areas WHERE restID= '$restID'";
+		$res = $this->dbobj->selectsql($sql);
+		$areas= array();
 
+		if($res){
+			while($row = mysqli_fetch_array($res)){
+				$areas[] = $row['Area']; 
+			}
+		}
+		return $areas;
+	}
+
+	public function getAllAreas(){
+		$sql = "SELECT DISTINCT Area from areas";
+		$res = $this->dbobj->selectsql($sql);
+		
+		$areas= array();
+		if($res){
+			while($row = mysqli_fetch_assoc($res)){
+				$areas[] = $row['Area']; 
+			}
+		}
+		return $areas;	
+	}
 	
 }
-
 ?>

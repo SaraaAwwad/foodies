@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,20 +10,15 @@
 	<link rel="stylesheet" type="text/css" href="../css/topnav.css">
 	<link rel="stylesheet" type="text/css" href="../css/userstyle.css">
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro|Raleway" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<title>User-HomePage</title>	
 </head>
+
 <?php include("header.php"); ?>
 
 <body>
+	
 	<header class="homepage">
-		<nav class="menu">
-			<ul>
-				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
-				<li><a href="../home.php">Logout</a></li>
-				<li><a href="userprofile.php">Profile</a></li>
-				<li><a href="#">Help</a></li>
-			</ul>
-		</nav>
 	</header>
 
 	<div class="welcome">Find what's near you</div>
@@ -47,7 +45,8 @@
 	btn.addEventListener("click", goBtn);
 
 	function goBtn(){
-		window.location.href="userrest.php";
+		var place = $('#area :selected').text();
+		window.location.href='userrest.php?area='+place;
 	}
 </script>
 </body>

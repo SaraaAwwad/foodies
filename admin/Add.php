@@ -1,8 +1,9 @@
 <?php 
 require_once('dbconnect.php');
 
-
-	$db_obj = new dbconnect;
+$db_obj = new dbconnect;
+	
+	
 
 
 		#attribute in table restaurant
@@ -13,6 +14,8 @@ require_once('dbconnect.php');
 		$r_img = trim($_POST['Image']);
 		$r_adminid = trim($_POST['AdminID']);
 
+		
+		
 
 		#attribute in table cuisine
 		$r_cuisine = trim($_POST['Type']);
@@ -28,9 +31,33 @@ require_once('dbconnect.php');
 
 		$db_obj->add_area($a_id,$a_area);
 
+		
+
+
+
+		// function add()
+		// {
+		// 	if(isset($_POST['formSubmit'])){
+
+		// 		//for the multiple select
+		// 		$restareas = $_POST['restarea'];
+		// 	}
+
+		// 	$nareas = count($restareas);
+
+		// 	for ($i=0; i<$nareas; i++)
+		// 	{
+		// 		$db_obj->add_cuisine($a_id,$r_cuisine);
+
+		// 		$db_obj->add_area($a_id,$a_area);
+		// 	}
+		// }
+
+
 		$db_obj->disconnect();
 
 		header("Location: newrestaurant.php");
+}
 		
 				
 ?>
