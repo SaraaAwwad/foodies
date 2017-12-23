@@ -1,14 +1,8 @@
 <?php
-
-// connect to the database
-include_once('\..\db\db_connect.php');
+require("/../classes/restaurant.php");
 session_start();
+$rest = new Restaurant;
 $id = $_GET['id'];
-$db_obj = new dbconnect;
-$sql = "Delete FROM restaurant WHERE ID = $id";
-$db_obj->executesql($sql); 
-
-// redirect user after delete is successful
+$rest->DeleteRest($id); 
 header("Location: addrestaurant.php");
-
 ?>

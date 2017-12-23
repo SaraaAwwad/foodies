@@ -8,6 +8,10 @@ background-repeat:repeat;
 margin: auto;
 }
 
+#secondpic{
+padding-left: 30px;
+
+}
 a.butt {
     display: block;
     width: 70px;
@@ -43,7 +47,6 @@ a.buttons {
 }
 /* Contents Background (Side nav & Tables)*/ 
 .Bgimage{
-	
 	
 		position: absolute; 
 		top: 0px; 
@@ -113,8 +116,8 @@ background-repeat:repeat;
 .main2{
 	
 	position: absolute;
-    margin: 0% 30%;
-    width: 60%;
+    margin: 0% 27%;
+    width: 70%;
 }
 
 .main3{
@@ -141,7 +144,7 @@ header{
 /*Side Navigation*/
 .sidenav{
 	position: absolute;
-    margin: 3% 3%;
+    margin: 3% 0% 3% 3%;
     width: 20%;
     background-color: #d9d9d9;
     font-family: "Source Sans";
@@ -426,7 +429,7 @@ ul.breadcrumb li a:hover {
 
 /* TABLE CONTENTS */
 table {
-   width: 100%;
+   width: 105%;
    display: table;
    border-collapse: collapse;
   border-spacing: 0;

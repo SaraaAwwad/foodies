@@ -1,8 +1,12 @@
 <?php
-include_once ("\..\db\db_connect.php");
+require("/../classes/restaurant.php");
+require("/../classes/cuisine.php");
 session_start();
 ?>
-
+<?php
+$rest = new Restaurant;
+$cuisine = new Cuisine;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,24 +21,25 @@ session_start();
 <header>
 		<nav class="menu">
 			<ul>
-				<li class="logo"> <a href= "AdminPage.php" class="log"> Foo<span class="org">d</span>ies </a></li>
-        		<li><a href="../adminlogin.html">Logout</a></li>
+				<li class="logo"> <a href= "AdminPage.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="log"> Foo<span class="org">d</span>ies </a></li>
+        <li><a href="../adminlogin.php">Logout</a></li>
 			</ul>
 			</nav>
 </header>
 
 <div class="sidenav" id="mysidenav" >
-<img class="bk2" src="../css/images/HS.jpg" alt="profile picture">
+<img class="bk2" src="../css/images/<?php echo ''.$_SESSION["adminImage"].'' ?> " alt="profile picture">
 <hr id="sidenavhr"> 
 
-<a href="profile.php" class="sidenavitems item"><i class="fa fa-user-circle-o"></i> Profile</a>
-<a href="teammembers.php" class="sidenavitems item"><i class="fa fa-group"></i> Team Members</a>
+<a href="profile.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-user-circle-o"></i> Profile</a>
+<a href="teammembers.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-group"></i> Team Members</a>
 <button id ="buttontoggle" class="accordion"><i class="fa fa-glass"></i> Restaurants</button>
 <div class="panel" style="margin-bottom:0px" id ="paneltoggle" >
-  <a href="addrestaurant.php" class="sidenavitems PanelItem"><i class="	fa fa-user-plus"></i> Manage </a>
- <a href="viewrest.php" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View </a>
+<a href="addrestaurant.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems PanelItem"><i class="	fa fa-user-plus"></i> Manage</a>
+<a href="viewrest.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View</a>
 </div>
-<a href="statistics.php" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
+<a href="statistics.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
+
 </div>
 
 
@@ -51,20 +56,19 @@ session_start();
 
 <?php 
 $id = $_GET['id'];
-$db_obj = new dbconnect;
-$sql = "SELECT * FROM restaurant WHERE ID= '$id'";
-$qresult = $db_obj->selectsql($sql);
-$row = mysqli_fetch_array($qresult);
-$name = $row['Name'];
-$hot = $row['Hotline'];
-$delvfees = $row['DelvFees'];
-$delvtime = $row['DelvTime'];
-$id = $row['ID'];
-$image = $row['Image'];
-render($id,$name,$hot,$delvfees,$delvtime,$image);
+$result = $rest->getSelect($id);
+$name = $result['Name'];
+$hot = $result['Hotline'];
+$delvfees = $result['DelvFees'];
+$delvtime = $result['DelvTime'];
+$id = $result['ID'];
+$image = $result['Image'];
+$result2 = $cuisine->getcuisine($id);
+$type = $result2['Type'];
+render($id,$name,$hot,$delvfees,$delvtime,$image,$type);
 ?>
 
-<?php function render($id,$name,$hot,$delvfees,$delvtime,$image){ ?>
+<?php function render($id,$name,$hot,$delvfees,$delvtime,$image,$type){ ?>
 		
 <form action="" method="POST">
 <b style="color: green;">ID</b><br>
@@ -79,7 +83,8 @@ render($id,$name,$hot,$delvfees,$delvtime,$image);
 <input type="text" name="timearea" id="restarea" value="<?php echo $delvtime;?>"><br>
 <b style="color: green;">Image (With its Extension)</b><br>
 <input type="text" name="imagearea" id="restarea" value="<?php echo $image;?>"><br>
-
+<b style="color: green;">Cuisine</b><br>
+<input type="text" name="cuisinearea" id="restarea" value="<?php echo $type;?>"><br>
 <input type="submit" name="update" id="saverest" value="Update"/>
 <input type="button" id="cancelrest" value="Cancel"/>
 </form>
@@ -93,8 +98,9 @@ if(isset($_POST['update'])){
 	$c = $_POST['feesarea'];
 	$d = $_POST['timearea'];
 	$e = $_POST['imagearea'];
-	$sql1 = "UPDATE restaurant SET Name = '$a' , Hotline = '$b', DelvFees = '$c', DelvTime = '$d',Image = '$e' WHERE ID = '$id'";
-    $db_obj->selectsql($sql1);
+	$f = $_POST['cuisinearea'];
+	$rest->updateInfo($id,$a,$b,$c,$d,$e,'');
+	$rest->updateInfo2($id,$f);
     header("Location: addrestaurant.php");
 }
 

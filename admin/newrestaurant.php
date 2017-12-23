@@ -1,16 +1,15 @@
 <?php 
 require_once('dbconnect.php');
-
-
-	$db_obj = new dbconnect;
+$db_obj = new dbconnect;
+session_start();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <title> Add </title>
-<link rel="stylesheet" type="text/css" href="../css/topnav.css">
-<link rel="stylesheet" type="text/css" href="../css/AdminPage.css">
+<link rel="stylesheet" type="text/css" href="..//css/topnav.css">
+<link rel="stylesheet" type="text/css" href="..//css/AdminPage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,26 +19,25 @@ require_once('dbconnect.php');
 <header>
 		<nav class="menu">
 			<ul>
-				<li class="logo"> <a href= "../home.htmls" class="log"> Foo<span class="org">d</span>ies </a></li>
-				
+				<li class="logo"> <a href= "AdminPage.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="log"> Foo<span class="org">d</span>ies </a></li>
+        <li><a href="../adminlogin.php">Logout</a></li>
 			</ul>
 			</nav>
 </header>
 
 <div class="sidenav" id="mysidenav" >
 <a id="profilelink" href= "../admin/AdminPage.html">
-<img class="bk2" src="../css/images/HS.jpg" alt="profile picture">
-</a>
+<img class="bk2" src="../css/images/<?php echo ''.$_SESSION["adminImage"].'' ?> " alt="profile picture">
 <hr id="sidenavhr"> 
 
-<a href="profile.html" class="sidenavitems item"><i class="fa fa-user-circle-o"></i> Profile</a>
-<a href="teammembers.html" class="sidenavitems item"><i class="fa fa-group"></i> Team Members</a>
+<a href="profile.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-user-circle-o"></i> Profile</a>
+<a href="teammembers.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-group"></i> Team Members</a>
 <button id ="buttontoggle" class="accordion"><i class="fa fa-glass"></i> Restaurants</button>
 <div class="panel" style="margin-bottom:0px" id ="paneltoggle" >
-  <a href="addrestaurant.html" class="sidenavitems PanelItem"><i class="	fa fa-user-plus"></i> Manage </a>
- <a href="viewrest.html" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View </a>
+<a href="addrestaurant.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems PanelItem"><i class="	fa fa-user-plus"></i> Manage</a>
+<a href="viewrest.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View</a>
 </div>
-<a href="statistics.html" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
+<a href="statistics.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
 </div>
 
 <script type="text/javascript" src="js/AdminPage.js"></script>
