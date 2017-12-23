@@ -1,6 +1,6 @@
 <?php
-require("/../classes/restaurant.php");
-require("/../classes/cuisine.php");
+require_once("/../classes/restaurant.php");
+require_once("/../classes/cuisine.php");
 session_start();
 ?>
 <?php

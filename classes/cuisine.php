@@ -6,7 +6,6 @@ class Cuisine{
 
 	public $type = array();
 	public $restID = array();
-
     private $dbobj;
     
 	public function __construct(){

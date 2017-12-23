@@ -1,8 +1,8 @@
 <?php
 session_start();
-require("/../classes/restaurant.php");
-require("/../classes/cuisine.php");
-require("/../classes/areas.php");
+require_once("/../classes/restaurant.php");
+require_once("/../classes/cuisine.php");
+require_once("/../classes/areas.php");
 ?>
 <!DOCTYPE html>
 <html>
