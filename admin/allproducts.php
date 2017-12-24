@@ -1,11 +1,13 @@
 <?php
-require_once("/../classes/restaurant.php");
-require_once("/../classes/cuisine.php");
-require_once("/../classes/areas.php");
 session_start();
-$rest = new Restaurant;
-$allRest = array();
-$allRest = $rest->getRestaurants();
+require_once("../classes/product.php");
+$prod = new Product;
+$allProd = array();
+if(isset($_GET['id'])){
+$place =$_GET['id'];
+$allProd = $prod->getProduct1($place);
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,6 +21,7 @@ $allRest = $rest->getRestaurants();
 <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 </head>
 <body>
+
 <header>
 		<nav class="menu">
 			<ul>
@@ -32,10 +35,10 @@ $allRest = $rest->getRestaurants();
 <div id="imageheader">
 <img src="../css/images/bread.jpg" />
 </div>
-
+ 
 <main>
 	
-<div class="Bgimage">	
+<div class="Bgimage">
 <?php include("adminsidenav.php"); ?>
 </div>
 
@@ -53,13 +56,10 @@ $allRest = $rest->getRestaurants();
         <thead>
           <tr>
               <th>ID</th>
-			  <th>Logo</th>
+			  <th>Image</th>
               <th>Name</th>
-			  <th>Hotline</th>
-			  <th>Delivery Fees</th>
-			  <th>Delivery Time</th>
-			  <th>Cuisine</th>
-			  <th>Areas</th>
+			  <th>Description</th>
+			  <th>Prices</th>
 			  <th>Status</th>
 			  <th></th>
         </div>
@@ -68,38 +68,44 @@ $allRest = $rest->getRestaurants();
 
         <tbody id="restaurantTable">
 		<?php 
-			for($i=0; $i<count($allRest); $i++){ ?>
+			for($i=0; $i<count($allProd); $i++){ ?>
             <tr id="row1">
-            <td class="tdID"><strong><?php echo $allRest[$i]['ID'];?></strong></td>
-			<td><img src="../css/images/<?php echo $allRest[$i]['Image'];?>" width="50" height="50"></td>
-            <td><?php echo '<a class = "anchor" href="allproducts.php?id='.$allRest[$i]['ID'].'"> '.$allRest[$i]['Name'].'</a>';?></td>
-			<td><?php echo $allRest[$i]['Hotline'];?></td>
-			<td><?php echo $allRest[$i]['DelvFees'];?></td>
-			<td><?php echo $allRest[$i]['DelvTime'];?></td>
-			<?php for ($j=0; $j<count($rest->type[$i]); $j+=2){ ?>
-			<td><span><?php echo $rest->type[$i][$j]; ?></span><br></td>
-	        <?php } ?>
-			<?php for ($j=0; $j<count($rest->Areas[$i]); $j+=2){ ?>
-			<td><span><?php echo $rest->Areas[$i][$j]; ?></span><br></td>
-	        <?php } ?>
-	        <?php if($allRest[$i]['Status'] == '1' ){
+            <td><strong><?php echo $allProd[$i]['ID'];?></strong></td>
+			<td><img src="../css/images/<?php echo $allProd[$i]['Image'];?>" width="50" height="50"></td>
+            <td><strong><?php echo $allProd[$i]['Name']; ?></strong></td>
+			<td><?php echo $allProd[$i]['Description'];?></td>
+			<td><?php for ($j=0; $j<count($prod->values[$i]); $j+=2){ ?>
+			<span><?php if($j>0){ ?> <br><br> <?php } ?><?php echo $prod->values[$i][$j]; ?></span>$<br><span><?php echo $prod->values[$i][$j+1]; ?></span>
+	        <?php } ?></td>
+	        <?php if($allProd[$i]['Status'] == '1' ){
 	        echo '<td> Active </td>'; }
-	        else if ($allRest[$i]['Status'] == '0'){
+	        else if ($allProd[$i]['Status'] == '0'){
 	        echo '<td> Inactive</td>';} ?>
-			<td align="center"><?php echo '<a class = "butt" href="editForm.php?id='.$allRest[$i]['ID'].'">Update</a>'; ?><br>
-
-            <?php if($allRest[$i]['Status'] == '1' ){
-	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]['ID'].'">Inactivate</a></td>'; }else if ($allRest[$i]['Status'] == '0'){
-	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]['ID'].'">Activate</a></td>'; } ?><br></td>
-           <!-- <td align="center"><?php echo '<a class = "butt" href="delete.php?id='.$allRest[$i]['ID'].'">Delete</a>'; ?></td> -->
+			<td align="center"><?php echo '<a class = "butt" href="editProduct.php?id='.$allProd[$i]['ID'].'">Update</a>'; ?><br>
+            <?php if($allProd[$i]['Status'] == '1' ){
+	        echo ' <a class = "butt" href="inactivateProduct.php?id='.$allProd[$i]['ID'].'">Inactivate</a>'; }else if ($allProd[$i]['Status'] == '0'){
+	        echo ' <a class = "butt" href="inactivateProduct.php?id='.$allProd[$i]['ID'].'">Activate</a>'; } ?><br>
+            <?php echo '<a class = "butt" href="deleteProduct.php?id='.$allProd[$i]['ID'].'">Delete</a>'; ?></td>
 			</tr>
-		  <?php } ?>
+		    <?php } ?>
         </tbody>
         </table>
-
         </div>    
 		</div>
 		</main>
 		<script type="text/javascript" src="../js/AdminPage.js"></script>
+		<script>
+			if (screen.width < 500) {
+  
+  $("body").addClass("nohover");
+  $("td, th")
+    .attr("tabindex", "1")
+    .on("touchstart", function() {
+      $(this).focus();
+    });
+  
+}
+
+		</script>
 </body>
 </html>
