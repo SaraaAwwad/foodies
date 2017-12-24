@@ -2,6 +2,7 @@
 
 require_once("\..\db\db_connect.php");
 require_once("\cuisine.php");
+require_once("\areas.php");
 class Restaurant{
 
 	public $ID;
@@ -11,17 +12,20 @@ class Restaurant{
 	public $DelvTime;
 	public $Image;
 	public $AdminID;
-
 	public $Status;
 	public $RestByArea = array();
 	public $type = array();
-	public $cuisine; 
-	
+	public $cuisine;
+	public $areas;
+	public $RestByRestID = array();
+	public $Areas = array();
 	private $dbobj;
+    public $GetS = array();
 
 	public function __construct(){
 		$this->dbobj = new dbconnect;
-		$this->cuisine= new Cuisine();
+		$this->cuisine = new Cuisine();
+		$this->areas = new Area();
 	}
 
 	public function updateInfo($id, $name, $hot, $fees, $time, $image,$adminid){
@@ -54,7 +58,51 @@ class Restaurant{
 			$this->DelvTime = $row['DelvTime'];
 			$this->Image = $row['Image'];
 			$this->AdminID = $row['AdminID'];
+			$this->Status = $row['Status'];
 		}
+	}
+
+    public function getstatus($id){
+		$sql = "SELECT Status FROM restaurant Where ID = '$id' ";
+		$userinfo = $this->dbobj->selectsql($sql);
+		while ($row = mysqli_fetch_assoc($userinfo)){
+			$this->GetS = array();
+			$this->GetS['Status'] = $row['Status'];
+		}
+		return $this->GetS;
+	}
+
+    public function changetoactive($status,$id){
+		$sql = "UPDATE restaurant SET Status= '$status' WHERE ID='$id'";
+		$res = $this->dbobj->executesql2($sql);
+		if($res){
+			$this->getInfo($id);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+    public function getRestaurants(){
+		$sql = "SELECT * FROM restaurant";
+		$result = $this->dbobj->selectsql($sql);
+		$i=0;
+		while ($row = mysqli_fetch_assoc($result)){
+			$this->RestByRestID[$i] = array();
+			$this->type[$i] = array();
+			$this->Areas[$i] = array();
+			$this->RestByRestID[$i]['ID'] = $row['ID'];
+			$this->type[$i] = $this->cuisine->getType($row['ID']);
+			$this->Areas[$i] = $this->areas->getType($row['ID']);
+			$this->RestByRestID[$i]['Image'] = $row['Image'];
+			$this->RestByRestID[$i]['Name'] = $row['Name'];
+			$this->RestByRestID[$i]['Hotline'] = $row['Hotline'];
+			$this->RestByRestID[$i]['DelvFees'] = $row['DelvFees'];
+			$this->RestByRestID[$i]['DelvTime'] = $row['DelvTime'];
+			$this->RestByRestID[$i]['Status'] = $row['Status'];
+			$i++;
+		}
+		return $this->RestByRestID;
 	}
 
 	public function getSelect($id){
@@ -78,6 +126,14 @@ class Restaurant{
 		return $userinfo;
 	}
 	
+
+	public function InsertRest($name, $cuisine, $delvarea, $hotline, $area, $street, $building, $img){
+		$sql = "INSERT INTO user (Password, Email, FName, LName, Area, Street, Building) VALUES ('$password', '$email' , '$fname', '$lname', '$area', '$street', '$building')";
+
+		$qresult = $this->dbobj->executesql($sql);
+
+		return $qresult;
+	}
 
 	public function getByArea($ar){
 		$sql="SELECT restaurant.ID, restaurant.Name, restaurant.Hotline, restaurant.DelvTime, restaurant.DelvFees, restaurant.Image FROM restaurant INNER JOIN areas ON areas.RestID = restaurant.ID Where restaurant.Status = 1 AND areas.Area= '$ar' ";

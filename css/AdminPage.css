@@ -24,7 +24,12 @@ a.butt {
     font-size: 12px;
     text-decoration: none;
     font-family: sans-serif;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
 }
+
 /* Header inside image header */
 #imagedesc{
 	
@@ -146,8 +151,9 @@ header{
 	position: absolute;
     margin: 3% 0% 3% 3%;
     width: 20%;
-    background-color: #d9d9d9;
+    background-color: rgba(255, 255, 255, 0.9);
     font-family: "Source Sans";
+    border-radius: 10px;
 }
 
 .sidenav a{
@@ -294,6 +300,30 @@ img.plate{
 		
 }
 
+a.anchor:link{
+text-decoration: none;
+color:#000000;
+font-weight: bold;
+}
+
+a.anchor:visited {
+    text-decoration: none;
+        color: black;
+}
+a.anchor:hover {
+    text-decoration: none;
+    color: coral ;
+}
+
+a.anchor:active {
+    text-decoration: none;
+    color:#000000;
+}
+
+td.tdID{
+font-weight: bold;
+color:#000000;
+}
 
 p.resturantdesc{
 	    padding-left: 10px;
@@ -302,6 +332,25 @@ p.resturantdesc{
     text-align: left;
     width: 100%;
 	color:#fdfdfd;
+}
+
+#panels{
+  background-color: #f2f2f2;
+  width: 100%;
+  color: #19263E;
+  overflow: hidden;
+  border: 0px solid #FFFFFF;
+  border-radius: 5px;
+}
+#panels a{
+  font-size: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#panels a:active, #panels a:hover{
+background-color: #ff7f50;
+  color: #19263E;
 }
 
 /*Panel When Accordian Opens */
@@ -318,8 +367,8 @@ p.resturantdesc{
 div.panel {
     background-color: #f2f2f2;
     max-height: 0;
-	width: 100%;
-	color: #19263E;
+	  width: 100%;
+	  color: #19263E;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     border: 0px solid #FFFFFF;
@@ -340,7 +389,7 @@ background-color: #ff7f50;
 
 /*Accordian */
 button.accordion {
-    background-color: #d9d9d9;
+    background-color: rgba(255, 255, 255, 0.8);
     padding-top: 20px;
     padding-bottom: 20px;
     width: 100%;
@@ -350,35 +399,47 @@ button.accordion {
     overflow: hidden;
     color: #19263E;
     padding-left: 20px;
-	font-size: 20px;
-	font-weight: bold;
+	  font-size: 20px;
+	  font-weight: bold;
 }
 
 button.accordion.active, button.accordion:hover {
     background-color: #ff7f50;
-	color: #19263E;
+	  color: #19263E;
     overflow: hidden;
 }
 
-button.accordion:after {
+/*button.accordion:after {
     content: '\02795';
     font-size: 9px;
     color: #19263E;
     float: right;
     margin-top: 3px;
-	
 }
 
 button.accordion.active:after {
     content: '\2796';
+}*/
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
 
-
+#ii{
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-left: 60px;
+  margin-bottom: 4px;
+  color: #19263E;
+}
 /*BreadCrumbs*/
 ul.breadcrumb {
-    padding: 4px 1px;
+    padding: 4px 1px 0px 1px;
     margin-right: 350px;
-	margin-top: 40px;
+	  margin-top: 40px;
     list-style: none;
     background-color: transparent;
 }
@@ -428,7 +489,7 @@ ul.breadcrumb li a:hover {
 
 
 /* TABLE CONTENTS */
-table {
+/* table {
    width: 105%;
    display: table;
    border-collapse: collapse;
@@ -437,6 +498,7 @@ table {
 
 th{	
 color:#e2574c;
+text-shadow: 0.5px 0.6px #888888;
 }
 
 table.highlight > tbody > tr:hover {
@@ -453,8 +515,58 @@ td, th {
   text-align: left;
   vertical-align: middle;
   border-radius: 2px;
+} */
+
+table {
+  overflow: hidden;
+   width: 105%;
+   display: table;
+   border-collapse: collapse;
+  border-spacing: 0;
+}
+th{ 
+color:#e2574c;
+text-shadow: 0.5px 0.6px #888888;
 }
 
+td, th {
+  padding: 10px;
+  position: relative;
+  outline: 0;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+
+body:not(.nohover) tbody tr:hover {
+  background-color: #1abc9c;
+}
+thead {
+  border-bottom: 1px solid #bcbcbc;
+}
+td:hover::after,
+thead th:not(:empty):hover::after,
+td:focus::after,
+thead th:not(:empty):focus::after { 
+  content: '';  
+  height: 10000px;
+  left: 0;
+  position: absolute;  
+  top: -5000px;
+  width: 100%;
+  z-index: -1;
+}
+
+td:hover::after,
+th:hover::after {
+  background-color: #1abc9c;
+}
+
+td:focus::after,
+th:focus::after {
+  background-color: lightblue;
+}
 
 
 a.active {
@@ -556,13 +668,14 @@ border-bottom: 1px solid red;
 /*button that adds restaurant*/
 #addrest{
 
-  
+  text-decoration: none;
   box-sizing: content-box;
+  font-size:14px;
   width: 150px;
-  height: 40px;
+  height: 30px;
   position: relative;
-  margin: 5px 0;
-  border-radius: 30% / 20%;
+  margin: 0px 0px 15px 0px;
+  border-radius: 80% / 50%;
   color: white;
   font-weight:bold;
   float:right;
@@ -570,6 +683,11 @@ border-bottom: 1px solid red;
   text-align: center;
   text-overflow: clip;
   background: #1abc9c;
+  padding-top:10px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
 }
 
 #addrest:hover {

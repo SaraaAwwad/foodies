@@ -25,21 +25,8 @@ $admin = new Admin;
       </ul>
       </nav>
 </header>
-	<main>
-<div class="sidenav" id="mysidenav" >
-<img class="bk2" src="../css/images/<?php echo ''.$_SESSION["adminImage"].'' ?> " alt="profile picture">
-<hr id="sidenavhr"> 
-
-<a href="profile.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-user-circle-o"></i> Profile</a>
-<a href="teammembers.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-group"></i> Team Members</a>
-<button id ="buttontoggle" class="accordion"><i class="fa fa-glass"></i> Restaurants</button>
-<div class="panel" style="margin-bottom:0px" id ="paneltoggle" >
-<a href="addrestaurant.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems PanelItem"><i class="  fa fa-user-plus"></i> Manage</a>
-<a href="viewrest.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View</a>
-</div>
-<a href="statistics.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
-</div>
-
+<main>
+<?php include("adminsidenav.php"); ?>
 
 <?php 
 $id = $_GET['id'];
@@ -48,14 +35,13 @@ $fname = $result['FName'];
 $lname = $result['LName'];
 $email = $result['Email'];
 $creation = $result['CreationDate'];
-$visited = $result['LastVisited'];
 $id = $result['ID'];
 $image = $result['Image'];
 $pass = $result['Password'];
-render($id,$fname,$lname,$email,$creation,$visited,$image,$pass);
+render($id,$fname,$lname,$email,$creation,$image,$pass);
 ?>
 
-<?php function render($id,$fname,$lname,$email,$creation,$visited,$image,$pass){ ?>
+<?php function render($id,$fname,$lname,$email,$creation,$image,$pass){ ?>
 <div class="main2">
 
   <!-- Header -->
@@ -69,7 +55,6 @@ render($id,$fname,$lname,$email,$creation,$visited,$image,$pass);
 </ul>
   <hr class="round1">
 	<img class="back4" src="../css/images/<?php echo ''.$image.'';?>" alt="profile picture">
-  <img id="medias" src="../css/images/social.png" alt="social media">
 	<div class="cards">
   <div class="cont1">
     <h4 id="cardsheader">Admin ID</h4> 
@@ -98,12 +83,6 @@ render($id,$fname,$lname,$email,$creation,$visited,$image,$pass);
   <div class="cont4">
     <h4 id="cardsheader">Creation Date</h4> 
     <p><?php echo ''.$creation.''; ?></p> 
-  </div>
-</div>
-<div class="cards">
-  <div class="cont4">
-    <h4 id="cardsheader">Last Visited</h4> 
-    <p><?php echo ''.$visited.''; ?></p> 
   </div>
 </div>
 
