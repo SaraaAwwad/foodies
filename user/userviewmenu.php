@@ -4,13 +4,14 @@ require_once("../classes/product.php");
 $prod = new Product;
 
 $allProd = array();
+$place = -1;
 
 if(isset($_GET['Rest'])){
-	$place =$_GET['Rest'];
-
+$place =$_GET['Rest'];
 $allProd = $prod->getProduct($place);
 }
 
+$shopping_session = "shoppingcart".$place;
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,6 +22,8 @@ $allProd = $prod->getProduct($place);
 	<link rel="stylesheet" type="text/css" href="../css/userstyle.css">
 	<link rel="stylesheet" type="text/css" href="../css/style1.css">
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>User-Menu</title>	
 </head>
 
@@ -34,28 +37,32 @@ $allProd = $prod->getProduct($place);
 	
 	<main>
 
+<input type="hidden" id="shoppingrest" value="<?php echo $shopping_session;?>" >
+
 	<div class="row">
-		<div class="col-8">
+		<div class="col-7">
 			<div class="centview cent-prodc">
 				<input type="text" placeholder="Search for Products Here.." id="searchInput">
 				<table id="rTable">
 					<?php 
 					for($i=0; $i<count($allProd); $i++){
-					echo'<tr>
+					echo'
+						<tr>
 						<td style="width: 70%;">
 							<div>
 								<img src="../css/images/'.$allProd[$i]['Image'].'" width="100" height="100">
 							</div>
 							<div class="right-info"> 
-								<h2>'.$allProd[$i]['Name'].'</h2>
+								<h2 id="Name'.$allProd[$i]['ID'].'">'.$allProd[$i]['Name'].'</h2>
 								<p>'.$allProd[$i]['Description'].'</p>
 							</div>
 						</td>
+
 						<td style="width:30%;">';
 
 						for ($j=0; $j<count($prod->values[$i]); $j+=2){
-							echo'<button class="add-prd"></button>
-							 <span>'.$prod->values[$i][$j].'</span> EGP -
+							echo'<button class="add-prd addtocart" id="'.$j.'_'.$allProd[$i]['ID'].'"></button>
+							 <span id="Price'.$j.'_'.$allProd[$i]['ID'].'">'.$prod->values[$i][$j].'</span> EGP -
 							<span>'.$prod->values[$i][$j+1].'</span> <hr>'
 							;}
 						echo'</td>
@@ -65,27 +72,72 @@ $allProd = $prod->getProduct($place);
 				</table>
 			</div>
 		</div>
-	
-		<div class="col-4">
+
+		<div class="col-5">
+
 			<div class="container-shop">
-				<div class="shop-cart">
-					<h3>Add to Your Plate</h3>
+				<div class="shop-cart" id="order_table">
+
+					 <?php  
+                        if(!empty($_SESSION[$shopping_session])){  
+                            $total = 0;  
+                            echo'
+                            <h2 id="test">Your Plate</h2> <br><hr>
+                            <table>  
+                                    <tr>  
+                                         <th width="40%">Product Name</th>  
+                                         <th width="10%">Quantity</th>  
+                                         <th width="20%">Price</th>  
+                                         <th width="15%">Total</th>  
+                                         <th width="5%">Action</th>  
+                                    </tr>';
+                            foreach($_SESSION[$shopping_session] as $keys => $values){
+                            	?>
+                            		<tr>  
+                                         <td><?php echo $values["product_name"]; ?></td>  
+                                         <td><input type="number" class="quantity"  id ="qt.<?php echo $values["product_id"] ?>" value="<?php echo $values["product_quantity"]?>"> </td> 
+
+                                         <td align="right">$ <?php echo $values["product_price"]; ?></td>  
+                                         <td align="right">$ <?php echo number_format($values["product_quantity"] * $values["product_price"], 2); ?></td>  
+                                         <td><button name="delete"  class="deletefromcart" id="<?php echo $values["product_id"]?>"></button></td>  
+                                    </tr>  
+                        <?php  
+                                $total = $total + ($values["product_quantity"] * $values["product_price"]);  
+                                }  
+                        ?>
+                        			<tr>  
+                                         <td colspan="3" align="right">Total</td>  
+                                         <td align="right">$ <?php echo number_format($total, 2); ?></td>  
+                                         <td></td>  
+                                    </tr>  
+                                    <tr>  
+                                         <td colspan="5" align="center">  
+                                              <form method="post" action="cart.php">  
+                                                   <input type="submit" name="place_order" class="placeorder" value="Place Order" /> 
+
+                                              </form>  
+                                         </td>  
+                                    </tr>  
+                <?php  
+                    }else{
+                    	echo'<h3>Add to Your Plate</h3>
 					<hr>
 					Your current plate is empty.
 					<br>
 					<img src="../css/images/plate.png" alt="plate" width="170" height="170">
-				</div>
-				Delivery fees: 10.0 EGP<br>
-				Estimated Time: 15 Mins
+					</div>
+						Delivery fees: 10.0 EGP<br>
+						Estimated Time: 15 Mins ';
+                    }
+                ?>                       
+
 			</div>
 		</div>
 	</div>
-	</main>
+</div>
+</main>
 
-<div class="row-gap"></div>
-<div class="row-gap"></div>
-
-<?php include("footer.php") ?>
 <script type="text/javascript" src="../js/usersearch.js"></script>
+<script type="text/javascript" src="../js/usercart.js"></script>
 </body>
 </html>

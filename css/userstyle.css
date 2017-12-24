@@ -12,8 +12,36 @@ body{
   -webkit-font-smoothing: antialiased;  
 }
 
-.searchBar
-{
+.placeorder{
+ border-radius: 7%;
+ height:40px;
+ width:120px;
+ background-color: #b3ecff;
+ border-color:#66CCFF;
+}
+
+input[type=number] {
+    height: 30px;
+    width: 80px;
+    line-height: 30px;
+    font-size: 16px;
+    padding: 0 0 0 5px;
+    border-radius: 5px;
+    border-color: grey;
+}
+
+
+.deletefromcart{
+
+  background: url("images/remove.png") no-repeat transparent;
+  width:30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color:#ffcccc;
+  border-color: #cc0000;
+}
+
+.searchBar{
   border-radius: 5px;
   padding: 30px;
   background-color:rgba(192,192,192,0.4);
@@ -22,6 +50,7 @@ body{
   top: 330px;
   width: 330px;  
 }
+
 #area{
   font-family: 'Source Sans Pro', sans-serif;
   padding: 5px;
@@ -254,8 +283,7 @@ h1{
 }
 
 .cent-prodc{
-  margin-left: 3%;
-  margin-top: 10%;
+  margin:10% 3%;
 }
 
 .add-prd{
@@ -263,14 +291,19 @@ h1{
   width:30px;
   height: 30px;
   border-radius: 15px;
+  background-color: #CCFFCC;
+  border-color:#b3ffb3;
 }
+
 
 .shop-cart{
   text-align: center;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   overflow:auto;
-  width:90%;
+  padding: 20px;
+  width:100%;
+
 }
 
 .shop-cart h3{
@@ -283,10 +316,7 @@ h1{
 
 .container-shop{
   position:absolute;
-  padding:0px 7px;
-  width:30%;
-  height:60%; 
-  margin: 7% 35% 0% 0%;
+  margin: 6%;
 }
 
 .restheader{
