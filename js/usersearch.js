@@ -1,16 +1,19 @@
 var srch = document.getElementById("searchInput");
 srch.addEventListener("keyup", tblSrch);
 
-document.getElementById("im1").addEventListener("click", icoSrch);
-document.getElementById("im2").addEventListener("click", icoSrch);
-document.getElementById("im3").addEventListener("click", icoSrch);
-document.getElementById("im4").addEventListener("click", icoSrch);
-document.getElementById("im5").addEventListener("click", icoSrch);
 /*var ul = document.getElementById("searchImg");
 ul.addEventListener("click", imgSrch);
 
 var li = ul.getElementsByTagName("li");
 */
+function icoevent(){
+document.getElementById("im0").addEventListener("click", icoSrch);
+document.getElementById("im1").addEventListener("click", icoSrch);
+document.getElementById("im2").addEventListener("click", icoSrch);
+document.getElementById("im3").addEventListener("click", icoSrch);
+document.getElementById("im4").addEventListener("click", icoSrch);
+document.getElementById("im5").addEventListener("click", icoSrch);
+}
 
 function icoSrch(event){
 

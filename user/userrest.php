@@ -27,7 +27,7 @@ $allRest = $rest->getByArea($place);
 </head>
 <?php include("header.php"); ?>
 
-<body>
+<body onload="icoevent();">
 	
 	<header class="restheader">
 		<h3 id="descheader">foodies offer a variety of restaurants</h3>
@@ -41,10 +41,13 @@ $allRest = $rest->getByArea($place);
 				<ul id="searchImg">
 					<li><a href="userrest.php" title="Click Here To Show All!">Search By Cuisine</a></li>
 					<li>
+						<img id="im0" src="../css/images/viewall1.png" alt="" title="View All" width="70" height="70">
+					</li>
+					<li>
 						<img id="im1" src="../css/images/sidepizza.svg" alt="pizza" title="Pizza" width="70" height="100">
 					</li>
 					<li>
-						<img id="im2" src="../css/images/sideburger.svg" alt="sandwich" title="Sandwiches" width="70" height="100">
+						<img id="im2" src="../css/images/sideburger.svg" alt="" title="Sandwiches" width="70" height="100">
 					</li>
 					<li>
 						<img id="im3" src="../css/images/sidesalad2.svg" alt="Salad" title="Salad" width="70" height="100">

@@ -17,7 +17,7 @@ body{
 }
 
 .history{
- list-style-image: url('images/home.png');
+ list-style-image: url('images/house-icon.png');
  margin-left:70px; 
 }
 
@@ -28,10 +28,11 @@ body{
 }
 
 .showorder{
-  background-color: purple;
+  background-color: #3399ff;
   border-radius: 10px;
   border-color: white;
   width:150px;
+  height:25px;
   color:white;
   margin-left: 70px;
 }
@@ -201,6 +202,7 @@ div{
   background-color: white;
   width:85%;
   padding:20px;
+  overflow: auto;
 }
 
 .sideactive{

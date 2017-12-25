@@ -51,10 +51,10 @@ $orderdetails= new OrderDetails;
 						echo '<ul class="history">';
 
 						for($j=0; $j<count($allOrders); $j++){
-							echo ' <li> <p>
-								From: <strong>'.$allOrders[$j]['RestName'].'</strong>,
-								Total Price (including taxes and delivery fees): <strong>'.$allOrders[$j]['TotalPrice'].' EGP</strong>
-								<br> Delivery Address: <strong>'.$allOrders[$j]['Building'].', '.$allOrders[$j]['Street'].', '.$allOrders[$j]['Area'].'</strong> </p> </li> <button class="showorder show" id="'.$allOrders[$j]['ID'].'">Show Order Details</button> <button style="display:none;" class="showorder hide" id="h_'.$allOrders[$j]['ID'].'">Hide Order Details</button> ';
+							echo ' <li> <p><strong>
+								From: '.$allOrders[$j]['RestName'].'</strong><br>
+								<strong>Total Price (including taxes and delivery fees):'.$allOrders[$j]['TotalPrice'].' EGP</strong>
+								<br><strong> Delivery Address: '.$allOrders[$j]['Building'].', '.$allOrders[$j]['Street'].', '.$allOrders[$j]['Area'].'</strong> </p> </li> <button class="showorder show" id="'.$allOrders[$j]['ID'].'">Show Order Details</button> <button style="display:none;" class="showorder hide" id="h_'.$allOrders[$j]['ID'].'">Hide Order Details</button> ';
 
 							$allItems = $orderdetails->getOrderItemById($allOrders[$j]['ID']);
 							echo'<p class="orderitems" style="display:none;" id="p'.$allOrders[$j]['ID'].'">';
@@ -62,7 +62,7 @@ $orderdetails= new OrderDetails;
 							for($k=0; $k<count($allItems); $k++){
 								echo 'x'.$allItems[$k]['Quantity'].'  '.$allItems[$k]['ProdName'].', with a price of: '.$allItems[$k]['Price'].' each <br>';
 							}
-							echo'</p><br><br><br>';
+							echo'</p><br><br>';
 						}
 						echo '</ul>';
 					}
