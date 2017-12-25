@@ -1,5 +1,6 @@
 <?php 
 	require("\..\db\db_connect.php");
+	require_once("/../classes/restaurant.php");
 
 class Order{
 
@@ -7,14 +8,17 @@ class Order{
 	public $Area;
 	public $Street;
 	public $Building;
-	public $UID;
-	public $RID;
-	public $Date;
+	public $UserID;
+	public $RestID;
+	public $DateOrder;
 	public $TotalPrice;
+	public $AllOrders = array();
+	public $rest;
 	private $dbobj;
 
 	public function __construct(){
 		$this->dbobj = new dbconnect;
+		$this->rest = new Restaurant();
 	}
 
 
@@ -44,6 +48,36 @@ class Order{
       return $result;
 	}
 
-}
+	public function getOrders()
+	{
+		$sql= "SELECT * FROM orders,restaurant WHERE orders.RestID = restaurant.ID";
+		$result = $this->dbobj->selectsql($sql);
+		$i=0;
+		while ($row = mysqli_fetch_assoc($result)){
+			$this->AllOrders[$i] = array();
+			$this->AllOrders[$i]['ID'] = $row['ID'];
+			$this->AllOrders[$i]['UserID'] = $row['UserID'];
+			
+			$this->AllOrders[$i]['Name'] = $row['Name'];
+			$this->AllOrders[$i]['Area'] = $row['Area'];
+			$this->AllOrders[$i]['Street'] = $row['Street'];
+			$this->AllOrders[$i]['Building'] = $row['Building'];
+			$this->AllOrders[$i]['DateOrder'] = $row['DateOrder'];
+			$this->AllOrders[$i]['TotalPrice'] = $row['TotalPrice'];
+			$i++;
+
+		}
+		return $this->AllOrders;
+	}
+
+	// public function getName()
+	// {
+	// 	$sql = "SELECT restaurant.Name FROM restaurant,orders WHERE orders.RestID = restaurant.ID ";
+	// 	$result = $this->dbobj->executesql($sql);
+	// 	return $result;
+	// }
+
+	}
+
 
 ?>

@@ -3,6 +3,7 @@
 require_once("\..\db\db_connect.php");
 require_once("\cuisine.php");
 require_once("\areas.php");
+require_once("\orders.php");
 class Restaurant{
 
 	public $ID;
@@ -166,6 +167,13 @@ class Restaurant{
 			$i++;
 		}
 		return $this->RestByArea;
+	}
+
+	public function getName()
+	{
+		$sql = "SELECT restaurant.Name FROM restaurant,orders WHERE orders.RestID = restaurant.ID ";
+		$result = $this->dbobj->executesql($sql);
+		return $result;
 	}
 
 }

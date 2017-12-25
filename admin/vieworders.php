@@ -1,5 +1,12 @@
 <?php
+
+require_once("/../classes/orders.php");
 session_start();
+$order = new Order;
+$allorders = array();
+$allorders = $order->getOrders();
+$orders = new Order;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,15 +53,41 @@ session_start();
           <tr>
               <th>ID</th>
 			  <th>UserID</th>
+			  <th>Restaurant</th>
         	  <th>Area</th>
 			  <th>Street</th>
 			  <th>Building</th>
 			  <th>Date</th>
 			  <th>Total Price</th>
 			  
-</div>
+</tr>
+        </thead>
 
- </div>
- </main>
+        <tbody>
+		 <?php 
+
+			for($i=0; $i<count($allorders); $i++){ 
+           	echo' <tr id="row1">';
+           	echo ' <td class="tdID"><strong>'. $allorders[$i]['ID'].'</strong></td>';
+			echo'<td>'. $allorders[$i]['UserID'].'</td>';
+			echo'<td>'. $allorders[$i]['Name'].'</td>';
+			echo'<td>'.$allorders[$i]['Area'].'</td>';
+			echo'<td>'.$allorders[$i]['Street'].'</td>';
+			echo'<td>'.$allorders[$i]['Building'].'</td>';
+			echo'<td>'.$allorders[$i]['DateOrder'].'</td>';
+			echo'<td>'.$allorders[$i]['TotalPrice'].'</td>';
+
+			echo'</tr>';
+		}
+ ?>
+
+		
+        </tbody>
+      </table>
+        </div>    
+		</div>
+		</main>
+		<script type="text/javascript" src="../js/AdminPage.js"></script>
 </body>
+
 </html>
