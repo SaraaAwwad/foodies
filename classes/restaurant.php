@@ -4,6 +4,7 @@ require_once("\..\db\db_connect.php");
 require_once("\cuisine.php");
 require_once("\areas.php");
 require_once("\orders.php");
+
 class Restaurant{
 
 	public $ID;

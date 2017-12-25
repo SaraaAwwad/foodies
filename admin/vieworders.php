@@ -21,23 +21,17 @@ $orders = new Order;
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<header>
-		<nav class="menu">
-			<ul>
-				<li class="logo"> <a href= "AdminPage.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="log"> Foo<span class="org">d</span>ies </a></li>
-        <li><a href="../adminlogin.php">Logout</a></li>
-			</ul>
-			</nav>
-	</header>
-	<h1 id="imagedesc">Viewing All Orders</h1>
-<!--<p id="descriptionheader"> Variety's the very spice of life, that gives it all it's flavour. </p>-->
- <div id="imageheader">
-    <img src="../css/images/orders2.png" />
- </div>
+<?php include("adminheader.php"); ?>
 
- <main>
+<h1 id="imagedesc">Viewing All Foodies Orders</h1>
+<p id="descriptionheader"> Orders with Excellent Quality for Our Users. </p>
+<div id="imageheader">
+<img src="../css/images/smartphone.jpg" />
+</div>
+
+<main>
  	
- <div class="Bgimage">
+<div class="Bgimage">
 <?php include("adminsidenav.php"); ?>
 </div>
 
@@ -70,7 +64,7 @@ $orders = new Order;
            	echo' <tr id="row1">';
            	echo ' <td class="tdID"><strong>'. $allorders[$i]['ID'].'</strong></td>';
 			echo'<td>'. $allorders[$i]['UserID'].'</td>';
-			echo'<td>'. $allorders[$i]['Name'].'</td>';
+			echo'<td><strong>'. $allorders[$i]['Name'].'</strong></td>';
 			echo'<td>'.$allorders[$i]['Area'].'</td>';
 			echo'<td>'.$allorders[$i]['Street'].'</td>';
 			echo'<td>'.$allorders[$i]['Building'].'</td>';

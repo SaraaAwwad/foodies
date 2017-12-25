@@ -1,6 +1,6 @@
 <?php 
-	require("\..\db\db_connect.php");
-	require_once("/../classes/restaurant.php");
+	require_once("\..\db\db_connect.php");
+	require_once("/restaurant.php");
 
 class Order{
 

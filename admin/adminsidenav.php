@@ -11,7 +11,7 @@ echo '
 <button id ="buttontoggle" class="accordion"><i class="fa fa-glass"></i> Restaurants<i id ="ii" class="down"></i></button>
 <div id="panels">
 <a href="addrestaurant.php?id='.$_SESSION['adminID'].'" class="sidenavitems PanelItem"><i class="	fa fa-user-plus"></i> Manage</a>
-<a href="viewrest.php?id='.$_SESSION['adminID'].'" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View</a>
+<a href="viewrest.php?id='.$_SESSION['adminID'].'" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View </a>
 </div>
 </div>
 ';
