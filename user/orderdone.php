@@ -40,6 +40,7 @@ $added = false;
 			}
 			$added=true;
 			unset($_SESSION[$s]);
+			unset($_SESSION["total"]);
 		}
 	}
 ?>
@@ -56,7 +57,7 @@ $added = false;
 				<?php } else{ ?>
 				<img src="../css/images/taco-trip.gif" height="400" width="620">
 				<h1>Sorry!</h1>
-				<h4 style="text-align:center;">hmmm, looks there's something wrong with your order/ or you already submitted it. Please try again, and contact us if this problem persists.</h4>
+				<h4 style="text-align:center;">hmmm, looks there's something wrong with your order/ or you already submitted it. Please check your emails and sms, and contact us if this problem persists.</h4>
 				<?php } ?>
 			</div>
 		</div>

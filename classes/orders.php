@@ -30,6 +30,7 @@ class Order{
 		$sql = "INSERT INTO order_item(OrderID, ProdName, Price, Quantity) VALUES ('$ordid','$prod','$price','$quantity')";
 		$qresult = $this->dbobj->executesql($sql);
 		return $qresult;
+	}
 
     public function getCount(){
       $sql="SELECT ID FROM orders WHERE DateOrder = date(CURRENT_TIMESTAMP)";
