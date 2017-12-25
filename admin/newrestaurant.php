@@ -46,14 +46,8 @@ session_start();
 
 	<b id="greenField">Delivery Area</b>
 	<br>
-<!--changed here-->
-<!--<select multiple="multiple" name="Area" id="restarea[]">
-	
--->
-
-
-</select>
-<select name="Area" id="restarea" required>
+	<br>
+	<select name="Area" id="restarea" required>
 
 <?php
     $_Area = $db_obj->SelectAll('areas');
@@ -63,10 +57,58 @@ session_start();
                                                     
         echo  "<option  value='".$_Area[$i]['ID']."'>".$_Area[$i]['Area']."</option>";
     }
-    ?> 
+    ?>
 </select>
+<br>
+
+<!--CHANGED HERE-->
+   <!--  <br>
+<b id="greenField">Areazz</b>
+<br>
+<select multiple="multiple" name="restarea[]" id="restarea">
+	
+<?php 
+
+	$restAreaz = $db_obj->SelectAll('areas');
+    $Count = count($_Area);
+  	echo'<option value="">-----------------</option>';
+    for ($i = 0; $i < $Count; $i++) {
+                                                    
+        echo  "<option  value='".$_Area[$i]['ID']."'>".$_Area[$i]['Area']."</option>";
+    }
+
+
+
+?>
+
+</select> -->
+<!-- <b>Area</b>
+<br>
+<select multiple="multiple" name="Area[]" id="area">
+	<option value="Ffth" id="Fifth">Fifth Settlement</option>
+	<option value="Mdi" id="Maadi">Maadi</option>
+	<option value="Nsr" id="Nasr">Nasr City</option>
+	<option value="Hlp" id="Helio">Heliopolis</option>
+	<option value="Sher" id="Sheraton">Sheraton</option>
+	<option value="Rh" id="Rehab">Rehab</option>
+	<option value="Oct" id="October">6 October</option>
+	<option value="Dki" id="Dokki">Dokki</option>
+	<option value="Obo" id="Obour">Obour</option>
+	<option value="Mok" id="Mokattam">Mokattam</option>
+
+</select>
+ -->
+
 <!--<button type="button" name="addagain" id="again">Add Again</button>-->
 	<br>
+
+<!-- 
+	<b id="greenField">Area</b>
+	<br>
+	<select name="Area2" id="restarea2">
+			<option name="Maadi">Maadi</option>
+
+	</select> -->
 
 <b class="addNewRest">Hotline</b>
 <br>

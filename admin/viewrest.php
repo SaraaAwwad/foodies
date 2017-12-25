@@ -24,9 +24,9 @@ $allRest = $rest->getRestaurants();
 
 <h1 id="imagedesc">Viewing All Restaurants</h1>
 <p id="descriptionheader"> Variety's the very spice of life, that gives it all it's flavour. </p>
- <div id="imageheader">
-    <img src="../css/images/resta.jpg" />
- </div>
+<div id="imageheader">
+<img src="../css/images/resta.jpg" />
+</div>
  
 <main>
 
