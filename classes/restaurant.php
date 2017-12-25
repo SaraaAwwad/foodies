@@ -1,8 +1,8 @@
 <?php 
-
 require_once("\..\db\db_connect.php");
 require_once("\cuisine.php");
 require_once("\areas.php");
+
 class Restaurant{
 
 	public $ID;
@@ -144,8 +144,6 @@ class Restaurant{
 
 	public function getByArea($ar){
 		$sql="SELECT restaurant.ID, restaurant.Name, restaurant.Hotline, restaurant.DelvTime, restaurant.DelvFees, restaurant.Image FROM restaurant INNER JOIN areas ON areas.RestID = restaurant.ID Where restaurant.Status = 1 AND areas.Area= '$ar' ";
-
-			//$sql = "SELECT restaurant.ID, restaurant.Name, restaurant.Hotline, restaurant.DelvTime, restaurant.DelvTime, restaurant.Image FROM restaurant INNER JOIN areas ON areas.RestID = restaurant.ID INNER JOIN reviews ON reviews.RestID = restaurant.ID Where restaurant.Status = 1 AND areas.Area= '$ar' ";
 		
 		$result = $this->dbobj->selectsql($sql);
 		
@@ -167,6 +165,17 @@ class Restaurant{
 		}
 		return $this->RestByArea;
 	}
+
+	public function getName($rid){
+		$sql = "SELECT Name from restaurant Where ID = '$rid' ";
+		$result = $this->dbobj->selectsql($sql);
+
+		if($result){
+			$row = mysqli_fetch_array($result);
+			$this->Name= $row['Name'];
+		}
+	return $this->Name;
+	}	
 
 }
 

@@ -11,7 +11,6 @@ $s = "shoppingcart".$place;
 $ur = true;
 }
 
-
 ?>
 
 <!DOCTYPE html>

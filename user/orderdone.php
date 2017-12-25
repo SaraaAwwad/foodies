@@ -2,8 +2,10 @@
 
 session_start();
 require("../classes/orders.php");
+require("../classes/order_details.php");
 
 $order = new Order;
+$orderdetails = new OrderDetails;
 
 $added = false;
 ?>
@@ -36,7 +38,7 @@ $added = false;
 
 			foreach($_SESSION[$s] as $keys => $values)  
 	        {
-				$order->addorderitem($res,$values["product_name"], $values["product_price"], $values["product_quantity"]);
+				$orderdetails->addorderitem($res,$values["product_name"], $values["product_price"], $values["product_quantity"]);
 			}
 			$added=true;
 			unset($_SESSION[$s]);
