@@ -11,12 +11,12 @@ class Order{
 	public $RID;
 	public $Date;
 	public $TotalPrice;
-
 	private $dbobj;
 
 	public function __construct(){
 		$this->dbobj = new dbconnect;
 	}
+
 
 	public function addorder($uid, $ar, $st, $bld, $totalprice, $restid){
 		$dat = date("Y-m-d");
@@ -30,6 +30,17 @@ class Order{
 		$sql = "INSERT INTO order_item(OrderID, ProdName, Price, Quantity) VALUES ('$ordid','$prod','$price','$quantity')";
 		$qresult = $this->dbobj->executesql($sql);
 		return $qresult;
+
+    public function getCount(){
+      $sql="SELECT ID FROM orders WHERE DateOrder = date(CURRENT_TIMESTAMP)";
+	  $result=$this->dbobj->selectsql2($sql);
+      return $result;
+	}
+
+	public function getallCount(){
+	  $sql="SELECT ID FROM orders WHERE DateOrder < date(CURRENT_TIMESTAMP)";
+	  $result=$this->dbobj->selectsql2($sql);
+      return $result;
 	}
 
 }

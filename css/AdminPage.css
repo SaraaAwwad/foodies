@@ -74,7 +74,7 @@ background-repeat:repeat;
 	 position: absolute; 
 	 left: 0px;
 	 bottom:400px;
-	 opacity: 0.5;
+	 opacity: 0.65;
 }
 
 /*Edit button*/
@@ -152,10 +152,32 @@ header{
     margin: 3% 0% 3% 3%;
     width: 20%;
     background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
     font-family: "Source Sans";
     border-radius: 10px;
 }
 
+#piechart{
+box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+background-color: white;
+border-radius: 20px;
+padding-left: 250px;
+}
+
+#piechart:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+#active{
+color: black;
+text-shadow: 1px 1px 10px #00cc33;
+font-weight: bold;
+}
+#inactive{
+color: black;
+text-shadow: 1px 1px 10px #F72323;
+font-weight: bold;
+}
 .sidenav a{
 	padding-left: 20px;
     text-decoration: none;
@@ -236,16 +258,16 @@ img.bk2:hover {
 img.back4
 { 
 border-radius:50%;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 border: 1px solid #ddd;
 padding: 5px;
-    margin: auto;
-	    margin-top: 10px;
-		width: 15%;
+margin: auto;
+margin-top: 10px;
+width: 15%;
 }
 
 #Profileh{
-	font-size:40px;
+	font-size:50px;
 	text-align:center;
 	color:white;
 	border-color:coral;
@@ -254,7 +276,7 @@ padding: 5px;
 	
 }
 #teamh{
-	font-size:40px;
+	font-size:50px;
 	text-align:center;
 	color:white;
 	border-color:coral;
@@ -270,6 +292,7 @@ padding: 5px;
   display: inline-block;
   height: 320px;
   margin: 1rem;
+  border: 2px solid white;
   position: relative;
   width: 270px;
 
@@ -278,11 +301,101 @@ padding: 5px;
 .cardteam-1 {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  background-color:#1abc9c;
+  background-color: rgba(26, 188, 156, 0.7);
 }
 
 .cardteam-1:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+/*Statistics*/
+.cardteam1 {
+  border-radius: 20px;
+  display: inline-block;
+  height: 250px;
+  border: 15px solid white;
+  margin: 1rem 2rem 0rem 0rem;
+  position: relative;
+  width: 270px;
+}
+
+.cardteam3 {
+  border-radius: 20px;
+  display: inline-block;
+  height: 250px;
+  border: 15px solid white;
+  margin: 1rem 12px 0rem 20px;
+  position: relative;
+  width: 270px;
+}
+
+.cardteam2 {
+  border-radius: 20px;
+  display: inline-block;
+  height: 250px;
+  border: 15px solid white;
+  margin: 1rem 0rem 0rem 60px;
+  position: relative;
+  width: 270px;
+
+}
+
+.cardteam1-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  background-color: rgba(242, 242, 242, 0.3);
+
+}
+
+.cardteam1-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+#names1{
+  margin-left:20px;
+  font-size:30px;
+  color: #000000d6;
+  text-shadow: 2px 2px white;
+}
+
+#names2{
+  margin-left:20px;
+  font-size:20px;
+  color: #000000d6;
+  font-weight: lighter;
+  text-shadow: 2px 2px white;
+}
+
+p.resturantdesc1{
+      padding-left: 10px;
+    float: center;
+    margin-top: 8px;
+    text-align: left;
+    width: 100%;
+  color:#fdfdfd;
+}
+
+img.plate1{
+  width: 60%;
+  height:2%;
+  display: block;
+  margin: auto;
+  margin-bottom:10px;
+}
+
+img.plate2{
+  width: 80%;
+  height:0%;
+  display: block;
+  margin: auto;
+  margin-bottom:10px;
+}
+img.plate3{
+  width: 60%;
+  height:2%;
+  display: block;
+  margin: auto;
+  margin-bottom:10px;
 }
 
 img.plate{
@@ -299,6 +412,7 @@ img.plate{
 		color:#fdfdfd;
 		
 }
+
 
 a.anchor:link{
 text-decoration: none;
@@ -481,9 +595,9 @@ ul.breadcrumb li a:hover {
 .round1 {
     width: 100%;
     float: left;
-	margin-top: 25px;
+   	margin-top: 25px;
     border: 1px  solid coral;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 	
 }
 
@@ -544,6 +658,7 @@ body:not(.nohover) tbody tr:hover {
 }
 thead {
   border-bottom: 1px solid #bcbcbc;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
 }
 td:hover::after,
 thead th:not(:empty):hover::after,
@@ -648,6 +763,7 @@ border-bottom: 1px solid red;
 .cards {
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 #333;
+    background-color: rgba(255, 255, 255, 0.5);
    
 }
 

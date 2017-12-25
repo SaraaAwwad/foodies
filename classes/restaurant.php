@@ -28,6 +28,13 @@ class Restaurant{
 		$this->areas = new Area();
 	}
 
+
+	public function getallCount(){
+	  $sql="SELECT ID FROM restaurant";
+	  $result=$this->dbobj->selectsql2($sql);
+      return $result;
+	}
+
 	public function updateInfo($id, $name, $hot, $fees, $time, $image,$adminid){
 		$name = $this->dbobj->test_input($name);
 		$hot = $this->dbobj->test_input($hot);

@@ -16,16 +16,9 @@ session_start();
 </head>
 <body>
 
-<header>
-		<nav class="menu">
-      <ul>
-        <li class="logo"> <a href= "AdminPage.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="log"> Foo<span class="org">d</span>ies </a></li>
-        <li><a href="../adminlogin.php">Logout</a></li>
-      </ul>
-      </nav>
-	</header>
+<?php include("adminheader.php"); ?>
 	
-	<main>
+<main>
 <?php include("adminsidenav.php"); ?>
 <div class="main3">
 
@@ -34,13 +27,14 @@ session_start();
 
   <div class="container" id="showcase">
 
-    <h1 id="teamh">Our Loyal Admins</h1>
+    <h1 id="teamh">Foodies Admins</h1>
 	<ul class="breadcrumb">
 	<i class="fa fa-home"></i>
   <li><a href="../admin/AdminPage.php">Admin</a></li>
   <li>Team Members</li>
 </ul>
   </div>
+  <hr class="round1">
 <div class="cardteam cardteam-1">
             <div class="card-image">
               <img class="plate" src="../css/images/character4.png" align="middle">

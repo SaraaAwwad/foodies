@@ -111,7 +111,6 @@ $id = null;
 </main>
 <div class="row-gap"></div>
 <?php include("footer.php"); ?>
-
 <script type="text/javascript" src="../js/edituserinfo.js"></script>
 </body>
 </html>
