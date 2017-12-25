@@ -37,23 +37,10 @@ $area = new Area;
  </div>
  
 <main>
+
 <div class="Bgimage">
-<div class="sidenav" id="mysidenav" >
-<img class="bk2" src="../css/images/<?php echo ''.$_SESSION["adminImage"].'' ?> " alt="profile picture">
-<hr id="sidenavhr"> 
-
-<a href="profile.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-user-circle-o"></i> Profile</a>
-<a href="teammembers.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-group"></i> Team Members</a>
-<button id ="buttontoggle" class="accordion"><i class="fa fa-glass"></i> Restaurants</button>
-<div class="panel" style="margin-bottom:0px" id ="paneltoggle" >
-<a href="addrestaurant.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems PanelItem"><i class="	fa fa-user-plus"></i> Manage</a>
-<a href="viewrest.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View</a>
+<?php include("adminsidenav.php"); ?>
 </div>
-<a href="statistics.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
-
-</div>
-
-
  
 <div class="main2">
 <div class="container" id="showcase">

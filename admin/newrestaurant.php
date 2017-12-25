@@ -25,20 +25,7 @@ session_start();
 			</nav>
 </header>
 
-<div class="sidenav" id="mysidenav" >
-<a id="profilelink" href= "../admin/AdminPage.html">
-<img class="bk2" src="../css/images/<?php echo ''.$_SESSION["adminImage"].'' ?> " alt="profile picture">
-<hr id="sidenavhr"> 
-
-<a href="profile.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-user-circle-o"></i> Profile</a>
-<a href="teammembers.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-group"></i> Team Members</a>
-<button id ="buttontoggle" class="accordion"><i class="fa fa-glass"></i> Restaurants</button>
-<div class="panel" style="margin-bottom:0px" id ="paneltoggle" >
-<a href="addrestaurant.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems PanelItem"><i class="	fa fa-user-plus"></i> Manage</a>
-<a href="viewrest.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems PanelItem"><i class="fa fa-reorder"></i> View</a>
-</div>
-<a href="statistics.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="sidenavitems item"><i class="fa fa-line-chart"></i> Statistics</a>
-</div>
+<?php include("adminsidenav.php"); ?>
 
 <script type="text/javascript" src="js/AdminPage.js"></script>
 

@@ -14,10 +14,8 @@ class ProductValue{
 	public function getValue($prodID){
 		$sql = "SELECT Price, Size FROM prod_value WHERE ProdID = '$prodID' ";
 		$result = $this->dbobj->selectsql($sql);
-
 		$i=0;
 		$values = array();
-
 		while ($row = mysqli_fetch_assoc($result)){
 			$values[$i] = array();
 			$values[$i]= $row['Price'];

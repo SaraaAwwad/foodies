@@ -6,12 +6,24 @@
 	public $RestID;
 	public $Area;
 	public $dbobj;
+	public $type = array();
 
 	public function __construct(){
 		$this->dbobj = new dbconnect;
 	}
 
 
+public function getType($restID){
+		$sql = "SELECT Area from areas WHERE RestID = $restID";		
+		$result = $this->dbobj->selectsql($sql);
+		$i=0;
+		$type = array();
+		while ($row = mysqli_fetch_assoc($result)){
+			$type[$i] = $row['Area'];
+			$i++;
+		}
+	return $type;
+	}
 
 	public function getarea($id){
 		$sql = "SELECT * FROM areas Where RestID = '$id' ";
