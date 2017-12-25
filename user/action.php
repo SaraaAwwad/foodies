@@ -9,6 +9,9 @@ if(isset($_POST["product_id"]))
 {   
 	$shoppingrest =$_POST["rest_id"];
 
+  //to be used when place order is clicked
+  $cart_url = $_POST["cart_url"];
+
       if($_POST["action"] == "add")  {  
       	if(isset($_SESSION[$shoppingrest]))  
            {  
@@ -72,7 +75,7 @@ if(isset($_POST["product_id"]))
                      <th width="10%">Quantity</th>  
                      <th width="20%">Price</th>  
                      <th width="15%">Total</th>  
-                     <th width="5%">Action</th>  
+                     <th width="5%"></th>  
                 </tr>  
            ';  
       if(!empty($_SESSION[$shoppingrest]))  
@@ -83,7 +86,7 @@ if(isset($_POST["product_id"]))
                 $order_table .= '  
                      <tr>  
                           <td>'.$values["product_name"].'</td>
-                          <td> <input type="number" class="quantity" id="qt.'.$values["product_id"].'" value="'.$values["product_quantity"].'"></td> 
+                          <td> <input type="number" min="1" class="quantity" id="qt.'.$values["product_id"].'" value="'.$values["product_quantity"].'"></td> 
                           <td align="right">$ '.$values["product_price"].'</td>  
                           <td align="right">$ '.number_format($values["product_quantity"] * $values["product_price"], 2).'</td>  
                           <td> <button name="delete" class="deletefromcart" id="'. $values["product_id"].'"></button> </td> 
@@ -92,20 +95,25 @@ if(isset($_POST["product_id"]))
                 $total = $total + ($values["product_quantity"] * $values["product_price"]);  
            }  
        
+           $_SESSION['total']=number_format($total, 2);
            
-           $order_table .= '  
+           $order_table .= '
+            
                 <tr>  
                      <td colspan="3" align="right">Total</td>  
-                     <td align="right">$ '.number_format($total, 2).'</td>  
+                     <td align="right">$ '.number_format($total, 2).'</td>
+                     
                      <td></td>  
                 </tr>  
                 <tr>  
                      <td colspan="5" align="center">  
-                          <form method="post" action="cart.php">  
-                               <input type="submit" name="place_order" class="placeorder" value="Place Order" />  
-                          </form>  
+                     <form method="post" action="cart.php?'.$cart_url.'">   
+                     <input type="hidden" name="totalprice" value="'.number_format($total, 2).'">  
+                     <input type="submit" name="place_order" class="placeorder" value="Place Order" />  
+                     </form>
                      </td>  
-                </tr>  
+                </tr>
+                
            ';  
       	}
 

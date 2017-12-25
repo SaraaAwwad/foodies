@@ -2,20 +2,20 @@ $(document).ready(function(data){
 
 	$('.addtocart').click(function(){
 
-		var product_value = $(this).attr("id");
+		  var product_value = $(this).attr("id");
 
-		var product_id = product_value.split("_"); 
+		  var product_id = product_value.split("_"); 
 
-        var product_name = $('#Name'+product_id[product_id.length-1]).text(); 
+      var product_name = $('#Name'+product_id[product_id.length-1]).text(); 
 
-        var product_price = $('#Price'+product_value).text(); 
+      var product_price = $('#Price'+product_value).text(); 
 
-        var product_quantity = 1;
+      var product_quantity = 1;
 
-        var rest_id = $('#shoppingrest').val();
+      var rest_id = $('#shoppingrest').val();
+      var cart_url = $('#carturl').val();
         
-
-        var action = "add";
+      var action = "add";
 
         		$.ajax({  
                     url:"action.php",  
@@ -27,6 +27,7 @@ $(document).ready(function(data){
                         product_price:product_price,
 						            product_quantity:product_quantity,
                         rest_id:rest_id,
+                        cart_url:cart_url,
                         action:action  
                     },  
                     success:function(data)  
@@ -55,14 +56,14 @@ $(document).ready(function(data){
    				 },  
             
         });  
-		
 		});
 
 	$(document).on('click', '.deletefromcart', function(){  
-           var product_id = $(this).attr("id");  
-           var action = "remove";  
-           var rest_id = $('#shoppingrest').val();
-
+          var product_id = $(this).attr("id");  
+          var action = "remove";  
+          var rest_id = $('#shoppingrest').val();
+          var cart_url = $('#carturl').val();
+          
            if(confirm("Are you sure you want to remove this product?"))  
            {  
                 $.ajax({  
@@ -72,7 +73,8 @@ $(document).ready(function(data){
                      data:{
                       product_id:product_id,
                       action:action,
-                      rest_id:rest_id
+                      rest_id:rest_id,
+                      cart_url:cart_url
                     },  
                      success:function(data){  
                           $('#order_table').html(data.order_table);    
@@ -85,9 +87,7 @@ $(document).ready(function(data){
            }  
     });
 
-    $(document).on('input', '.quantity', function(){  
-
-      //alert($(this).val());
+  $(document).on('input', '.quantity', function(){  
 
           var quantity_id = $(this).attr("id");  
 
@@ -95,23 +95,27 @@ $(document).ready(function(data){
 
           var product_id = temp[temp.length-1];
 
-           var quantity = $(this).val();  
+          var quantity = $(this).val();  
 
-           var action = "quantity_change"; 
+          var action = "quantity_change"; 
 
-           var rest_id = $('#shoppingrest').val();
+          var rest_id = $('#shoppingrest').val();
 
-           if(quantity != '')  
+          var cart_url = $('#carturl').val();
+
+           if(quantity != '' && quantity > 0)  
            {  
                 $.ajax({  
-                     url :"action.php",  
-                     method:"POST",  
-                     dataType:"json",  
-                     data:{
-                      product_id:product_id,
-                      quantity:quantity,
-                      action:action,
-                      rest_id:rest_id},  
+                    url :"action.php",  
+                    method:"POST",  
+                    dataType:"json",  
+                    data:{
+                    product_id:product_id,
+                    quantity:quantity,
+                    action:action,
+                    rest_id:rest_id,
+                    cart_url:cart_url
+                    },  
                      success:function(data){  
                           $('#order_table').html(data.order_table);  
                      },

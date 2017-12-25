@@ -43,6 +43,14 @@ class dbconnect{
 		}
 	}
 
+	function insertsql($sql){
+		if($this->con->query($sql) == TRUE){
+		return mysqli_insert_id($this->con);
+		}else{
+			return false;
+		}
+	}
+
 	/*function getDataWithSQL($sql){
 		if($this->con->query($sql) == TRUE){	
 			$Data = [];

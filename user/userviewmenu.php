@@ -5,13 +5,20 @@ $prod = new Product;
 
 $allProd = array();
 $place = -1;
+$area = -1;
+
+if(isset($_GET['Area'])){
+$area =$_GET['Area'];
+}
 
 if(isset($_GET['Rest'])){
 $place =$_GET['Rest'];
 $allProd = $prod->getProduct($place);
 }
 
+$ur ="Rest=".$place."&Area=".$area;
 $shopping_session = "shoppingcart".$place;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,6 +45,8 @@ $shopping_session = "shoppingcart".$place;
 	<main>
 
 <input type="hidden" id="shoppingrest" value="<?php echo $shopping_session;?>" >
+<input type="hidden" id="carturl" value="<?php echo $ur; ?>" >
+
 
 	<div class="row">
 		<div class="col-7">
@@ -58,7 +67,7 @@ $shopping_session = "shoppingcart".$place;
 							</div>
 						</td>
 
-						<td style="width:30%;">';
+						<td style="width:30%; text-align:left;" >';
 
 						for ($j=0; $j<count($prod->values[$i]); $j+=2){
 							echo'<button class="add-prd addtocart" id="'.$j.'_'.$allProd[$i]['ID'].'"></button>
@@ -89,13 +98,13 @@ $shopping_session = "shoppingcart".$place;
                                          <th width="10%">Quantity</th>  
                                          <th width="20%">Price</th>  
                                          <th width="15%">Total</th>  
-                                         <th width="5%">Action</th>  
+                                         <th width="5%"></th>  
                                     </tr>';
                             foreach($_SESSION[$shopping_session] as $keys => $values){
                             	?>
                             		<tr>  
                                          <td><?php echo $values["product_name"]; ?></td>  
-                                         <td><input type="number" class="quantity"  id ="qt.<?php echo $values["product_id"] ?>" value="<?php echo $values["product_quantity"]?>"> </td> 
+                                         <td><input type="number" min="1" class="quantity"  id ="qt.<?php echo $values["product_id"] ?>" value="<?php echo $values["product_quantity"]?>"> </td> 
 
                                          <td align="right">$ <?php echo $values["product_price"]; ?></td>  
                                          <td align="right">$ <?php echo number_format($values["product_quantity"] * $values["product_price"], 2); ?></td>  
@@ -104,20 +113,22 @@ $shopping_session = "shoppingcart".$place;
                         <?php  
                                 $total = $total + ($values["product_quantity"] * $values["product_price"]);  
                                 }  
-                        ?>
+                                $_SESSION['total']=number_format($total, 2);
+                        ?>			
+
+                                    <form method="post" action="cart.php?Rest=<?php echo $place ?>&Area=<?php echo $area ?>"> 
                         			<tr>  
-                                         <td colspan="3" align="right">Total</td>  
+                                         <td colspan="3" align="right">Total</td>
                                          <td align="right">$ <?php echo number_format($total, 2); ?></td>  
+                                         <input type="hidden" name="totalprice" value="<?php echo number_format($total, 2);?>">
                                          <td></td>  
                                     </tr>  
                                     <tr>  
-                                         <td colspan="5" align="center">  
-                                              <form method="post" action="cart.php">  
-                                                   <input type="submit" name="place_order" class="placeorder" value="Place Order" /> 
-
-                                              </form>  
+                                         <td colspan="5" align="center">   
+                                            <input type="submit" name="place_order" class="placeorder" value="Place Order" />       
                                          </td>  
-                                    </tr>  
+                                    </tr>
+                                    </form>    
                 <?php  
                     }else{
                     	echo'<h3>Add to Your Plate</h3>

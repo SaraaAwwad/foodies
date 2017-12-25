@@ -12,10 +12,15 @@ body{
   -webkit-font-smoothing: antialiased;  
 }
 
+.title{
+  color:blue;
+
+}
+
 .placeorder{
- border-radius: 7%;
+ border-radius: 5%;
  height:40px;
- width:120px;
+ width:250px;
  background-color: #b3ecff;
  border-color:#66CCFF;
 }
@@ -168,6 +173,7 @@ div{
   border-radius: 10px;
   background-color: white;
   width:85%;
+  padding:20px;
 }
 
 .sideactive{
@@ -283,7 +289,7 @@ h1{
 }
 
 .cent-prodc{
-  margin:10% 3%;
+  margin:10% 3% 10% 12%;
 }
 
 .add-prd{
@@ -291,7 +297,7 @@ h1{
   width:30px;
   height: 30px;
   border-radius: 15px;
-  background-color: #CCFFCC;
+  background-color: #e6ffe6;
   border-color:#b3ffb3;
 }
 
