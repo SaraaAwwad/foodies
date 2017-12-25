@@ -18,15 +18,7 @@ $cuisine = new Cuisine;
 </head>
 <body>
 
-<header>
-		<nav class="menu">
-			<ul>
-				<li class="logo"> <a href= "AdminPage.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="log"> Foo<span class="org">d</span>ies </a></li>
-        <li><a href="../adminlogin.php">Logout</a></li>
-			</ul>
-			</nav>
-</header>
-
+<?php include("adminheader.php"); ?>
 <?php include("adminsidenav.php"); ?>
 
 <div class="main2" >

@@ -24,6 +24,13 @@ class Product{
 	}
 
 
+public function getallCount(){
+	  $sql="SELECT ID FROM products";
+	  $result=$this->dbobj->selectsql2($sql);
+      return $result;
+	}
+
+
 public function getInfo($id){
 		$sql = "SELECT * FROM products Where ID = '$id' ";
 		$userinfo = $this->dbobj->selectsql($sql);

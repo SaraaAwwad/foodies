@@ -22,18 +22,12 @@ $allProd = $prod->getProduct1($place);
 </head>
 <body>
 
-<header>
-		<nav class="menu">
-			<ul>
-		    <li class="logo"> <a href= "AdminPage.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="log"> Foo<span class="org">d</span>ies </a></li>
-            <li><a href="../adminlogin.php">Logout</a></li>
-			</ul>
-		</nav>
-</header>
-<h1 id="imagedesc">Adding More Restaurants</h1>
+<?php include("adminheader.php"); ?>
+
+<h1 id="imagedesc">Adding More Products</h1>
 <p id="descriptionheader"> Foodies offers a range of delicious food to their customers. </p>
 <div id="imageheader">
-<img src="../css/images/bread.jpg" />
+<img src="../css/images/bread1.jpg" />
 </div>
  
 <main>
@@ -78,9 +72,9 @@ $allProd = $prod->getProduct1($place);
 			<span><?php if($j>0){ ?> <br><br> <?php } ?><?php echo $prod->values[$i][$j]; ?></span>$<br><span><?php echo $prod->values[$i][$j+1]; ?></span>
 	        <?php } ?></td>
 	        <?php if($allProd[$i]['Status'] == '1' ){
-	        echo '<td> Active </td>'; }
+	        echo '<td id="active"> Active </td>'; }
 	        else if ($allProd[$i]['Status'] == '0'){
-	        echo '<td> Inactive</td>';} ?>
+	        echo '<td id="inactive"> Inactive</td>';} ?>
 			<td align="center"><?php echo '<a class = "butt" href="editProduct.php?id='.$allProd[$i]['ID'].'">Update</a>'; ?><br>
             <?php if($allProd[$i]['Status'] == '1' ){
 	        echo ' <a class = "butt" href="inactivateProduct.php?id='.$allProd[$i]['ID'].'">Inactivate</a>'; }else if ($allProd[$i]['Status'] == '0'){

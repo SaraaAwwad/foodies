@@ -67,6 +67,13 @@ class dbconnect{
 		else
 		return false;
 	}
+       function selectsql2($sql){
+		if($result = mysqli_query($this->con, $sql))
+		  {$num = mysqli_num_rows ( $result );
+         return $num;}
+		else
+		{return false;}
+	}
 
 	function disconnect(){
 		return $this->con->close();

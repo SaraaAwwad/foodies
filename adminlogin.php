@@ -11,7 +11,7 @@ if (isset($_POST['loginbtn']))
 	 			$em = test_input($_POST["emailIn"]);
 				$psw = test_input($_POST["pswIn"]);
 				if($admin->login($em, $psw)){
-					header('Location: admin/AdminPage.php?id='.$_SESSION['adminID'].'');
+					header('Location: admin/AdminPage.php');
 					//exit();
 				}else{
 						echo '<script type="text/javascript">',
@@ -70,6 +70,6 @@ function test_input($data) {
 	    </div>
 	
 	</main>
-
+<script type="text/javascript" src="js/SignUp.js"></script>
 </body>
 </html>

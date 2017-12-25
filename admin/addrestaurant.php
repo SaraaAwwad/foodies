@@ -19,18 +19,13 @@ $allRest = $rest->getRestaurants();
 <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 </head>
 <body>
-<header>
-		<nav class="menu">
-			<ul>
-		    <li class="logo"> <a href= "AdminPage.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="log"> Foo<span class="org">d</span>ies </a></li>
-            <li><a href="../adminlogin.php">Logout</a></li>
-			</ul>
-		</nav>
-</header>
+	
+<?php include("adminheader.php"); ?>
+
 <h1 id="imagedesc">Adding More Restaurants</h1>
 <p id="descriptionheader"> Foodies offers a range of delicious food to their customers. </p>
 <div id="imageheader">
-<img src="../css/images/bread.jpg" />
+<img src="../css/images/burgertogo.jpg" />
 </div>
 
 <main>
@@ -83,9 +78,9 @@ $allRest = $rest->getRestaurants();
 			<td><span><?php echo $rest->Areas[$i][$j]; ?></span><br></td>
 	        <?php } ?>
 	        <?php if($allRest[$i]['Status'] == '1' ){
-	        echo '<td> Active </td>'; }
+	        echo '<td id="active"> Active </td>'; }
 	        else if ($allRest[$i]['Status'] == '0'){
-	        echo '<td> Inactive</td>';} ?>
+	        echo '<td id="inactive"> Inactive</td>';} ?>
 			<td align="center"><?php echo '<a class = "butt" href="editForm.php?id='.$allRest[$i]['ID'].'">Update</a>'; ?><br>
 
             <?php if($allRest[$i]['Status'] == '1' ){
