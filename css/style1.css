@@ -115,6 +115,7 @@ body {
 
 }
 
+/*THE ABOUT US PAGE*/
 .board{
 
 	/*margin: auto;
@@ -150,6 +151,123 @@ body {
 	width: 800px;
 	height: 450px;
 }
+/*ABOUT US PAGE ENDS HERE*/
+
+/*THE MEET US PAGE*/
+.teamboard{
+	background-color: transparent;
+    position: absolute;
+    border-radius: 7px;
+    top:20%;
+    bottom: 50%;
+    left: 10%;
+    width: 80%;
+    height: 110%;
+    text-align: center;
+
+}
+
+.teamboard b{
+	font-size: 40px;
+	color: black;
+}
+
+.teamboard p{
+	font-size: 22px;
+	color: black;
+}
+
+.menna{
+	background-color: transparent;
+    position: absolute;
+    border-radius: 7px;
+    top:15%;
+    bottom: 50%;
+    left: 10%;
+    width: 200px;
+    height: 280px;
+    text-align: center;
+}
+
+
+.menna img{
+	width: 190px;
+	height: 240px;
+	border-radius: 120px;
+	align:center;
+	-webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+}
+
+.menna b{
+	position: absolute;
+	top:90%;
+	left: 10%;
+	color: black;
+	font-size: 20px;
+}
+
+.sara{
+	background-color: transparent;
+    position: absolute;
+    border-radius: 7px;
+    top:15%;
+    bottom: 50%;
+    left: 57%;
+    width: 200px;
+    height: 280px;
+    text-align: center;
+}
+
+
+.sara img{
+	width: 190px;
+	height: 240px;
+	border-radius: 120px;
+	align:center;
+	-webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+}
+
+.sara b{
+	position: absolute;
+	top:90%;
+	left: 26%;
+	color: black;
+	font-size: 20px;
+}
+
+.farrah{
+	background-color: transparent;
+    position: absolute;
+    border-radius: 7px;
+    top:55%;
+    bottom: 50%;
+    left: 34%;
+    width: 200px;
+    height: 280px;
+    text-align: center;
+}
+
+
+.farrah img{
+	width: 190px;
+	height: 240px;
+	border-radius: 120px;
+	align:center;
+	-webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+}
+
+.farrah b{
+	position: absolute;
+	top:90%;
+	left: 22%;
+	color: black;
+	font-size: 20px;
+}
+
+/*THE MEET US PAGE ENDS HERE*/
 
 .steps{
 	background-color: white;
@@ -157,6 +275,8 @@ body {
 	height:400px;
 	margin-top: -20px;
 }
+
+
 
 .smallcol{
 	float:left;
