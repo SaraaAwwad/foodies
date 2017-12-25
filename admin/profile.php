@@ -16,20 +16,15 @@ $admin = new Admin;
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 </head>
+
+<?php include("adminheader.php"); ?>
+
 <body>
-<header>
-		<nav class="menu">
-      <ul>
-        <li class="logo"> <a href= "AdminPage.php?id=<?php echo ''.$_SESSION['adminID'].''; ?>" class="log"> Foo<span class="org">d</span>ies </a></li>
-        <li><a href="../adminlogin.php">Logout</a></li>
-      </ul>
-      </nav>
-</header>
 <main>
 <?php include("adminsidenav.php"); ?>
 
 <?php 
-$id = $_GET['id'];
+$id = $_SESSION['adminID'];
 $result = $admin->getSelect($id);
 $fname = $result['FName'];
 $lname = $result['LName'];
@@ -47,7 +42,7 @@ render($id,$fname,$lname,$email,$creation,$image,$pass);
   <!-- Header -->
   <div class="container" id="showcase">
 
-  <h1 id="Profileh" >Profile</h1>
+  <h1 id="Profileh" >Admin Profile</h1>
 	<ul class="breadcrumb">
 	<i class="fa fa-home"></i>
   <li><a href="../admin/AdminPage.php">Admin</a></li>
@@ -89,7 +84,6 @@ render($id,$fname,$lname,$email,$creation,$image,$pass);
   </div>
   </div>
 <?php  }  ?>
-
 </main>
 <script type="text/javascript" src="../js/AdminPage.js"></script>
 </body>

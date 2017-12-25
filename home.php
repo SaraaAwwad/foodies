@@ -35,7 +35,6 @@ require("classes/user.php");
  		}
  		//endof signup
 
-
  		if (isset($_POST['loginbtn'])){
 
 	 			$em = test_input($_POST["emailIn"]);
@@ -54,7 +53,6 @@ require("classes/user.php");
 				}
  			}
  		//endof login
-
 
  	function test_input($data) {
 		  $data = trim($data);

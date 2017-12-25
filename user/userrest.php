@@ -4,6 +4,7 @@ require_once("../classes/restaurant.php");
 
 $rest = new Restaurant;
 $allRest = array();
+$place = -1;
 
 if(isset($_GET['area'])){
 	$place =$_GET['area'];
@@ -82,7 +83,7 @@ $allRest = $rest->getByArea($place);
 								<img src="../css/images/'.$allRest[$i]['Image'].'" width="100" height="100">
 							</div>
 							<div class="right-info"> 
-								<h2><a href="userviewmenu.php?Rest='.$allRest[$i]['ID'].'">'.$allRest[$i]['Name'].'</a></h2>
+								<h2><a href="userviewmenu.php?Rest='.$allRest[$i]['ID'].'&Area='.$place.'">'.$allRest[$i]['Name'].'</a></h2>
 								<p>'.implode(", ", $rest->type[$i]).'</p>
 							</div>
 						</td>
@@ -97,45 +98,6 @@ $allRest = $rest->getByArea($place);
 						</td>
 					</tr>';
 				 }?>
-					<!--<tr>
-						<td>
-							<div>
-								<img src="../css/images/pizzahut.png" width="100" height="100">
-							</div>
-							<div class="right-info"> 
-								<h2><a href="#">Pizza Hut</a></h2>
-								<p>Pizza, Pasta, Desserts</p>
-							</div>
-						</td>
-						<td>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-							<p>Delivers in 30 mins</p>
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							<div>
-								<img src="../css/images/ddnts.png" width="100" height="100">
-							</div>
-							<div class="right-info"> 
-								<h2><a href="#">Dunkin Donuts</a></h2>
-								<p>Beverages, Desserts</p>
-							</div>
-						</td>
-						<td>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-							<p>Delivers in 45 mins</p>
-						</td>
-					</tr> -->
 				</table>
 			</div>
 		</div>

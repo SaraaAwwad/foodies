@@ -43,6 +43,14 @@ class dbconnect{
 		}
 	}
 
+	function insertsql($sql){
+		if($this->con->query($sql) == TRUE){
+		return mysqli_insert_id($this->con);
+		}else{
+			return false;
+		}
+	}
+
 	/*function getDataWithSQL($sql){
 		if($this->con->query($sql) == TRUE){	
 			$Data = [];
@@ -66,6 +74,13 @@ class dbconnect{
 		return $result;
 		else
 		return false;
+	}
+       function selectsql2($sql){
+		if($result = mysqli_query($this->con, $sql))
+		  {$num = mysqli_num_rows ( $result );
+         return $num;}
+		else
+		{return false;}
 	}
 
 	function disconnect(){

@@ -111,6 +111,15 @@
 			$this->Password = $row['Password'];
 		}
 	}
+
+    
+    public function getallCount(){
+	  $sql="SELECT UID FROM user";
+	  $result=$this->dbobj->selectsql2($sql);
+      return $result;
+	}
+
+
 }
 
 ?>
