@@ -4,28 +4,18 @@ echo'
 	<div class="col-12">
 	<footer>
 		<div class="footerCol">
-			<b id="head">Restaurants</b>
-			<p>Dominos Pizza</p>
-			<p>Shabrawy</p>
-			<p>McDonalds</p>
-			<p>Pizza Hut</p>
-			<p>Khayrat El Sham</p>
+			<a href="user/aboutus.php" id="head">About Us</a>
+			
 		</div>
 	
 	<div class="footerCol">
-		<b id="head">Popular Cuisines</b>
-			<p>Pizza</p>
-			<p>Burger</p>
-			<p>Shawerma</p>
-			<p>Feteer</p>
-			<p>Sushi</p>
+		<a href="user/meetus.php" id="head">Meet the Team</a>
+			
 		</div>
 	
 	<div class="footerCol">
-			<b id="head">Foodies</b>
-			<p>About Us</p>
-			<p>Contact Us</p>
-			<p>Meet the Team</p>
+			<a href="user/contactus.php" id="head">Contact Us</a>
+			
 	</div>
 	
 	</footer>
