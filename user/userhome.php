@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require_once("../classes/areas.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,13 +23,12 @@ session_start();
 	</header>
 
 	<div class="welcome">Find what's near you</div>
-
 		<div class="searchBar">
 	      	<select id="area">
-	      		<option>Maadi</option>
-	      		<option>Nasr City</option>
-	      		<option>Heliopolis</option>
-	      		<option>5th Settlement</option>
+	      		<?php $activeareas = Area::getActiveAreas(); 
+	      		for($i=0; $i<count($activeareas); $i++){
+	      			echo '<option>'.$activeareas[$i].'</option>';
+	      			}?>
 	      	</select>
 		  
       	  	<button type="button" id="goButton">

@@ -73,10 +73,12 @@ $shopping_session = "shoppingcart".$place;
 						<td style="width:30%; text-align:left;" >';
 
 						for ($j=0; $j<count($prod->values[$i]); $j+=2){
+							if($prod->values[$i][$j]!=0){
 							echo'<button class="add-prd addtocart" id="'.$j.'_'.$allProd[$i]['ID'].'"></button>
 							 <span id="Price'.$j.'_'.$allProd[$i]['ID'].'">'.$prod->values[$i][$j].'</span> EGP -
-							<span>'.$prod->values[$i][$j+1].'</span> <hr>'
-							;}
+							<span>'.$prod->values[$i][$j+1].'</span> <hr>';
+							}
+						}
 						echo'</td>
 						</tr>';
 						}

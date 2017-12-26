@@ -176,7 +176,6 @@ class Restaurant{
 		return $this->RestByArea;
 	}
 
-
 	public function getName($rid){
 		$sql = "SELECT Name from restaurant Where ID = '$rid' ";
 		$result = $this->dbobj->selectsql($sql);
