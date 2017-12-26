@@ -120,8 +120,7 @@ if(isset($_POST["product_id"]))
       $order_table .= '</table>';
 
     $output = array(  
-    	'order_table' => $order_table,
-        'cart_item'          => 2   
+    	'order_table' => $order_table  
       );    
  echo json_encode($output);   
  }

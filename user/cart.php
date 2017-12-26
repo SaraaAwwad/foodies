@@ -1,16 +1,19 @@
 <?php 
 session_start();
 
+require_once("../classes/restaurant.php");
+$rest = new Restaurant;
+
 $ur = false;
 $s=-1;
 
 if(isset($_GET['Area']) && isset($_GET['Rest'])){
 $area =$_GET['Area'];
 $place =$_GET['Rest'];
+$rest->getInfo($place);
 $s = "shoppingcart".$place;
 $ur = true;
 }
-
 
 ?>
 
@@ -47,7 +50,10 @@ $ur = true;
 
                           echo $values["product_quantity"].'x , '. $values["product_name"]. ' with price of:  '. $values["product_price"] .' each <br>';
                      }  
-                     echo 'With a Total of: '. $_SESSION['total'];
+                     $ordertotal= $_SESSION['total'];
+                     $total = $ordertotal + $rest->DelvFees;
+                     $_SESSION['total']=$total;
+                     echo 'Order Cost = '. $ordertotal.'<br> Delivery Fees ='.$rest->DelvFees.'<br> Total = '.$total;
 				}else{
 					echo 'No Order Found..';
 				}
