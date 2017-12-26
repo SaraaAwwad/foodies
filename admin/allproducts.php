@@ -4,7 +4,7 @@ require_once("../classes/product.php");
 $prod = new Product;
 $allProd = array();
 if(isset($_GET['id'])){
-$place =$_GET['id'];
+$place = $_GET['id'];
 $allProd = $prod->getProduct1($place);
 }
 
@@ -44,7 +44,7 @@ $allProd = $prod->getProduct1($place);
     <li>Restaurants</li>
     <li>Manage</li>
 </ul>
-<?php echo '<a id="addrest" href="newrestaurant.php"><i class="fa fa-plus"></i>Add Restaurant</a>'; ?>
+<?php echo '<a id="addrest" href="newproduct.php?id='.$place.'"><i class="fa fa-plus"></i>Add Product</a>'; ?>
 </div>
 <table class="highlight" >
         <thead>
@@ -53,6 +53,7 @@ $allProd = $prod->getProduct1($place);
 			  <th>Image</th>
               <th>Name</th>
 			  <th>Description</th>
+			  <th>Category</th>
 			  <th>Prices</th>
 			  <th>Status</th>
 			  <th></th>
@@ -68,6 +69,7 @@ $allProd = $prod->getProduct1($place);
 			<td><img src="../css/images/<?php echo $allProd[$i]['Image'];?>" width="50" height="50"></td>
             <td><strong><?php echo $allProd[$i]['Name']; ?></strong></td>
 			<td><?php echo $allProd[$i]['Description'];?></td>
+			<td><?php echo $allProd[$i]['Category'];?></td>
 			<td><?php for ($j=0; $j<count($prod->values[$i]); $j+=2){ ?>
 			<span><?php if($j>0){ ?> <br><br> <?php } ?><?php echo $prod->values[$i][$j]; ?></span>$<br><span><?php echo $prod->values[$i][$j+1]; ?></span>
 	        <?php } ?></td>

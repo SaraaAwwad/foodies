@@ -1,11 +1,13 @@
 <?php
 require_once("/../classes/restaurant.php");
 require_once("/../classes/cuisine.php");
+require_once("/../classes/areas.php");
 session_start();
 ?>
 <?php
 $rest = new Restaurant;
 $cuisine = new Cuisine;
+$areato = new Area;
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +25,7 @@ $cuisine = new Cuisine;
 
 <div class="main2" >
 <div class="container" id="showcase">
-    <h1 id="con">Update Restaurant</h1>
+    <h1 id="Profileh">Update Restaurant</h1>
 	<ul class="breadcrumb">
 	<i class="fa fa-home"></i>
   <li><a href="../admin/AdminPage.php">Admin</a></li>
@@ -41,28 +43,40 @@ $delvfees = $result['DelvFees'];
 $delvtime = $result['DelvTime'];
 $id = $result['ID'];
 $image = $result['Image'];
-$result2 = $cuisine->getcuisine($id);
-$type = $result2['Type'];
-render($id,$name,$hot,$delvfees,$delvtime,$image,$type);
+render($id,$name,$hot,$delvfees,$delvtime,$image);
 ?>
 
-<?php function render($id,$name,$hot,$delvfees,$delvtime,$image,$type){ ?>
+<?php function render($id,$name,$hot,$delvfees,$delvtime,$image){ ?>
 		
 <form action="" method="POST">
-<b style="color: green;">ID</b><br>
+<b id="namelink">ID</b><br>
 <input type="text" name="idarea" id="restarea" value="<?php echo $id; ?>" disabled="true"><br>	
-<b style="color: green;">Name</b><br>
+<b id="namelink">Restaurant Name</b><br>
 <input type="text" name="namearea" id="restarea" value="<?php echo $name; ?>" ><br>
-<b style="color: green;">Hotline</b><br>
+<b id="namelink">Hotline</b><br>
 <input type="text" name="hotarea" id="restarea" value="<?php echo $hot; ?>"><br>
-<b style="color: green;">Delivery Fees</b><br>
+<b id="namelink">Delivery Fees</b><br>
 <input type="text" name="feesarea" id="restarea" value="<?php echo $delvfees;?>"><br>
-<b style="color: green;">Delivery Time</b><br>
+<b id="namelink">Delivery Time</b><br>
 <input type="text" name="timearea" id="restarea" value="<?php echo $delvtime;?>"><br>
-<b style="color: green;">Image (With its Extension)</b><br>
+<b id="namelink">Image (With its Extension)</b><br>
 <input type="text" name="imagearea" id="restarea" value="<?php echo $image;?>"><br>
-<b style="color: green;">Cuisine</b><br>
-<input type="text" name="cuisinearea" id="restarea" value="<?php echo $type;?>"><br>
+<b id="namelink">Cuisine</b><br>
+<select name="test1[]" id="soflow" multiple> 
+  <option value="American"> American </option> 
+  <option value="Fast Food"> Fast Food </option> 
+  <option value="Pizza"> Pizza </option> 
+  <option value="Salad"> Salad </option>
+  <option value="Chinese"> Chinese </option>
+  <option value="Indian"> Indian </option>
+</select><br>
+<b id="namelink">Areas</b><br>
+<select name="test[]" id="soflow2" multiple>  
+  <option value="Maadi"> Maadi </option>
+  <option value="Nasr City"> Nasr City </option> 
+  <option value="Heliopolis"> Heliopolis </option>
+  <option value="5th Settlement"> 5th Settlement </option>
+</select><br>
 <input type="submit" name="update" id="saverest" value="Update"/>
 <input type="button" id="cancelrest" value="Cancel"/>
 </form>
@@ -76,9 +90,18 @@ if(isset($_POST['update'])){
 	$c = $_POST['feesarea'];
 	$d = $_POST['timearea'];
 	$e = $_POST['imagearea'];
-	$f = $_POST['cuisinearea'];
+
+	if(isset($_POST['test1'])){
+	$cuisine->delCuisine($id);
+	foreach ($_POST['test1'] as $selectedOption)
+    { $cuisine->updateCuisine($id,$selectedOption); }}
+    
+    if(isset($_POST['test'])){
+    $areato->delArea($id);
+	foreach ($_POST['test'] as $selected)
+    { $areato->updateArea($id,$selected); }}
+
 	$rest->updateInfo($id,$a,$b,$c,$d,$e,'');
-	$rest->updateInfo2($id,$f);
     header("Location: addrestaurant.php");
 }
 

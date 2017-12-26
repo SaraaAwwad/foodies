@@ -1,9 +1,14 @@
-<?php 
-require_once('dbconnect.php');
-$db_obj = new dbconnect;
+<?php
+require_once("/../classes/restaurant.php");
+require_once("/../classes/cuisine.php");
+require_once("/../classes/areas.php");
 session_start();
 ?>
-
+<?php
+$rest = new Restaurant;
+$cuisine = new Cuisine;
+$areato = new Area;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,153 +16,90 @@ session_start();
 <link rel="stylesheet" type="text/css" href="..//css/topnav.css">
 <link rel="stylesheet" type="text/css" href="..//css/AdminPage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 </head>
-<body style="background-color: #f0f5f5;">
+<body>
+
 <?php include("adminheader.php"); ?>
 <?php include("adminsidenav.php"); ?>
 
-<script type="text/javascript" src="js/AdminPage.js"></script>
-
 <div class="main2" >
 <div class="container" id="showcase">
-    <h1 id="con">New Restaurant</h1>
+    <h1 id="Profileh">Add Restaurant</h1>
 	<ul class="breadcrumb">
 	<i class="fa fa-home"></i>
-  <li><a href="../admin/AdminPage.html">Admin</a></li>
+  <li><a href="../admin/AdminPage.php">Admin</a></li>
   <li>Restaurants</li>
-  <li>Manage</li>
-  <li>New Restaurant</li>
+  <li><a href="../admin/addrestaurant.php">Manage</a></li>
+  <li>Add</li>
 </ul>
-
-<form name="restForm" action="Add.php" method="POST">
-
-	<b id="greenField">Name</b>
-	<br>
-	<input type="text" name="Name" id="restarea" required >
-	<br>
-
-<b id="greenField">Cuisine</b>
-<br>
-<input type="text" name="Type" id="restarea" required >
-<br>
-
-	<b id="greenField">Delivery Area</b>
-	<br>
-	<br>
-	<select name="Area" id="restarea" required>
+	
+<form action="" method="POST">
+<b id="namelink">Restaurant Name</b><br>
+<input type="text" name="namearea" id="restarea"><br>
+<b id="namelink">Hotline</b><br>
+<input type="text" name="hotarea" id="restarea"><br>
+<b id="namelink">Delivery Fees</b><br>
+<input type="text" name="feesarea" id="restarea"><br>
+<b id="namelink">Delivery Time</b><br>
+<input type="text" name="timearea" id="restarea"><br>
+<b id="namelink">Image (With its Extension)</b><br>
+<input type="text" name="imagearea" id="restarea"><br>
+<b id="namelink">Status</b><br>
+<input type="radio" name="activation" value="1" checked> Active
+<input type="radio" name="activation" value="0"> Inactive<br>
+<b id="namelink">Cuisine</b><br>
+<select name="test1[]" id="soflow" multiple> 
+  <option value="American"> American </option> 
+  <option value="Fast Food"> Fast Food </option> 
+  <option value="Pizza"> Pizza </option> 
+  <option value="Salad"> Salad </option>
+  <option value="Chinese"> Chinese </option>
+  <option value="Indian"> Indian </option>
+</select><br>
+<b id="namelink">Areas</b><br>
+<select name="test[]" id="soflow2" multiple>  
+  <option value="Maadi"> Maadi </option>
+  <option value="Nasr City"> Nasr City </option> 
+  <option value="Heliopolis"> Heliopolis </option>
+  <option value="5th Settlement"> 5th Settlement </option>
+</select><br>
+<input type="submit" name="update" id="saverest" value="Add"/>
+<input type="button" id="cancelrest" value="Cancel"/>
+</form>
 
 <?php
-    $_Area = $db_obj->SelectAll('areas');
-    $Count = count($_Area);
-  	echo'<option value="">-----------------</option>';
-    for ($i = 0; $i < $Count; $i++) {
-                                                    
-        echo  "<option  value='".$_Area[$i]['ID']."'>".$_Area[$i]['Area']."</option>";
-    }
-    ?>
-</select>
-<br>
+if(isset($_POST['update'])){
+	$a = $_POST['namearea'];
+	$b = $_POST['hotarea'];
+	$c = $_POST['feesarea'];
+	$d = $_POST['timearea'];
+	$e = $_POST['imagearea'];
+  $f = $_SESSION['adminID'];
+  $g = $_POST['activation'];
+  $resultid = $rest->insertInfo($a,$b,$c,$d,$e,$f,$g);
+  
+  if(isset($_POST['test1'])){
+  foreach ($_POST['test1'] as $selectedOption)
+  { $cuisine->updateCuisine($resultid,$selectedOption); }}
+    
+  if(isset($_POST['test'])){
+  foreach ($_POST['test'] as $selected)
+  { $areato->updateArea($resultid,$selected); }}
 
-<!--CHANGED HERE-->
-   <!--  <br>
-<b id="greenField">Areazz</b>
-<br>
-<select multiple="multiple" name="restarea[]" id="restarea">
-	
-<?php 
-
-	$restAreaz = $db_obj->SelectAll('areas');
-    $Count = count($_Area);
-  	echo'<option value="">-----------------</option>';
-    for ($i = 0; $i < $Count; $i++) {
-                                                    
-        echo  "<option  value='".$_Area[$i]['ID']."'>".$_Area[$i]['Area']."</option>";
-    }
-
-
+  header("Location: addrestaurant.php");
+}
 
 ?>
 
-</select> -->
-<!-- <b>Area</b>
-<br>
-<select multiple="multiple" name="Area[]" id="area">
-	<option value="Ffth" id="Fifth">Fifth Settlement</option>
-	<option value="Mdi" id="Maadi">Maadi</option>
-	<option value="Nsr" id="Nasr">Nasr City</option>
-	<option value="Hlp" id="Helio">Heliopolis</option>
-	<option value="Sher" id="Sheraton">Sheraton</option>
-	<option value="Rh" id="Rehab">Rehab</option>
-	<option value="Oct" id="October">6 October</option>
-	<option value="Dki" id="Dokki">Dokki</option>
-	<option value="Obo" id="Obour">Obour</option>
-	<option value="Mok" id="Mokattam">Mokattam</option>
-
-</select>
- -->
-
-<!--<button type="button" name="addagain" id="again">Add Again</button>-->
-	<br>
-
-<!-- 
-	<b id="greenField">Area</b>
-	<br>
-	<select name="Area2" id="restarea2">
-			<option name="Maadi">Maadi</option>
-
-	</select> -->
-
-<b class="addNewRest">Hotline</b>
-<br>
-<input type="text" name="Hotline" id="restarea" required>
-<br>
-
-	<b class="addNewRest">Delivery Fees</b>
-	<br>
-	<input type="text" name="DelvFees" id="restarea" required>
-	<br>
-
-<b class="addNewRest">Delivery Time</b>
-<br>
-<input type="text" name="DelvTime" id="restarea" required>
-<br>
-
-	<b class="addNewRest">Image</b>
-	<br>
-	<input type="text" name="Image" id="restarea" required>
-	<br>
-
-<b class="addNewRest">Admin ID</b>
-<br>
-<select name="AdminID" id="restarea" required>
-	<?php
-    $_Area = $db_obj->SelectAll('admin');
-    $Count = count($_Area);
-  	echo'<option value="">-----------------</option>';
-    for ($i = 0; $i < $Count; $i++) {
-                                                    
-        echo  "<option  value='".$_Area[$i]['ID']."'>".$_Area[$i]['Email']."</option>";
-    }
-    ?>
-</select>
-<br>
-
-<button type="submit" name="saver" id="saverest">Add</button>
-
-<button type="submit" id="cancelrest">Cancel</button>
-
-</form>
-
- </div>
-
- 
-        </div>    
-		
-		<script type="text/javascript" src="../js/AdminPage.js"></script>
-		<script type="text/javascript" src="js/newrestaurant.js"></script>
+<script type="text/javascript" src="../js/AdminPage.js"></script>
+<script type="text/javascript">
+var cncl = document.getElementById("cancelrest");
+cncl.addEventListener("click", cnclFunc);
+function cnclFunc(){
+ window.location.href="addrestaurant.php";
+}
+</script>
 </body>
 
 </html>

@@ -1,11 +1,13 @@
 <?php
 session_start();
 require_once("../classes/product.php");
+require_once("../classes/restaurant.php");
 $prod = new Product;
+$rest = new Restaurant;
 
 $allProd = array();
-$place = -1;
-$area = -1;
+$place = 0;
+$area = 0;
 
 if(isset($_GET['Area'])){
 $area =$_GET['Area'];
@@ -13,6 +15,7 @@ $area =$_GET['Area'];
 
 if(isset($_GET['Rest'])){
 $place =$_GET['Rest'];
+$rest->getInfo($place);
 $allProd = $prod->getProduct($place);
 }
 
@@ -128,7 +131,8 @@ $shopping_session = "shoppingcart".$place;
                                             <input type="submit" name="place_order" class="placeorder" value="Place Order" />       
                                          </td>  
                                     </tr>
-                                    </form>    
+                                    </form>
+                                </table>
                 <?php  
                     }else{
                     	echo'<h3>Add to Your Plate</h3>
@@ -136,13 +140,15 @@ $shopping_session = "shoppingcart".$place;
 					Your current plate is empty.
 					<br>
 					<img src="../css/images/plate.png" alt="plate" width="170" height="170">
-					</div>
-						Delivery fees: 10.0 EGP<br>
-						Estimated Time: 15 Mins ';
-                    }
-                ?>                       
+					</div>';
+                    }?>
 
 			</div>
+				<?php 
+				if(!empty($_SESSION[$shopping_session])){
+			    echo'Delivery fees:'. $rest->DelvFees .' EGP<br>
+				Estimated Time: '. $rest->DelvTime ;}  
+				?>                                 
 		</div>
 	</div>
 </div>
