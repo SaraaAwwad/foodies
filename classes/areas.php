@@ -25,6 +25,16 @@ public function getType($restID){
 	return $type;
 	}
 
+	public function delArea($id){
+        $sql2 = "DELETE FROM areas WHERE RestID ='$id'";
+		$this->dbobj->executesql2($sql2);
+	}
+
+	public function updateArea($id,$selectedOption){
+         $sql = "INSERT INTO areas (RestID, Area) VALUES ('$id', '$selectedOption')";
+		 $this->dbobj->executesql2($sql);
+	}
+
 	public function getarea($id){
 		$sql = "SELECT * FROM areas Where RestID = '$id' ";
 		$userinfo = $this->dbobj->selectsql($sql);

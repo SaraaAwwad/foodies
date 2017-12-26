@@ -15,9 +15,8 @@ class Order{
 
 	public $getDates = array();
 	public $getOrders = array();
-	
-	public $restaurant;
 
+	public $restaurant;
 	public $AllOrders = array();
 	public $rest;
 	private $dbobj;
@@ -98,16 +97,14 @@ class Order{
 
 
 
-	public function getOrders()
-	{
+public function getOrders() {
 		$sql= "SELECT * FROM orders,restaurant WHERE orders.RestID = restaurant.ID";
 		$result = $this->dbobj->selectsql($sql);
 		$i=0;
 		while ($row = mysqli_fetch_assoc($result)){
 			$this->AllOrders[$i] = array();
 			$this->AllOrders[$i]['ID'] = $row['ID'];
-			$this->AllOrders[$i]['UserID'] = $row['UserID'];
-			
+			$this->AllOrders[$i]['UserID'] = $row['UserID'];			
 			$this->AllOrders[$i]['Name'] = $row['Name'];
 			$this->AllOrders[$i]['Area'] = $row['Area'];
 			$this->AllOrders[$i]['Street'] = $row['Street'];
@@ -120,14 +117,8 @@ class Order{
 		return $this->AllOrders;
 	}
 
-	// public function getName()
-	// {
-	// 	$sql = "SELECT restaurant.Name FROM restaurant,orders WHERE orders.RestID = restaurant.ID ";
-	// 	$result = $this->dbobj->executesql($sql);
-	// 	return $result;
-	// }
+}
 
-	}
 
 
 ?>
