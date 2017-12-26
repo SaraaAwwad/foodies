@@ -19,6 +19,9 @@ document.getElementById("buildID").addEventListener("change", checkrest);
 document.getElementById("fnID").addEventListener("change", checkrest);
 document.getElementById("lnID").addEventListener("change", checkrest);
 
+var numTxt = document.getElementById("phnum");
+numTxt.addEventListener("change", checkNum);
+
 //log in validity
 eIn.addEventListener("change", eInVal);
 pwIn.addEventListener("change", pwInVal);
@@ -38,9 +41,10 @@ document.getElementById("closeSi").addEventListener("click", closeSi);
 
 
 var pw1="";
-var Evalid = true;
+var Evalid = false;
 var Pvalid = false;
 var Cvalid = false;
+var Nvalid = false;
 
 var I_Evalid = true;
 var I_Pvalid = false;
@@ -72,6 +76,22 @@ function timeFunc(){
     } else {
     	t.innerHTML = ""+hr+" : "+min+ " Is the Perfect <br> Time for Dinner!<br> Don't You Agree? <hr> ";
     } 
+}
+
+function checkNum(){
+	var x = numTxt.value;
+	var re = /^\d+$/;
+
+	if (x.length < 11 || re.test(x)==false){
+		numTxt.style.borderWidth = "3px";
+		numTxt.style.borderColor = "#ff4d4d";
+		numTxt.style.backgroundColor = "#ffcccc";
+		Nvalid=false;
+	}else{
+		numTxt.style.borderColor = "#99ff99";
+		numTxt.style.backgroundColor = "#ccffcc";
+		Nvalid=true;
+	}
 }
 
 function checkrest(event){
@@ -240,7 +260,7 @@ function reppwVal(){
 
 function checkUp(evt){
 
-	if(Evalid && Pvalid && Cvalid){
+	if(Evalid && Pvalid && Cvalid && Nvalid){
 		return true;
 	}
 	else{

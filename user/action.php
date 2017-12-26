@@ -87,8 +87,8 @@ if(isset($_POST["product_id"]))
                      <tr>  
                           <td>'.$values["product_name"].'</td>
                           <td> <input type="number" min="1" class="quantity" id="qt.'.$values["product_id"].'" value="'.$values["product_quantity"].'"></td> 
-                          <td align="right">$ '.$values["product_price"].'</td>  
-                          <td align="right">$ '.number_format($values["product_quantity"] * $values["product_price"], 2).'</td>  
+                          <td align="right">EGP '.$values["product_price"].'</td>  
+                          <td align="right">EGP '.number_format($values["product_quantity"] * $values["product_price"], 2).'</td>  
                           <td> <button name="delete" class="deletefromcart" id="'. $values["product_id"].'"></button> </td> 
                      </tr>  ';
                   
@@ -101,16 +101,13 @@ if(isset($_POST["product_id"]))
             
                 <tr>  
                      <td colspan="3" align="right">Total</td>  
-                     <td align="right">$ '.number_format($total, 2).'</td>
+                     <td align="right">EGP '.number_format($total, 2).'</td>
                      
                      <td></td>  
                 </tr>  
                 <tr>  
-                     <td colspan="5" align="center">  
-                     <form method="post" action="cart.php?'.$cart_url.'">   
-                     <input type="hidden" name="totalprice" value="'.number_format($total, 2).'">  
-                     <input type="submit" name="place_order" class="placeorder" value="Place Order" />  
-                     </form>
+                     <td colspan="5" align="center">    
+                     <button type="button" name="place_order" class="placeorder"> <a href="cart.php?'.$cart_url.'"> Place Order </button>  
                      </td>  
                 </tr>
                 

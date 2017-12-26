@@ -51,7 +51,7 @@ class Order{
 
 	public function getHistoryDates($uid){
 
-		$sql = "SELECT DISTINCT DateOrder FROM orders WHERE UserID= '$uid' ";
+		$sql = "SELECT DISTINCT DateOrder FROM orders WHERE UserID= '$uid' ORDER BY DateOrder DESC ";
 		$result = $this->dbobj->selectsql($sql);
 
 		if($result->num_rows > 0){
@@ -71,7 +71,7 @@ class Order{
 
 	public function getOrderByDate($dte, $uid){
 
-		$sql = "SELECT * from orders WHERE DateOrder = '$dte' AND UserID='$uid' ";
+		$sql = "SELECT * from orders WHERE DateOrder = '$dte' AND UserID='$uid'";
 		$res = $this->dbobj->selectsql($sql);
 
 		if($res){
@@ -96,7 +96,7 @@ class Order{
 		return false;
 	}
 
-}
+
 
 	public function getOrders()
 	{

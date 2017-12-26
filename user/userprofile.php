@@ -17,9 +17,10 @@ $id = null;
 		$bld = $_GET["buildName"];
 		$st = $_GET["streetName"];
 		$ar = $_GET["areaName"];
+		$ph = $_GET["phoneName"];
 
-		if($user->updateInfo($id, $fn, $ln, $bld, $st, $ar)){
-			 echo'success';
+		if($user->updateInfo($id, $fn, $ln, $bld, $st, $ar, $ph)){
+			
 		}else{
 			echo 'fail';
 		}
@@ -97,7 +98,7 @@ $id = null;
 
 				<div class="card" id="nCont">
 				    <h4><b>Phone Number</b></h4> 
-				    <p name="phone" id="phonenum" style="padding-left:30px; margin-bottom:0px;">01091279903</p>
+				    <p name="phone" id="phonenum" style="padding-left:30px; margin-bottom:0px;"><?php echo $user->PhoneNum; ?></p>
 				    <input type="hidden" name="phoneName" id="numtext" required>
 				    
 				</div>		

@@ -41,7 +41,11 @@ $orderdetails= new OrderDetails;
 				<?php
 
 				$allDates = $order->getHistoryDates($_SESSION["userID"]);
-
+				if(!$allDates){
+					echo'<h3 style="text-align: center;">You didn\'t make your first order, yet!<br>
+				Here\'s to remind you how easy it is:</h3>
+				<img src="../css/images/stepstani.gif" alt="steps" height=500 style="padding-left: 10%">';
+				}else{
 				for($i=0; $i<count($allDates); $i++){ 
 					echo'<h2><img src="../css/images/history.png" width="35">'.$allDates[$i].'</h2><hr>'; 
 					$allOrders = $order->getOrderByDate($allDates[$i],$_SESSION["userID"]);
@@ -68,11 +72,7 @@ $orderdetails= new OrderDetails;
 					}
 				} 
 				
-				if(count($allDates)==0){
-				echo'<h3 style="text-align: center;">You didn\'t make your first order, yet!<br>
-				Here\'s to remind you how easy it is:</h3>
-				<img src="../css/images/stepstani.gif" alt="steps" height=500 style="padding-left: 10%">';
-				}
+			}
 
 				?>
 			</div>

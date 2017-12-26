@@ -1,7 +1,7 @@
 <?php 
-	require_once("\..\db\db_connect.php");
+require_once("\..\db\db_connect.php");
 	
-	class User{
+class User{
 
 	public $ID;
 	public $Email;
@@ -11,22 +11,32 @@
 	public $Street;
 	public $Building;
 	public $Password;
+	public $PhoneNum;
 
 	private $dbobj;
 
-	public function __construct(){
+	public function __construct($id=""){
 		$this->dbobj = new dbconnect;
+		if($id != ""){
+			$this->getInfo($id);
+		}
 	}
 
-	public function signup($password, $email, $fname, $lname, $area, $street, $building, $img){
-		$sql = "INSERT INTO user (Password, Email, FName, LName, Area, Street, Building) VALUES ('$password', '$email' , '$fname', '$lname', '$area', '$street', '$building')";
+	public function signup($password, $email, $fname, $lname, $area, $street, $building, $phone){
+
+		$res = $this->isExist($email);
+		if($res){
+			return false;
+		}else{	
+		$sql = "INSERT INTO user (Password, Email, FName, LName, Area, Street, Building, PhoneNum) VALUES ('$password', '$email' , '$fname', '$lname', '$area', '$street', '$building' ,'$phone')";
 
 		$qresult = $this->dbobj->executesql($sql);
 
 		return $qresult;
+		}
 	}
 
-	public function isExist($email){
+	private function isExist($email){
 
 		$sql = "SELECT * FROM user Where Email = '$email' ";
 		$qresult = $this->dbobj->selectsql($sql);
@@ -45,7 +55,7 @@
 			$row = mysqli_fetch_array($result);
 
 			if(password_verify($pw, $row['Password'])){
-				//try to comment it?
+
 				session_start();
 				$_SESSION["userID"] = $row['UID'];
 				return true;
@@ -55,7 +65,7 @@
 		return false;
 	}
 
-	public function updateInfo($id, $fn, $ln, $bld, $st, $ar){
+	public function updateInfo($id, $fn, $ln, $bld, $st, $ar , $phone){
 
 		$fn = $this->dbobj->test_input($fn);
 		$ln = $this->dbobj->test_input($ln);
@@ -63,7 +73,7 @@
 		$st = $this->dbobj->test_input($st);
 		$ar = $this->dbobj->test_input($ar);
 		
-		$sql = "UPDATE user SET FName= '$fn' ,LName='$ln',Area='$ar', Street= '$st', Building='$bld' WHERE UID='$id'";
+		$sql = "UPDATE user SET FName= '$fn' ,LName='$ln',Area='$ar', Street= '$st', Building='$bld', PhoneNum='$phone' WHERE UID='$id'";
 		$res = $this->dbobj->executesql2($sql);
 
 		if($res){
@@ -109,6 +119,7 @@
 			$this->Street = $row['Street'];
 			$this->Building = $row['Building'];
 			$this->Password = $row['Password'];
+			$this->PhoneNum = $row['PhoneNum'];
 		}
 	}
 

@@ -23,9 +23,9 @@ $added = false;
 </head>
 
 <?php include("header.php"); 
-	if(isset($_GET["Rest"])){
+	if(isset($_POST["Rest"])){
 
-		$place =$_GET['Rest'];
+		$place =$_POST['Rest'];
 
 		$s = "shoppingcart".$place;
 

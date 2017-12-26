@@ -3,7 +3,7 @@ session_start();
 require("classes/user.php");
 ?>
 <?php 
-	$user = new User;
+	$user = new User();
 	$upmode = 0;
 	$inmode = 0;
 
@@ -17,20 +17,19 @@ require("classes/user.php");
 			$st = test_input($_POST["streetSU"]);
 			$bld = test_input($_POST["buildSU"]);
 			$rep = test_input($_POST["psw-repeat"]);
+			$phonenum = test_input($_POST["phonenum"]);
 
 			$storePw = password_hash($psw, PASSWORD_BCRYPT, array('cost'=>8));
 
-				if($user->isExist($em)){
+				if($user->signup($storePw, $em, $fn, $ln , $ar, $st, $bld, $phonenum)){
+					header('Location: home.php');
+	     		}else{
 					outputsignup('block');
 					$upmode=1;
 					echo '<script type="text/javascript">',
 							'var error = document.getElementById("error");
 							error.innerHTML = "Sorry, Email Already Exists! <br><br>";',
 							'</script>';
-
-	     		}else{
-					$user->signup($storePw, $em, $fn, $ln , $ar, $st, $bld);
-					header('Location: home.php');
 				}
  		}
  		//endof signup
@@ -71,14 +70,33 @@ require("classes/user.php");
 	   						<img class="img-circle" alt="user" src="css/images/homer3.jpg"><br>
 	   					</legend>
 	   					<div id="error" class="err"></div>
+	   				<div class="row">
+
+	     				<div class="col-6">
 	     				<label><b>Email</b></label>
-	       				<input type="text" id="em" placeholder="Enter Email" name="email" required>
+	       				<input type="text" style="width:90%;" id="em" placeholder="Enter Email" name="email" required>
+	       				</div>
 
+	       				<div class="col-6">
 	      				<label><b>Password</b></label>
-	      				<input type="password" placeholder="Enter Password (4 or more characters!)" name="psw" id="pw" required>
+	      				<input type="password"  placeholder="Enter Pass(4 or more characters!)" name="psw" id="pw" required>
+	      				</div>
+	       			
+	       			</div>
 
+	       			<div class="row">
+	
+	      				<div class="col-6">
 	      				<label><b>Re-Enter Password</b></label>
-	      				<input type="password" placeholder="We\'re not looking.." name="psw-repeat" id="rpw" required>
+	      				<input type="password" style="width: 90%" placeholder="We\'re not looking.." name="psw-repeat" id="rpw" required>
+	      				</div>
+
+
+	       				<div class="col-6">
+	      				<label><b>Phone Number</b></label>
+	      				<input type="text" name="phonenum" id="phnum" placeholder="Enter Number Here.." required>
+	      				</div>
+	      			</div>
 
 	      			<div class="row">
 	      				<div class="col-6">

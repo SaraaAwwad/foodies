@@ -109,29 +109,26 @@ $shopping_session = "shoppingcart".$place;
                                          <td><?php echo $values["product_name"]; ?></td>  
                                          <td><input type="number" min="1" class="quantity"  id ="qt.<?php echo $values["product_id"] ?>" value="<?php echo $values["product_quantity"]?>"> </td> 
 
-                                         <td align="right">$ <?php echo $values["product_price"]; ?></td>  
-                                         <td align="right">$ <?php echo number_format($values["product_quantity"] * $values["product_price"], 2); ?></td>  
+                                         <td align="right">EGP <?php echo $values["product_price"]; ?></td>  
+                                         <td align="right">EGP <?php echo number_format($values["product_quantity"] * $values["product_price"], 2); ?></td>  
                                          <td><button name="delete"  class="deletefromcart" id="<?php echo $values["product_id"]?>"></button></td>  
                                     </tr>  
                         <?php  
-                                $total = $total + ($values["product_quantity"] * $values["product_price"]);  
-                                }  
+                                $total = $total + ($values["product_quantity"] * $values["product_price"]);}
+
                                 $_SESSION['total']=number_format($total, 2);
                         ?>			
 
-                                    <form method="post" action="cart.php?Rest=<?php echo $place ?>&Area=<?php echo $area ?>"> 
                         			<tr>  
                                          <td colspan="3" align="right">Total</td>
-                                         <td align="right">$ <?php echo number_format($total, 2); ?></td>  
-                                         <input type="hidden" name="totalprice" value="<?php echo number_format($total, 2);?>">
+                                         <td align="right">EGP <?php echo number_format($total, 2); ?></td>  
                                          <td></td>  
                                     </tr>  
                                     <tr>  
                                          <td colspan="5" align="center">   
-                                            <input type="submit" name="place_order" class="placeorder" value="Place Order" />       
+                                            <button type="button" name="place_order" class="placeorder"> <a href="cart.php?Rest=<?php echo $place ?>&Area=<?php echo $area ?>"> Place Order </button>        
                                          </td>  
                                     </tr>
-                                    </form>
                                 </table>
                 <?php  
                     }else{
@@ -143,12 +140,7 @@ $shopping_session = "shoppingcart".$place;
 					</div>';
                     }?>
 
-			</div>
-				<?php 
-				if(!empty($_SESSION[$shopping_session])){
-			    echo'Delivery fees:'. $rest->DelvFees .' EGP<br>
-				Estimated Time: '. $rest->DelvTime ;}  
-				?>                                 
+			</div>                               
 		</div>
 	</div>
 </div>

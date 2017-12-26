@@ -63,7 +63,7 @@ $ur = true;
 			<div class="row">
 				<div class="centview">
 					<h3>Enter Delivery Address <hr> </h3>
-					<form method="post" action="orderdone.php?Rest=<?php echo $place ?>">
+					<form method="post" action="orderdone.php">
 							<div class="col-4">
 		      					<label><b>Area</b></label>
 		      					<input type="text" style="width:90%;"  placeholder="Ex:Maadi,NasrCity,etc.." name="area" id="areaID" value ="<?php if($ur && isset($_SESSION[$s])){echo $area;} ?>" readonly>
@@ -78,7 +78,7 @@ $ur = true;
 		      					<label><b>Building Number/Name</b></label>
 		      					<input type="text" placeholder="Enter Building Here.." name="build" id="buildID" required>
 		      				</div>
-
+		      				<input type="hidden" name= "Rest" value="<?php echo $place; ?>">
 					<div class="col-12">
 						<input type="submit" value="LET'S GO!" name="checkoutbtn" class="checkout">
 					</div>

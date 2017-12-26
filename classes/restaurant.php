@@ -179,12 +179,12 @@ class Restaurant{
 	return $this->Name;
 	}
 
-	public function getName()
+	/*public function getName()
 	{
 		$sql = "SELECT restaurant.Name FROM restaurant,orders WHERE orders.RestID = restaurant.ID ";
 		$result = $this->dbobj->executesql($sql);
 		return $result;
-	}
+	}*/
 
 
 }

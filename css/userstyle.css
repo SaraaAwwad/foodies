@@ -24,6 +24,7 @@ body{
 .orderitems{
   background-color: pink;
   border-radius: 10px;
+  width:65%;
   padding:10px;
 }
 
@@ -32,7 +33,7 @@ body{
   border-radius: 10px;
   border-color: white;
   width:150px;
-  height:25px;
+  height:35px;
   color:white;
   margin-left: 70px;
 }
