@@ -33,15 +33,6 @@ session_start();
 			<img src="../css/images/steps.gif" id="stepsgif">
 		</div>
 
-	
-
-
-
-
-
-
-
-	
 	<?php
 
 	include("footer.php");

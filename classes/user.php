@@ -30,9 +30,10 @@ class User{
 		}else{	
 		$sql = "INSERT INTO user (Password, Email, FName, LName, Area, Street, Building, PhoneNum) VALUES ('$password', '$email' , '$fname', '$lname', '$area', '$street', '$building' ,'$phone')";
 
-		$qresult = $this->dbobj->executesql($sql);
-
-		return $qresult;
+		$qresult = $this->dbobj->insertsql($sql);
+		session_start();
+		$_SESSION["userID"] = $qresult;
+		return true;
 		}
 	}
 

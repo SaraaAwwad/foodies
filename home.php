@@ -22,7 +22,7 @@ require("classes/user.php");
 			$storePw = password_hash($psw, PASSWORD_BCRYPT, array('cost'=>8));
 
 				if($user->signup($storePw, $em, $fn, $ln , $ar, $st, $bld, $phonenum)){
-					header('Location: home.php');
+					header('Location: user/userhome.php');
 	     		}else{
 					outputsignup('block');
 					$upmode=1;

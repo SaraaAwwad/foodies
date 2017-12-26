@@ -88,6 +88,7 @@ function checkNum(){
 		numTxt.style.backgroundColor = "#ffcccc";
 		Nvalid=false;
 	}else{
+		numTxt.style.borderWidth = "3px";
 		numTxt.style.borderColor = "#99ff99";
 		numTxt.style.backgroundColor = "#ccffcc";
 		Nvalid=true;
