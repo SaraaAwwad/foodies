@@ -41,8 +41,8 @@ $allProd = $prod->getProduct1($place);
 	<ul class="breadcrumb">
 	<i class="fa fa-home"></i>
     <li><a href="../admin/AdminPage.php">Admin</a></li>
-    <li>Restaurants</li>
-    <li>Manage</li>
+    <li><a href="../admin/addrestaurant.php">Restaurants</a></li>
+    <li>Stock</li>
 </ul>
 <?php echo '<a id="addrest" href="newproduct.php?id='.$place.'"><i class="fa fa-plus"></i>Add Product</a>'; ?>
 </div>
