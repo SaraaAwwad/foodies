@@ -69,12 +69,12 @@ $allRest = $rest->getRestaurants();
 			<td><?php echo $allRest[$i]['Hotline'];?></td>
 			<td><?php echo $allRest[$i]['DelvFees'];?></td>
 			<td><?php echo $allRest[$i]['DelvTime'];?></td>
-			<?php for ($j=0; $j<count($rest->type[$i]); $j+=2){ ?>
-			<td><span><?php echo $rest->type[$i][$j]; ?></span><br></td>
-	        <?php } ?>
-			<?php for ($j=0; $j<count($rest->Areas[$i]); $j+=2){ ?>
-			<td><span><?php echo $rest->Areas[$i][$j]; ?></span><br></td>
-	        <?php } ?>
+			<td><?php for ($j=0; $j<count($rest->type[$i]); $j++){ ?>
+			<span><?php echo $rest->type[$i][$j]; ?></span><br>
+	        <?php } ?></td>
+			<td><?php for ($j=0; $j<count($rest->Areas[$i]); $j++){ ?>
+			<span><?php echo $rest->Areas[$i][$j]; ?></span><br>
+	        <?php } ?></td>
 	        <?php if($allRest[$i]['Status'] == '1' ){
 	        echo '<td id="active"> Active </td>'; }
 	        else if ($allRest[$i]['Status'] == '0'){

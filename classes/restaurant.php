@@ -54,7 +54,19 @@ class Restaurant{
 		}
 	}
 
-	
+	public function insertInfo($name, $hot, $fees, $time, $image,$adminid,$status){
+		$name = $this->dbobj->test_input($name);
+		$hot = $this->dbobj->test_input($hot);
+		$fees = $this->dbobj->test_input($fees);
+		$time = $this->dbobj->test_input($time);
+		$image = $this->dbobj->test_input($image);
+
+		$sql = "INSERT INTO restaurant (Name, Hotline, DelvFees, DelvTime, Image, AdminID, Status) VALUES ('$name', '$hot' , '$fees', '$time', '$image', '$adminid', '$status')";
+		$result = $this->dbobj->insertsql($sql);
+		return $result;
+	}
+
+
 	public function getInfo($id){
 		$sql = "SELECT * FROM restaurant Where ID = '$id' ";
 		$userinfo = $this->dbobj->selectsql($sql);

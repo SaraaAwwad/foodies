@@ -21,16 +21,14 @@ class Cuisine{
         }
 	}
 
-	public function updateInfo2($id,$type){
-		$type = $this->dbobj->test_input($type);
-		$sql = "UPDATE cuisine SET Type= '$type' WHERE RestID='$id'";
-		$res = $this->dbobj->executesql2($sql);
-		if($res){
-			$this->getInfo2($id);
-			return true;
-		}else{
-			return false;
-		}
+        public function delCuisine($id){
+        $sql2 = "DELETE FROM cuisine WHERE RestID ='$id'";
+		$this->dbobj->executesql2($sql2);
+	    }
+
+	public function updateCuisine($id,$selectedOption){
+         $sql = "INSERT INTO cuisine (RestID, Type) VALUES ('$id', '$selectedOption')";
+		 $this->dbobj->executesql2($sql);
 	}
 
     public function getInfo2($id){
@@ -46,17 +44,13 @@ class Cuisine{
 
 	public function getType($restID){
 		$sql = "SELECT Type from cuisine WHERE RestID = $restID";
-		
 		$result = $this->dbobj->selectsql($sql);
-
 		$i=0;
 		$type = array();
-	
 		while ($row = mysqli_fetch_assoc($result)){
 			$type[$i] = $row['Type'];
 			$i++;
 		}
-
 	return $type;
 	}
 
