@@ -84,7 +84,6 @@ public function getRestAreas($restID){
 		}
 		return $areas;
 	}
-
 	public function getAllAreas(){
 		$sql = "SELECT DISTINCT Area from areas";
 		$res = $this->dbobj->selectsql($sql);
@@ -97,6 +96,26 @@ public function getRestAreas($restID){
 		}
 		return $areas;	
 	}
-	
+
+	static function getActiveAreas(){
+		$sql = "SELECT DISTINCT Area from areas INNER JOIN restaurant ON areas.RestID = restaurant.ID where restaurant.Status=1";
+		$dbobj = new dbconnect;
+		$result= $dbobj->selectsql($sql);
+
+		$getAreas=array();		
+		
+		$i=0;
+		if($result){
+		while ($row = mysqli_fetch_assoc($result)){
+				$getAreas[$i] = $row['Area'];
+				$i++;
+			}
+		return $getAreas;
+		}else{
+		return false;
+		}
+
+	}
+
 }
 ?>

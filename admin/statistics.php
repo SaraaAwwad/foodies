@@ -4,13 +4,16 @@ require_once("/../classes/product.php");
 require_once("/../classes/user.php");
 require_once("/../classes/restaurant.php");
 session_start();
+
 $order = new Order;
 $qresult = $order->getCount();
 $qresult2 = $order->getallCount();
+
 $prod = new Product;
 $res = $prod->getallCount();
-$user = new User;
-$allusers = $user->getallCount();
+
+$allusers = User::getallCount();
+
 $restaurant = new Restaurant;
 $allrest = $restaurant->getallCount();
 ?>

@@ -2,14 +2,13 @@
 session_start();
 require_once("../classes/restaurant.php");
 
-$rest = new Restaurant;
 $allRest = array();
 $place = -1;
 
 if(isset($_GET['area'])){
 	$place =$_GET['area'];
 
-$allRest = $rest->getByArea($place);
+$allRest = Restaurant::getByArea($place);
 }
 
 ?>
@@ -83,11 +82,11 @@ $allRest = $rest->getByArea($place);
 					echo'<tr>
 						<td>
 							<div>
-								<img src="../css/images/'.$allRest[$i]['Image'].'" width="100" height="100">
+								<img src="../css/images/'.$allRest[$i]->Image.'" width="100" height="100">
 							</div>
 							<div class="right-info"> 
-								<h2><a href="userviewmenu.php?Rest='.$allRest[$i]['ID'].'&Area='.$place.'">'.$allRest[$i]['Name'].'</a></h2>
-								<p>'.implode(", ", $rest->type[$i]).'</p>
+								<h2><a href="userviewmenu.php?Rest='.$allRest[$i]->ID.'&Area='.$place.'">'.$allRest[$i]->Name.'</a></h2>
+								<p>'.implode(", ", $allRest[$i]->type[$i]).'</p>
 							</div>
 						</td>
 						<td>					
@@ -96,8 +95,8 @@ $allRest = $rest->getByArea($place);
 							<span class="fa fa-star checked"></span>
 							<span class="fa fa-star checked"></span>
 							<span class="fa fa-star"></span>
-							<p>Delivers in '.$allRest[$i]['DelvTime'].'</p>
-							<p>'.$allRest[$i]['Hotline'].'</p>
+							<p>Delivers in '.$allRest[$i]->DelvTime.'</p>
+							<p>'.$allRest[$i]->Hotline.'</p>
 						</td>
 					</tr>';
 				 }?>

@@ -49,22 +49,27 @@ $areato = new Area;
 <b id="namelink">Status</b><br>
 <input type="radio" name="activation" value="1" checked> Active
 <input type="radio" name="activation" value="0"> Inactive<br>
+
 <b id="namelink">Cuisine</b><br>
 <select name="test1[]" id="soflow" multiple> 
-  <option value="American"> American </option> 
-  <option value="Fast Food"> Fast Food </option> 
+  <option value="Sandwiches"> Sandwiches </option> 
   <option value="Pizza"> Pizza </option> 
   <option value="Salad"> Salad </option>
-  <option value="Chinese"> Chinese </option>
-  <option value="Indian"> Indian </option>
+  <option value="Beverages"> Beverages </option>
+  <option value="Desserts"> Desserts </option>
+  <option value="Other"> Other </option> 
 </select><br>
+
 <b id="namelink">Areas</b><br>
 <select name="test[]" id="soflow2" multiple>  
   <option value="Maadi"> Maadi </option>
   <option value="Nasr City"> Nasr City </option> 
   <option value="Heliopolis"> Heliopolis </option>
   <option value="5th Settlement"> 5th Settlement </option>
+  <option value="Zamalek"> Zamalek </option> 
+  <option value="Sherouk"> Sherouk </option>
 </select><br>
+
 <input type="submit" name="update" id="saverest" value="Add"/>
 <input type="button" id="cancelrest" value="Cancel"/>
 </form>

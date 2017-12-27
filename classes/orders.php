@@ -22,9 +22,12 @@ class Order{
 	private $dbobj;
 
 
-	public function __construct(){
+	public function __construct($id=""){
 		$this->dbobj = new dbconnect;
 		$this->restaurant = new Restaurant();
+		if($id!=""){
+			$this->getInfo($id);
+		}
 	}
 
 
@@ -97,24 +100,37 @@ class Order{
 
 
 
-public function getOrders() {
-		$sql= "SELECT * FROM orders,restaurant WHERE orders.RestID = restaurant.ID";
-		$result = $this->dbobj->selectsql($sql);
+	Static function getOrders() {
+		$dbobj = new dbconnect;
+		$sql= "SELECT orders.* , restaurant.Name FROM orders, restaurant WHERE orders.RestID = restaurant.ID";
+		$result = $dbobj->selectsql($sql);
 		$i=0;
+		
+		$Orders = array();
+		
 		while ($row = mysqli_fetch_assoc($result)){
-			$this->AllOrders[$i] = array();
-			$this->AllOrders[$i]['ID'] = $row['ID'];
-			$this->AllOrders[$i]['UserID'] = $row['UserID'];			
-			$this->AllOrders[$i]['Name'] = $row['Name'];
-			$this->AllOrders[$i]['Area'] = $row['Area'];
-			$this->AllOrders[$i]['Street'] = $row['Street'];
-			$this->AllOrders[$i]['Building'] = $row['Building'];
-			$this->AllOrders[$i]['DateOrder'] = $row['DateOrder'];
-			$this->AllOrders[$i]['TotalPrice'] = $row['TotalPrice'];
+			$OrderObj = new Order($row['ID']);
+			$OrderObj->RestName = $row['Name'];
+			$Orders[$i]= $OrderObj;
 			$i++;
-
 		}
-		return $this->AllOrders;
+		return $Orders;
+	}
+
+	public function getInfo($id){
+		$sql = "SELECT * FROM orders Where ID = '$id' ";
+		$orderinfo = $this->dbobj->selectsql($sql);
+		if($orderinfo){
+			$row = mysqli_fetch_array($orderinfo);
+			$this->ID = $row['ID'];
+			$this->Area = $row['Area'];
+			$this->Street = $row['Street'];
+			$this->Building = $row['Building'];
+			$this->UserID = $row['UserID'];
+			$this->RestID = $row['RestID'];
+			$this->DateOrder = $row['DateOrder'];
+			$this->TotalPrice = $row['TotalPrice'];
+		}
 	}
 
 }

@@ -10,7 +10,6 @@ class User{
 	public $Area;
 	public $Street;
 	public $Building;
-	public $Password;
 	public $PhoneNum;
 
 	private $dbobj;
@@ -22,25 +21,27 @@ class User{
 		}
 	}
 
-	public function signup($password, $email, $fname, $lname, $area, $street, $building, $phone){
+	Static function signup($password, $email, $fname, $lname, $area, $street, $building, $phone){
+		
+		$dbobj = new dbconnect;
 
-		$res = $this->isExist($email);
+		$res = self::isExist($email);
 		if($res){
 			return false;
 		}else{	
 		$sql = "INSERT INTO user (Password, Email, FName, LName, Area, Street, Building, PhoneNum) VALUES ('$password', '$email' , '$fname', '$lname', '$area', '$street', '$building' ,'$phone')";
 
-		$qresult = $this->dbobj->insertsql($sql);
+		$qresult = $dbobj->insertsql($sql);
 		session_start();
 		$_SESSION["userID"] = $qresult;
 		return true;
 		}
 	}
 
-	private function isExist($email){
-
+	Static function isExist($email){
+		$dbobj = new dbconnect;
 		$sql = "SELECT * FROM user Where Email = '$email' ";
-		$qresult = $this->dbobj->selectsql($sql);
+		$qresult = $dbobj->selectsql($sql);
 
 		if($qresult->num_rows > 0){
 			return $qresult;
@@ -49,8 +50,9 @@ class User{
 		}
 	}
 
-	public function login($em, $pw){
-		$result = $this->isExist($em);
+	Static function login($em, $pw){
+
+		$result = self::isExist($em);
 
 		if ($result){
 			$row = mysqli_fetch_array($result);
@@ -66,7 +68,7 @@ class User{
 		return false;
 	}
 
-	public function updateInfo($id, $fn, $ln, $bld, $st, $ar , $phone){
+	public function updateInfo($fn, $ln, $bld, $st, $ar , $phone){
 
 		$fn = $this->dbobj->test_input($fn);
 		$ln = $this->dbobj->test_input($ln);
@@ -74,18 +76,23 @@ class User{
 		$st = $this->dbobj->test_input($st);
 		$ar = $this->dbobj->test_input($ar);
 		
-		$sql = "UPDATE user SET FName= '$fn' ,LName='$ln',Area='$ar', Street= '$st', Building='$bld', PhoneNum='$phone' WHERE UID='$id'";
+		$sql = "UPDATE user SET FName= '$fn' ,LName='$ln',Area='$ar', Street= '$st', Building='$bld', PhoneNum='$phone' WHERE UID='$this->ID'";
 		$res = $this->dbobj->executesql2($sql);
 
 		if($res){
-			$this->getInfo($id);
+			$this->FirstName = $fn;
+			$this->LastName = $ln;
+			$this->Building = $bld;
+			$this->Street = $st;
+			$this->Area=$ar;
+			$this->PhoneNum= $phone;
 			return true;
 		}else{
 			return false;
 		}
 	}
 
-	public function updatePw($oldpw, $newpw, $id){
+	public function updatePw($oldpw, $newpw){
 		//trim data first
 		$old = $this->dbobj->test_input($oldpw);
 		$new = $this->dbobj->test_input($newpw);
@@ -95,11 +102,10 @@ class User{
 			return false;
 		}
 
-		$sql = "UPDATE user SET Password = '$storePw' WHERE UID='$id' ";
+		$sql = "UPDATE user SET Password = '$storePw' WHERE UID='$this->ID' ";
 		$res = $this->dbobj->executesql($sql);
 
 		if($res){
-			$this->getInfo($id);
 			return true;
 		}else{
 			return false;
@@ -113,6 +119,7 @@ class User{
 		$userinfo = $this->dbobj->selectsql($sql);
 		if($userinfo){
 			$row = mysqli_fetch_array($userinfo);
+			$this->ID = $row['UID'];
 			$this->FirstName = $row['FName'];
 			$this->LastName = $row['LName'];
 			$this->Email = $row['Email'];
@@ -124,10 +131,10 @@ class User{
 		}
 	}
 
-    
-    public function getallCount(){
+    Static function getallCount(){
 	  $sql="SELECT UID FROM user";
-	  $result=$this->dbobj->selectsql2($sql);
+	  $dbobj= new dbconnect;
+	  $result=$dbobj->selectsql2($sql);
       return $result;
 	}
 

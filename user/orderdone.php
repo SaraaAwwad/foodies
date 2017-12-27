@@ -1,11 +1,6 @@
 <?php
 
 session_start();
-require("../classes/orders.php");
-require("../classes/order_details.php");
-
-$order = new Order;
-$orderdetails = new OrderDetails;
 
 $added = false;
 ?>
@@ -23,26 +18,18 @@ $added = false;
 </head>
 
 <?php include("header.php"); 
-	if(isset($_POST["Rest"])){
+	
+	if(isset($_GET["Rest"])){
 
-		$place =$_POST['Rest'];
+		$place =$_GET['Rest'];
 
 		$s = "shoppingcart".$place;
-
-		if(isset($_POST["checkoutbtn"])&& isset($_SESSION[$s])) {
-			$ar = $_POST["area"];
-			$st = $_POST["street"];
-			$bld = $_POST["build"];
-
-			$res = $order->addorder($_SESSION["userID"], $ar, $st, $bld, $_SESSION["total"], $place);
-
-			foreach($_SESSION[$s] as $keys => $values)  
-	        {
-				$orderdetails->addorderitem($res,$values["product_name"], $values["product_price"], $values["product_quantity"]);
-			}
-			$added=true;
+		$sdone = $s."done";
+		if(isset($_SESSION[$s]) && isset($_SESSION[$sdone])) {
 			unset($_SESSION[$s]);
+			unset($_SESSION[$sdone]);
 			unset($_SESSION["total"]);
+			$added=true;
 		}
 	}
 ?>
