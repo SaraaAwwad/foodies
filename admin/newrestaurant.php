@@ -35,22 +35,29 @@ $areato = new Area;
 </ul>
   
 <form action="" method="POST" enctype="multipart/form-data">
-<b id="namelink">Restaurant Name</b><br>
+<fieldset>
+<legend>Restaurant Information</legend>  
+<label id="namelink">Restaurant Name</label><br>
 <input type="text" name="namearea" id="restarea"><br>
-<b id="namelink">Hotline</b><br>
+<label id="namelink">Hotline</label><br>
 <input type="text" name="hotarea" id="restarea"><br>
-<b id="namelink">Delivery Fees</b><br>
+</fieldset>
+<fieldset>
+<legend>Delivery Details</legend>
+<label id="namelink">Delivery Fees</label><br>
 <input type="text" name="feesarea" id="restarea"><br>
-<b id="namelink">Delivery Time</b><br>
+<label id="namelink">Delivery Time</label><br>
 <input type="text" name="timearea" id="restarea"><br>
-<b id="namelink">Image (PNG pr JPG)</b><br>
-<input type="hidden" name="MAX_SIZE_FILE" value="200000" />
-<input id = "myimage" type="file" name="myimage" accept=".jpg, .jpeg, .png"/><br>
-<b id="namelink">Status</b><br>
+</fieldset>
+<fieldset>
+<legend>Description</legend>  
+<label id="namelink">Image</label><br>
+<input type="hidden" name="MAX_SIZE_FILE" value="90000000" />
+<input id = "myimage" type="file" class="inputfile" name="myimage" accept="image/*"/><br>
+<label id="namelink">Status</label><br>
 <input type="radio" name="activation" value="1" checked> Active
 <input type="radio" name="activation" value="0"> Inactive<br>
-
-<b id="namelink">Cuisine</b><br>
+<label id="namelink">Cuisine</label><br>
 <select name="test1[]" id="soflow" multiple> 
   <option value="Sandwiches"> Sandwiches </option> 
   <option value="Pizza"> Pizza </option> 
@@ -59,8 +66,7 @@ $areato = new Area;
   <option value="Desserts"> Desserts </option>
   <option value="Other"> Other </option> 
 </select><br>
-
-<b id="namelink">Areas</b><br>
+<label id="namelink">Areas</label><br>
 <select name="test[]" id="soflow2" multiple>  
   <option value="Maadi"> Maadi </option>
   <option value="Nasr City"> Nasr City </option> 
@@ -68,14 +74,14 @@ $areato = new Area;
   <option value="5th Settlement"> 5th Settlement </option>
   <option value="Zamalek"> Zamalek </option> 
   <option value="Sherouk"> Sherouk </option>
-</select><br>
-
+  </select><br>
+</fieldset>
 <input type="submit" name="update" id="saverest" value="Add"/>
 <input type="button" id="cancelrest" value="Cancel"/>
 </form>
 
 <?php
-if(isset($_POST['update'])){
+if(isset($_POST['update']) && $_FILES['myimage']['size'] > 0){
   $a = $_POST['namearea'];
   $b = $_POST['hotarea'];
   $c = $_POST['feesarea'];
@@ -86,10 +92,9 @@ if(isset($_POST['update'])){
   $folder= dirname(dirname(__FILE__)) ."\css\images\\";
   $upload_image=$_FILES['myimage']['name'];
   move_uploaded_file($_FILES['myimage']['tmp_name'], "$folder".$_FILES['myimage']['name']);
-  $images = '../css/images/'.$_FILES['myimage']['name'].'';
-
+  $images = "../css/images/".$_FILES['myimage']['name']."";
   $resultid = $rest->insertInfo($a,$b,$c,$d,$images,$f,$g);
-
+  
   if(isset($_POST['test1'])){
   foreach ($_POST['test1'] as $selectedOption)
   { $cuisine->updateCuisine($resultid,$selectedOption); }}

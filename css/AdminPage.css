@@ -13,7 +13,8 @@ padding-left: 30px;
 
 }
 #namelink{
-color: #58B14C;
+    color: #ed3a49;
+    font-weight: bold;
 }
 
 #restarea1{
@@ -23,6 +24,7 @@ color: #58B14C;
   margin-bottom: 10px;
   width: 10%;
   border: none;
+  font-weight: bold;
 }
 
 #restarea2{
@@ -30,7 +32,7 @@ color: #58B14C;
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 34.5%;
+  width: 50%;
   border: none;
 }
 
@@ -54,7 +56,7 @@ select#soflow2 {
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 45%;
-    height: 95px;
+    height: 125px;
 }
 /*input area in new restaurant*/
 #restarea{
@@ -62,14 +64,15 @@ select#soflow2 {
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 45%;
+  width: 60%;
   border: none;
 }
 
 /*adding button to add new restaurant*/
 #saverest{
   padding: 20px;
-  margin-left: 220px;
+  background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC 51%, #02AAB0 100%);
+  margin-left: 320px;
   font-size: 18px;
   border-radius: 5px;
   margin-top: 25px;
@@ -81,7 +84,6 @@ select#soflow2 {
    -webkit-border-radius: 9px 9px 9px 9px;
    border-radius: 9px 9px 9px 9px;
    box-shadow: 1px 1px 11px #330033;
-   background: #58B14C url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 100px center;
 }
 
 /*cancel button to cancel adding restaurant*/
@@ -98,7 +100,7 @@ select#soflow2 {
    -webkit-border-radius: 9px 9px 9px 9px;
    border-radius: 9px 9px 9px 9px;
    box-shadow: 1px 1px 11px #330033;
-   background: #ff0066 url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 100px center;
+   background-image: linear-gradient(to right, #EB3349 0%, #F45C43 51%, #EB3349 100%);
 }
 
 
@@ -745,6 +747,7 @@ td, th {
 
 body:not(.nohover) tbody tr:hover {
   background-color: #1abc9c;
+
 }
 thead {
   border-bottom: 1px solid #bcbcbc;
@@ -903,4 +906,27 @@ border-bottom: 1px solid red;
     top: -1px;
   }
 
+fieldset
+{
+  background-color: #b9b9b947;
+  width:940px;
+  padding:16px;
+  box-shadow: 1px 1px 11px #330033;
+}
+legend
+{
+  margin-bottom:0px;
+  margin-left:16px;
+  color:white;
+  font-weight: bold;
+  text-shadow: 2px 2px #02b1af;
+}
 
+.inputfile{
+  padding-top: 10px;
+  padding-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+}

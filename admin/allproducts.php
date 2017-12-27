@@ -5,7 +5,7 @@ $prod = new Product;
 $allProd = array();
 if(isset($_GET['id'])){
 $place = $_GET['id'];
-$allProd = $prod->getProduct1($place);
+$allProd = $prod->getAllProducts($place);
 }
 
 ?>

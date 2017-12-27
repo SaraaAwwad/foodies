@@ -5,7 +5,7 @@ require_once("/../classes/areas.php");
 session_start();
 ?>
 <?php
-$rest = new Restaurant;
+
 $cuisine = new Cuisine;
 $areato = new Area;
 ?>
@@ -36,33 +36,36 @@ $areato = new Area;
 
 <?php 
 $id = $_GET['id'];
-$result = $rest->getSelect($id);
-$name = $result['Name'];
-$hot = $result['Hotline'];
-$delvfees = $result['DelvFees'];
-$delvtime = $result['DelvTime'];
-$id = $result['ID'];
-$image = $result['Image'];
-render($id,$name,$hot,$delvfees,$delvtime,$image);
+$RestObj = array();
+$RestObj= new Restaurant($id);
+render($RestObj->ID,$RestObj->Name,$RestObj->Hotline,$RestObj->DelvFees,$RestObj->DelvTime);
 ?>
 
-<?php function render($id,$name,$hot,$delvfees,$delvtime,$image){ ?>
+<?php function render($id,$name,$hot,$delvfees,$delvtime){ ?>
 		
-<form action="" method="POST">
-<b id="namelink">ID</b><br>
+<form action="" method="POST" enctype="multipart/form-data">
+<fieldset>
+<legend>Restaurant Information</legend>  
+<label id="namelink">ID</label><br>
 <input type="text" name="idarea" id="restarea" value="<?php echo $id; ?>" disabled="true"><br>	
-<b id="namelink">Restaurant Name</b><br>
+<label id="namelink">Restaurant Name</label><br>
 <input type="text" name="namearea" id="restarea" value="<?php echo $name; ?>" ><br>
-<b id="namelink">Hotline</b><br>
+<label id="namelink">Hotline</label><br>
 <input type="text" name="hotarea" id="restarea" value="<?php echo $hot; ?>"><br>
-<b id="namelink">Delivery Fees</b><br>
+</fieldset>
+<fieldset>
+<legend>Delivery Details</legend> 
+<label id="namelink">Delivery Fees</label><br>
 <input type="text" name="feesarea" id="restarea" value="<?php echo $delvfees;?>"><br>
-<b id="namelink">Delivery Time</b><br>
+<label id="namelink">Delivery Time</label><br>
 <input type="text" name="timearea" id="restarea" value="<?php echo $delvtime;?>"><br>
-<b id="namelink">Image (With its Extension)</b><br>
-<input type="text" name="imagearea" id="restarea" value="<?php echo $image;?>"><br>
-
-<b id="namelink">Cuisine</b><br>
+</fieldset>
+<fieldset>
+<legend>Description</legend>
+<label id="namelink">Image</label><br>
+<input type="hidden" name="MAX_SIZE_FILE" value="90000000" />
+<input id = "myimage" type="file" class="inputfile" name="myimage" accept="image/*"/><br>
+<label id="namelink">Cuisine</label><br>
 <select name="test1[]" id="soflow" multiple> 
   <option value="Sandwiches"> Sandwiches </option> 
   <option value="Pizza"> Pizza </option> 
@@ -71,9 +74,7 @@ render($id,$name,$hot,$delvfees,$delvtime,$image);
   <option value="Desserts"> Desserts </option>
   <option value="Other"> Other </option> 
 </select><br>
-
-
-<b id="namelink">Areas</b><br>
+<label id="namelink">Areas</label><br>
 <select name="test[]" id="soflow2" multiple>  
   <option value="Maadi"> Maadi </option>
   <option value="Nasr City"> Nasr City </option> 
@@ -82,33 +83,40 @@ render($id,$name,$hot,$delvfees,$delvtime,$image);
   <option value="Zamalek"> Zamalek </option> 
   <option value="Sherouk"> Sherouk </option>
 </select><br>
-
+</fieldset>
 <input type="submit" name="update" id="saverest" value="Update"/>
 <input type="button" id="cancelrest" value="Cancel"/>
 </form>
-
 <?php  }  ?>
 <?php
-if(isset($_POST['update'])){
+if(isset($_POST['update'])) {
 	$id = $_GET['id'];
 	$a = $_POST['namearea'];
 	$b = $_POST['hotarea'];
 	$c = $_POST['feesarea'];
-	$d = $_POST['timearea'];
-	$e = $_POST['imagearea'];
+	$d = $_POST['timearea']; 
 
-	if(isset($_POST['test1'])){
-	$cuisine->delCuisine($id);
-	foreach ($_POST['test1'] as $selectedOption)
-    { $cuisine->updateCuisine($id,$selectedOption); }}
+  if(isset($_POST['test1'])){
+  $cuisine->delCuisine($id);
+  foreach ($_POST['test1'] as $selectedOption)
+  { $cuisine->updateCuisine($id,$selectedOption); }}
     
-    if(isset($_POST['test'])){
-    $areato->delArea($id);
-	foreach ($_POST['test'] as $selected)
-    { $areato->updateArea($id,$selected); }}
+  if(isset($_POST['test'])){
+  $areato->delArea($id);
+  foreach ($_POST['test'] as $selected)
+  { $areato->updateArea($id,$selected); }}
 
-	$rest->updateInfo($id,$a,$b,$c,$d,$e,'');
-    header("Location: addrestaurant.php");
+
+  if(!empty($_FILES['myimage']['name'])) {
+  $folder= dirname(dirname(__FILE__)) ."\css\images\\";
+  $upload_image=$_FILES['myimage']['name'];
+  move_uploaded_file($_FILES['myimage']['tmp_name'], "$folder".$_FILES['myimage']['name']);
+  $images = "../css/images/".$_FILES['myimage']['name'].""; 
+  Restaurant::updateInfo($id,$a,$b,$c,$d,$images,'');
+  }else{
+  Restaurant::updateInfoWithoutImage($id,$a,$b,$c,$d,'');
+  }
+  header("Location: addrestaurant.php");
 }
 
 ?>

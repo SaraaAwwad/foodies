@@ -34,31 +34,39 @@ $prod = new Product;
 
 	
 <form action="" method="POST"  enctype="multipart/form-data">
-<b id="namelink">Product Name</b><br>
+<fieldset>
+<legend>Product Information</legend>    
+<label id="namelink">Product Name</label><br>
 <input type="text" name="namearea" id="restarea"><br>
-<b id="namelink">Description</b><br>
+</fieldset>
+<fieldset>
+<legend>About Product</legend>
+<label id="namelink">Description</label><br>
 <textarea rows="10" name="desarea" id="restarea" cols="50"></textarea><br>
-<b id="namelink">Category</b><br>
+<label id="namelink">Category</label><br>
 <input type="text" name="catarea" id="restarea"><br>
-<b id="namelink">Image</b><br>
-<input type="hidden" name="MAX_SIZE_FILE" value="200000" />
-<input id = "myimage" type="file" name="myimage" accept="image/*"/><br>
-<b id="namelink">Status</b><br>
+<label id="namelink">Image</label><br>
+<input type="hidden" name="MAX_SIZE_FILE" value="90000000" />
+<input id = "myimage" class="inputfile" type="file" name="myimage" accept="image/*"/><br>
+<label id="namelink">Status</label><br>
 <input type="radio" name="activation" value="1" checked> Active
 <input type="radio" name="activation" value="0"> Inactive<br>
+</fieldset>
+<fieldset>
+<legend>Prices</legend>
 <input type="text" name="smallarea" id="restarea1" value="Small" readonly>
 <input type="text" name="smallvalue" id="restarea2"><br> 
 <input type="text" name="mediumarea" id="restarea1" value="Medium" readonly> 
 <input type="text" name="mediumvalue" id="restarea2"><br> 
 <input type="text" name="largearea" id="restarea1" value="Large" readonly> 
 <input type="text" name="largevalue" id="restarea2"><br> 
-
+</fieldset>
 <input type="submit" name="update" id="saverest" value="Add"/>
 <input type="button" id="cancelrest" value="Cancel"/>
 </form>
 
 <?php
-if(isset($_POST['update'])){
+if(isset($_POST['update']) && $_FILES['myimage']['size'] > 0){
 	$aname = $_POST['namearea'];
 	$bdes = $_POST['desarea'];
 	$ccat = $_POST['catarea'];
@@ -70,11 +78,11 @@ if(isset($_POST['update'])){
   $mediumv = $_POST['mediumvalue'];
   $large = $_POST['largearea'];
   $largev = $_POST['largevalue'];
+
   $folder= dirname(dirname(__FILE__)) ."\css\images\\";
   $upload_image=$_FILES['myimage']['name'];
   move_uploaded_file($_FILES['myimage']['tmp_name'], "$folder".$_FILES['myimage']['name']);
   $images = '../css/images/'.$_FILES['myimage']['name'].'';
-
   $resultid = $prod->InsertInfo($aname,$bdes,$ccat,$images,$estatus,$frest);
 
   if(isset($_POST['smallvalue']))

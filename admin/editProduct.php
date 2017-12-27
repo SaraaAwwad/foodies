@@ -3,6 +3,7 @@ require_once("/../classes/product.php");
 require_once("/../classes/cuisine.php");
 require_once("/../classes/areas.php");
 session_start();
+$prod = new Product;
 ?>
 
 <!DOCTYPE html>
@@ -31,15 +32,9 @@ session_start();
 </ul>
 
 <?php
-$prod = new Product;
 $id = $_GET['id'];
-$result = $prod->getSelectProduct($id);
-$name = $result['Name'];
-$des = $result['Description'];
-$cat = $result['Category'];
-$id = $result['ID'];
-$image = $result['Image'];
-$restid = $result['RestID'];
+$ProdObj = array();
+$ProdObj= new Product($id);
 
 $lsmall = "Small";
 $value1 = $prod->getPValue($id,$lsmall);
@@ -52,32 +47,46 @@ $Medium = $value2['Price'];
 $llarge = "Large";
 $value3 = $prod->getPValue($id,$llarge);
 $Large = $value3['Price'];
-render($id,$name,$des,$cat,$image,$Small,$Medium,$Large);
+
+render($ProdObj->ID,$ProdObj->Name,$ProdObj->Description,$ProdObj->Category,$Small,$Medium,$Large);
 ?>
 
-<?php function render($id,$name,$des,$cat,$image,$Small,$Medium,$Large){ ?>
+<?php function render($id,$name,$des,$cat,$Small,$Medium,$Large){ ?>
 		
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
+<fieldset>
+<legend> Product Information </legend>
 <b id="namelink">ID</b><br>
 <input type="text" name="idarea" id="restarea" value="<?php echo $id; ?>" disabled="true"><br>	
 <b id="namelink">Product Name</b><br>
 <input type="text" name="namearea" id="restarea" value="<?php echo $name; ?>" ><br>
-<b id="namelink">Description</b><br>
-<textarea rows="10" name="desarea" id="restarea" cols="50"><?php echo $des; ?></textarea><br>
-<b id="namelink">Category</b><br>
+</fieldset>
+<fieldset>
+<legend>About Product</legend>
+<label id="namelink">Description</label><br>
+<textarea rows="10" name="desarea" onkeyup="adjust_textarea(this)" id="restarea" cols="50"><?php echo $des; ?></textarea><br>
+<label id="namelink">Category</label><br>
 <input type="text" name="catarea" id="restarea" value="<?php echo $cat;?>"><br>
-<b id="namelink">Image (With its Extension)</b><br>
-<input type="text" name="imagearea" id="restarea" value="<?php echo $image;?>"><br>
+<label id="namelink">Image</label><br>
+<input type="hidden" name="MAX_SIZE_FILE" value="90000000" />
+<input id = "myimage" type="file" name="myimage" class="inputfile" accept="image/*"/><br>
+</fieldset>
+<fieldset>
+<legend>Prices</legend>
 <input type="text" name="smallarea" id="restarea1" value="Small" readonly>
 <input type="text" name="smallvalue" id="restarea2" value="<?php echo $Small;?>"><br> 
 <input type="text" name="mediumarea" id="restarea1" value="Medium" readonly> 
 <input type="text" name="mediumvalue" id="restarea2" value="<?php echo $Medium;?>"><br> 
 <input type="text" name="largearea" id="restarea1" value="Large" readonly> 
 <input type="text" name="largevalue" id="restarea2" value="<?php echo $Large;?>"><br> 
-
+</fieldset>
 <input type="submit" name="update" id="saverest" value="Update"/>
 <input type="button" id="cancelrest" value="Cancel"/>
 </form>
+
+
+
+
 <?php  }  ?>
 
 <?php
@@ -86,7 +95,6 @@ if(isset($_POST['update'])){
 	$aname = $_POST['namearea'];
 	$bdes = $_POST['desarea'];
 	$ccat = $_POST['catarea'];
-	$dimage = $_POST['imagearea'];
 	$small = $_POST['smallarea'];
   $smallv = $_POST['smallvalue'];
   $medium = $_POST['mediumarea'];
@@ -95,28 +103,27 @@ if(isset($_POST['update'])){
   $largev = $_POST['largevalue'];
   
   if(isset($_POST['smallvalue']))
-  {
-    $prod->delSmallProducts($id,$small,$smallv);
-  }else{
-    $prod->delP($id,$small);
-  } 
+  { $prod->delSmallProducts($id,$small,$smallv); }else{
+    $prod->delP($id,$small); } 
 
   if(isset($_POST['mediumvalue']))
-  {
-    $prod->delSmallProducts($id,$medium,$mediumv);
-  }else{
-    $prod->delP($id,$medium);
-  } 
+  { $prod->delSmallProducts($id,$medium,$mediumv); }else{ 
+    $prod->delP($id,$medium); } 
 
   if(isset($_POST['largevalue']))
-  {
-    $prod->delSmallProducts($id,$large,$largev);
-  }else{
-    $prod->delP($id,$large);
-  } 
+  { $prod->delSmallProducts($id,$large,$largev); }else
+  { $prod->delP($id,$large); } 
 
-	$prod->updateInfo($id,$aname,$bdes,$ccat,$dimage);
-  header('Location: allproducts.php?id='.$restid.'');
+  if(!empty($_FILES['myimage']['name'])) {
+  $folder= dirname(dirname(__FILE__)) ."\css\images\\";
+  $upload_image=$_FILES['myimage']['name'];
+  move_uploaded_file($_FILES['myimage']['tmp_name'], "$folder".$_FILES['myimage']['name']);
+  $images = "../css/images/".$_FILES['myimage']['name'].""; 
+  $prod->updateInfo($id,$aname,$bdes,$ccat,$images);
+  }else{
+  $prod->updateInfoWithoutImage($id,$aname,$bdes,$ccat);
+  }
+  header('Location: allproducts.php?id='.$ProdObj->RestID.'');
 }
 
 ?>
@@ -127,6 +134,11 @@ var cncl = document.getElementById("cancelrest");
 cncl.addEventListener("click", cnclFunc);
 function cnclFunc(){
  window.location.href="allproducts.php?id=<?php echo''.$restid.'';?>";
+}
+
+function adjust_textarea(h) {
+    h.style.height = "20px";
+    h.style.height = (h.scrollHeight)+"px";
 }
 </script>
 </body>

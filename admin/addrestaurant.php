@@ -87,7 +87,7 @@ $allRest = Restaurant::getRestaurants();
             <?php if($allRest[$i]->Status == '1' ){
 	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Inactivate</a></td>'; }
 	        else if ($allRest[$i]->Status == '0'){
-	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Activate</a></td>'; } ?><br></td>
+	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Activate</a></td>'; } ?></td>
 			</tr>
 		  <?php } ?>
         </tbody>
