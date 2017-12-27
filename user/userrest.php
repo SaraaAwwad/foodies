@@ -89,13 +89,14 @@ $allRest = Restaurant::getByArea($place);
 								<p>'.implode(", ", $allRest[$i]->type[$i]).'</p>
 							</div>
 						</td>
-						<td>					
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star checked"></span>
-							<span class="fa fa-star"></span>
-							<p>Delivers in '.$allRest[$i]->DelvTime.'</p>
+						<td>';
+							for($j=0; $j<$allRest[$i]->Rating;$j++){
+								echo'<span class="fa fa-star checked"></span>';
+							}
+							for($j; $j<5; $j++){
+							echo'<span class="fa fa-star"></span>';}
+
+							echo'<p>Delivers in '.$allRest[$i]->DelvTime.'</p>
 							<p>'.$allRest[$i]->Hotline.'</p>
 						</td>
 					</tr>';

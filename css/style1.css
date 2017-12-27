@@ -99,8 +99,33 @@ body {
 	background-repeat: no-repeat;
     background-position: center; 
 	background-size: cover;
-
 }
+.ratings_vote {
+	position:relative;
+	display:inline-block;
+	width: 50px;
+	height: 50px;
+	background-image: url('images/0752.png');
+	opacity:0.2;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.ratings_stars {
+	position:relative;
+	display:inline-block;
+	width: 50px;
+	height: 50px;
+	background-image: url('images/0752.png');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+.ratings_over {
+	background: url('images/star_highlight.png') no-repeat;
+}
+
 
 .footerpage{
 	position:relative;

@@ -1,6 +1,9 @@
 <?php 
 require_once("\..\db\db_connect.php");
-	
+require_once("orders.php");
+require_once("restaurant.php");
+require_once("rating.php");
+
 class User{
 
 	public $ID;
@@ -12,6 +15,9 @@ class User{
 	public $Building;
 	public $PhoneNum;
 
+	public $Rests= array();
+	public $Ratings= array();
+	
 	private $dbobj;
 
 	public function __construct($id=""){
@@ -136,6 +142,29 @@ class User{
 	  $dbobj= new dbconnect;
 	  $result=$dbobj->selectsql2($sql);
       return $result;
+	}
+
+	public function getRatings(){
+		//to get the places he ordered from
+		$sql = "SELECT DISTINCT RestID from orders WHERE UserID = '$this->ID'";
+		$selectrests = $this->dbobj->selectsql($sql);
+		if($selectrests->num_rows < 1){
+			//no rest was found
+			return false;
+		}
+
+		//get all ordered from rest names saved in array rests.
+		$i=0;
+		while ($row = mysqli_fetch_assoc($selectrests)){
+			$RestObj = new Restaurant($row['RestID']);
+			$this->Rests[$i]= $RestObj;
+			
+			$RatingObj = new Review($this->ID, $row['RestID']);
+			$this->Ratings[$i]= $RatingObj;
+			$i++;
+		}
+		return true;
+		
 	}
 
 
