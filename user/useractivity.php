@@ -27,7 +27,7 @@ $user = new User($_SESSION['userID']);
 				<ul>
 					<li><a href="userprofile.php">My Account</a></li>
 					<li><a href="useractivity.php" class="sideactive">View Activity</a></li>
-					<li><a href="useractivity.php" class="sub subactive">View Reviews</a></li>
+					<li><a href="useractivity.php" class="sub subactive">View Ratings</a></li>
 					<li><a href="userhistory.php">View History</a></li>
 				</ul>
 			</div>
@@ -36,6 +36,7 @@ $user = new User($_SESSION['userID']);
 		<div class="col-8">
 			<div class="centview">
 				<?php 
+				echo '<h2 style="text-align:center;">You Can Find/Change Ratings You\'ve Made On Restaurants You\'ve Ordered From. </h2><hr>';
 				$r = $user->getRatings();
 				if($r){
 					for($i=0; $i<count($user->Rests); $i++){
@@ -99,8 +100,7 @@ $user = new User($_SESSION['userID']);
                     },  
                     success:function(data)  
                      {  
-                     	alert("Review is done!");
-                     	//$('#'+$table).html(data.newtable);
+                     	//alert("Review is done!");
                      },
     				error: function (jqXHR, exception) {
 				        var msg = '';
