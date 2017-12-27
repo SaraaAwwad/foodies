@@ -62,7 +62,7 @@ $shopping_session = "shoppingcart".$place;
 						<tr>
 						<td style="width: 70%;">
 							<div>
-								<img src="../css/images/'.$allProd[$i]['Image'].'" width="100" height="100">
+								<img src="'.$allProd[$i]['Image'].'" width="100" height="100">
 							</div>
 							<div class="right-info"> 
 								<h2 id="Name'.$allProd[$i]['ID'].'">'.$allProd[$i]['Name'].'</h2>

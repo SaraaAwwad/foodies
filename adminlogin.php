@@ -3,14 +3,13 @@ session_start();
 require("classes/admin.php");
 ?>
 <?php 
-$admin = new Admin;
 
 if (isset($_POST['loginbtn']))
     {
 
 	 			$em = test_input($_POST["emailIn"]);
 				$psw = test_input($_POST["pswIn"]);
-				if($admin->login($em, $psw)){
+				if(Admin::login($em, $psw)){
 					header('Location: admin/AdminPage.php');
 					//exit();
 				}else{
