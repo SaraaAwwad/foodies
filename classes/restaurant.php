@@ -65,6 +65,7 @@ class Restaurant{
 
 	public function insertInfo($name, $hot, $fees, $time, $image,$adminid,$status){
 		$dbobj = new dbconnect;
+		$name = $dbobj->test_input($name);
 		$image = $dbobj->test_input($image);
 		$sql = "INSERT INTO restaurant (Name, Hotline, DelvFees, DelvTime, Image, AdminID, Status) VALUES ('$name', '$hot' , '$fees', '$time', '$image', '$adminid', '$status')";
 		$result = $dbobj->insertsql($sql);
