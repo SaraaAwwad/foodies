@@ -22,6 +22,7 @@ class Restaurant{
 	public $Areas = array();
 	private $dbobj;
     public $GetS = array();
+    public $Rating;
 
 	public function __construct($id=""){
 		$this->dbobj = new dbconnect;
@@ -39,9 +40,17 @@ class Restaurant{
       return $result;
 	}
 
+/*	public function updateInfo($id, $name, $hot, $fees, $time, $image,$adminid){
+		$name = $this->dbobj->test_input($name);
+		$hot = $this->dbobj->test_input($hot);
+		$fees = $this->dbobj->test_input($fees);
+		$time = $this->dbobj->test_input($time);
+		$image = $this->dbobj->test_input($image);
+*/
 
 	Static function updateInfo($id,$name, $hot, $fees, $time, $image,$adminid){
 		$dbobj = new dbconnect;
+
 		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time', Image='$image' WHERE ID='$id'";
 		$res = $dbobj->executesql2($sql);
 		if($res){
@@ -78,6 +87,7 @@ class Restaurant{
 		if($userinfo){
 			$row = mysqli_fetch_array($userinfo);
 			$this->ID = $row['ID'];
+			$this->Rating = $this->getAvgRating();
 			$this->Name = $row['Name'];
 			$this->Hotline = $row['Hotline'];
 			$this->DelvFees = $row['DelvFees'];
@@ -188,6 +198,18 @@ class Restaurant{
 			$this->Name= $row['Name'];
 		}
 	return $this->Name;
+	}
+
+	public function getAvgRating(){
+		$sql = "SELECT AVG(Rating) FROM reviews WHERE RestID = '$this->ID'";
+		$result = $this->dbobj->selectsql($sql);
+
+		if($result){
+			$row = mysqli_fetch_array($result);
+			return $row['AVG(Rating)'];
+		}else{
+			return 0;
+		}
 	}
 
 }
