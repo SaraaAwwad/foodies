@@ -66,7 +66,7 @@ $allRest = $rest->getRestaurants();
 			for($i=0; $i<count($allRest); $i++){ ?>
             <tr id="row1">
             <td class="tdID"><strong><?php echo $allRest[$i]['ID'];?></strong></td>
-			<td><img src="../css/images/<?php echo $allRest[$i]['Image'];?>" width="50" height="50"></td>
+			<td><img src="<?php echo $allRest[$i]['Image'];?>" width="50" height="50"></td>
             <td><?php echo '<a class = "anchor" href="allproducts.php?id='.$allRest[$i]['ID'].'"> '.$allRest[$i]['Name'].'</a>';?></td>
 			<td><?php echo $allRest[$i]['Hotline'];?></td>
 			<td><?php echo $allRest[$i]['DelvFees'];?></td>

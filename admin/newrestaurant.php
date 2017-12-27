@@ -26,15 +26,15 @@ $areato = new Area;
 <div class="main2" >
 <div class="container" id="showcase">
     <h1 id="Profileh">Add Restaurant</h1>
-	<ul class="breadcrumb">
-	<i class="fa fa-home"></i>
+  <ul class="breadcrumb">
+  <i class="fa fa-home"></i>
   <li><a href="../admin/AdminPage.php">Admin</a></li>
   <li>Restaurants</li>
   <li><a href="../admin/addrestaurant.php">Manage</a></li>
   <li>Add</li>
 </ul>
-	
-<form action="" method="POST">
+  
+<form action="" method="POST" enctype="multipart/form-data">
 <b id="namelink">Restaurant Name</b><br>
 <input type="text" name="namearea" id="restarea"><br>
 <b id="namelink">Hotline</b><br>
@@ -43,8 +43,9 @@ $areato = new Area;
 <input type="text" name="feesarea" id="restarea"><br>
 <b id="namelink">Delivery Time</b><br>
 <input type="text" name="timearea" id="restarea"><br>
-<b id="namelink">Image (With its Extension)</b><br>
-<input type="text" name="imagearea" id="restarea"><br>
+<b id="namelink">Image (PNG pr JPG)</b><br>
+<input type="hidden" name="MAX_SIZE_FILE" value="200000" />
+<input id = "myimage" type="file" name="myimage" accept=".jpg, .jpeg, .png"/><br>
 <b id="namelink">Status</b><br>
 <input type="radio" name="activation" value="1" checked> Active
 <input type="radio" name="activation" value="0"> Inactive<br>
@@ -70,15 +71,20 @@ $areato = new Area;
 
 <?php
 if(isset($_POST['update'])){
-	$a = $_POST['namearea'];
-	$b = $_POST['hotarea'];
-	$c = $_POST['feesarea'];
-	$d = $_POST['timearea'];
-	$e = $_POST['imagearea'];
+  $a = $_POST['namearea'];
+  $b = $_POST['hotarea'];
+  $c = $_POST['feesarea'];
+  $d = $_POST['timearea'];
   $f = $_SESSION['adminID'];
   $g = $_POST['activation'];
-  $resultid = $rest->insertInfo($a,$b,$c,$d,$e,$f,$g);
-  
+
+  $folder= dirname(dirname(__FILE__)) ."\css\images\\";
+  $upload_image=$_FILES['myimage']['name'];
+  move_uploaded_file($_FILES['myimage']['tmp_name'], "$folder".$_FILES['myimage']['name']);
+  $images = '../css/images/'.$_FILES['myimage']['name'].'';
+
+  $resultid = $rest->insertInfo($a,$b,$c,$d,$images,$f,$g);
+
   if(isset($_POST['test1'])){
   foreach ($_POST['test1'] as $selectedOption)
   { $cuisine->updateCuisine($resultid,$selectedOption); }}

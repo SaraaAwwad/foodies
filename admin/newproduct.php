@@ -33,15 +33,16 @@ $prod = new Product;
 </ul>
 
 	
-<form action="" method="POST">
+<form action="" method="POST"  enctype="multipart/form-data">
 <b id="namelink">Product Name</b><br>
 <input type="text" name="namearea" id="restarea"><br>
 <b id="namelink">Description</b><br>
 <textarea rows="10" name="desarea" id="restarea" cols="50"></textarea><br>
 <b id="namelink">Category</b><br>
 <input type="text" name="catarea" id="restarea"><br>
-<b id="namelink">Image (With its Extension)</b><br>
-<input type="text" name="imagearea" id="restarea"><br>
+<b id="namelink">Image</b><br>
+<input type="hidden" name="MAX_SIZE_FILE" value="200000" />
+<input id = "myimage" type="file" name="myimage" accept="image/*"/><br>
 <b id="namelink">Status</b><br>
 <input type="radio" name="activation" value="1" checked> Active
 <input type="radio" name="activation" value="0"> Inactive<br>
@@ -61,7 +62,6 @@ if(isset($_POST['update'])){
 	$aname = $_POST['namearea'];
 	$bdes = $_POST['desarea'];
 	$ccat = $_POST['catarea'];
-	$dimage = $_POST['imagearea'];
   $estatus = $_POST['activation'];
   $frest = $_GET['id'];
 	$small = $_POST['smallarea'];
@@ -70,7 +70,12 @@ if(isset($_POST['update'])){
   $mediumv = $_POST['mediumvalue'];
   $large = $_POST['largearea'];
   $largev = $_POST['largevalue'];
-  $resultid = $prod->InsertInfo($aname,$bdes,$ccat,$dimage,$estatus,$frest);
+  $folder= dirname(dirname(__FILE__)) ."\css\images\\";
+  $upload_image=$_FILES['myimage']['name'];
+  move_uploaded_file($_FILES['myimage']['tmp_name'], "$folder".$_FILES['myimage']['name']);
+  $images = '../css/images/'.$_FILES['myimage']['name'].'';
+
+  $resultid = $prod->InsertInfo($aname,$bdes,$ccat,$images,$estatus,$frest);
 
   if(isset($_POST['smallvalue']))
   {

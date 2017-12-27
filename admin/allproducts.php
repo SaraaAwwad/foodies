@@ -66,7 +66,7 @@ $allProd = $prod->getProduct1($place);
 			for($i=0; $i<count($allProd); $i++){ ?>
             <tr id="row1">
             <td><strong><?php echo $allProd[$i]['ID'];?></strong></td>
-			<td><img src="../css/images/<?php echo $allProd[$i]['Image'];?>" width="50" height="50"></td>
+			<td><img src="<?php echo $allProd[$i]['Image'];?>" width="50" height="50"></td>
             <td><strong><?php echo $allProd[$i]['Name']; ?></strong></td>
 			<td><?php echo $allProd[$i]['Description'];?></td>
 			<td><?php echo $allProd[$i]['Category'];?></td>
