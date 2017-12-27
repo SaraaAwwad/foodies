@@ -72,9 +72,9 @@ function checkVal(event){
 
 function checkNum(){
 	var x = numTxt.value;
-	var re = /^\d+$/;
+	var re = /^\+\d+$/;
 
-	if (x.length < 11 || re.test(x)==false){
+	if (x.length > 15 || re.test(x)==false){
 		numTxt.style.borderWidth = "3px";
 		numTxt.style.borderColor = "#ff4d4d";
 		numTxt.style.backgroundColor = "#ffcccc";
@@ -145,7 +145,7 @@ function checkInfo(evt){
 		return true;
 
 	}else{
-		document.getElementById("err").innerHTML="Please enter valid values!";
+		document.getElementById("err").innerHTML="Please enter valid values!(Numbers Should have : '+ international call prefix' )";
 		evt.preventDefault();
 		return false;
 	}

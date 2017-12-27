@@ -18,7 +18,7 @@ require("classes/user.php");
 			$bld = test_input($_POST["buildSU"]);
 			$rep = test_input($_POST["psw-repeat"]);
 			$phonenum = test_input($_POST["phonenum"]);
-
+			$phonenum ='+2'.$phonenum;
 			$storePw = password_hash($psw, PASSWORD_BCRYPT, array('cost'=>8));
 
 				if($user->signup($storePw, $em, $fn, $ln , $ar, $st, $bld, $phonenum)){

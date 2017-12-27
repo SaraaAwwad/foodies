@@ -22,7 +22,7 @@ $id = null;
 		if($user->updateInfo($id, $fn, $ln, $bld, $st, $ar, $ph)){
 			
 		}else{
-			echo 'fail';
+			echo 'fail, pls try again';
 		}
 	}
 
