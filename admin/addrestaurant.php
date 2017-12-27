@@ -66,7 +66,7 @@ $allRest = Restaurant::getRestaurants();
 			for($i=0; $i<count($allRest); $i++){ ?>
             <tr id="row1">
             <td class="tdID"><strong><?php echo $allRest[$i]->ID;?></strong></td>
-			<td><img src="../css/images/<?php echo $allRest[$i]->Image;?>" width="50" height="50"></td>
+			<td><img src="<?php echo $allRest[$i]->Image;?>" width="50" height="50"></td>
             <td><?php echo '<a class = "anchor" href="allproducts.php?id='.$allRest[$i]->ID.'"> '.$allRest[$i]->Name.'</a>';?></td>
 			<td><?php echo $allRest[$i]->Hotline;?></td>
 			<td><?php echo $allRest[$i]->DelvFees;?></td>
@@ -77,16 +77,17 @@ $allRest = Restaurant::getRestaurants();
 			<td><?php for ($j=0; $j<count($allRest[$i]->Areas[$i]); $j++){ ?>
 			<span><?php echo $allRest[$i]->Areas[$i][$j]; ?></span><br>
 	        <?php } ?></td>
+
 	        <?php if($allRest[$i]->Status == '1' ){
 	        echo '<td id="active"> Active </td>'; }
 	        else if ($allRest[$i]->Status == '0'){
 	        echo '<td id="inactive"> Inactive</td>';} ?>
-			<td align="center"><?php echo '<a class = "butt" href="editForm.php?id='.$allRest[$i]->ID.'">Update</a>'; ?><br>
 
+			<td align="center"><?php echo '<a class = "butt" href="editForm.php?id='.$allRest[$i]->ID.'">Update</a>'; ?><br>
             <?php if($allRest[$i]->Status == '1' ){
-	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Inactivate</a></td>'; }else if ($allRest[$i]->Status == '0'){
-	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Activate</a></td>'; } ?><br></td>
-           <!-- <td align="center"><?php echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Delete</a>'; ?></td> -->
+	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Inactivate</a></td>'; }
+	        else if ($allRest[$i]->Status == '0'){
+	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Activate</a></td>'; } ?></td>
 			</tr>
 		  <?php } ?>
         </tbody>

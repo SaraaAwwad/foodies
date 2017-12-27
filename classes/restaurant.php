@@ -40,34 +40,45 @@ class Restaurant{
       return $result;
 	}
 
-	public function updateInfo($id, $name, $hot, $fees, $time, $image,$adminid){
+/*	public function updateInfo($id, $name, $hot, $fees, $time, $image,$adminid){
 		$name = $this->dbobj->test_input($name);
 		$hot = $this->dbobj->test_input($hot);
 		$fees = $this->dbobj->test_input($fees);
 		$time = $this->dbobj->test_input($time);
 		$image = $this->dbobj->test_input($image);
+*/
+
+	Static function updateInfo($id,$name, $hot, $fees, $time, $image,$adminid){
+		$dbobj = new dbconnect;
+
 		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time', Image='$image' WHERE ID='$id'";
-		$res = $this->dbobj->executesql2($sql);
+		$res = $dbobj->executesql2($sql);
 		if($res){
-			$this->getInfo($id);
 			return true;
 		}else{
 			return false;
 		}
 	}
 
-	public function insertInfo($name, $hot, $fees, $time, $image,$adminid,$status){
-		$name = $this->dbobj->test_input($name);
-		$hot = $this->dbobj->test_input($hot);
-		$fees = $this->dbobj->test_input($fees);
-		$time = $this->dbobj->test_input($time);
-		$image = $this->dbobj->test_input($image);
-
-		$sql = "INSERT INTO restaurant (Name, Hotline, DelvFees, DelvTime, Image, AdminID, Status) VALUES ('$name', '$hot' , '$fees', '$time', '$image', '$adminid', '$status')";
-		$result = $this->dbobj->insertsql($sql);
-		return $result;
+	Static function updateInfoWithoutImage($id,$name, $hot, $fees, $time,$adminid){
+		$dbobj = new dbconnect;
+		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time' WHERE ID='$id'";
+		$res = $dbobj->executesql2($sql);
+		if($res){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
+
+	public function insertInfo($name, $hot, $fees, $time, $image,$adminid,$status){
+		$dbobj = new dbconnect;
+		$image = $dbobj->test_input($image);
+		$sql = "INSERT INTO restaurant (Name, Hotline, DelvFees, DelvTime, Image, AdminID, Status) VALUES ('$name', '$hot' , '$fees', '$time', '$image', '$adminid', '$status')";
+		$result = $dbobj->insertsql($sql);
+		return $result;
+    }
 
 	public function getInfo($id){
 		$sql = "SELECT * FROM restaurant Where ID = '$id' ";
@@ -120,7 +131,6 @@ class Restaurant{
 		while ($row = mysqli_fetch_assoc($result)){
 
 			$RestObj= new Restaurant($row["ID"]);
-
 			$RestObj->type[$i] = array();
 			$RestObj->type[$i] = $cuisine->getType($row['ID']);
 			$RestObj->Areas[$i] = $areas->getType($row['ID']);
@@ -152,13 +162,11 @@ class Restaurant{
 	}
 	
 
-	public function InsertRest($name, $cuisine, $delvarea, $hotline, $area, $street, $building, $img){
+	/*public function InsertRest($name, $cuisine, $delvarea, $hotline, $area, $street, $building, $img){
 		$sql = "INSERT INTO user (Password, Email, FName, LName, Area, Street, Building) VALUES ('$password', '$email' , '$fname', '$lname', '$area', '$street', '$building')";
-
 		$qresult = $this->dbobj->executesql($sql);
-
 		return $qresult;
-	}
+	}*/
 
 	Static function getByArea($ar){
 		$cuisine = new Cuisine;

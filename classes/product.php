@@ -19,11 +19,14 @@ class Product{
 	public $ProdByProdID = array();
 	public $GetS = array();
 
-	public function __construct(){
+
+    public function __construct($id=""){
 		$this->dbobj = new dbconnect;
 		$this->ProdVal = new ProductValue;
+		if($id!=""){
+			$this->getInfo($id);
+		}
 	}
-
 
 public function getallCount(){
 	  $sql="SELECT ID FROM products";
@@ -32,7 +35,7 @@ public function getallCount(){
 	}
 
 
-public function getInfo($id){
+    public function getInfo($id){
 		$sql = "SELECT * FROM products Where ID = '$id' ";
 		$userinfo = $this->dbobj->selectsql($sql);
 		if($userinfo){
@@ -48,11 +51,6 @@ public function getInfo($id){
 	}
 
 	public function updateInfo($id,$name,$des,$cat,$image){
-		/* $name = $this->dbobj->test_input($name);
-		$hot = $this->dbobj->test_input($des);
-		$fees = $this->dbobj->test_input($cat);
-		$image = $this->dbobj->test_input($image); */
-
 		$sql = "UPDATE products SET Name= '$name' , Description='$des', Category='$cat', Image = '$image' WHERE ID='$id'";
 		$res = $this->dbobj->executesql2($sql);
 		if($res){
@@ -63,6 +61,16 @@ public function getInfo($id){
 		}
 	}
 
+    public function updateInfoWithoutImage($id,$name,$des,$cat){
+		$sql = "UPDATE products SET Name= '$name' , Description='$des', Category='$cat' WHERE ID='$id'";
+		$res = $this->dbobj->executesql2($sql);
+		if($res){
+			$this->getInfo($id);
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 	public function InsertInfo($aname,$bdes,$ccat,$dimage,$estatus,$frest){
 		$sql = "INSERT INTO products (Name, Description, Image, Category, Status, RestID) VALUES ('$aname', '$bdes' , '$dimage', '$ccat', '$estatus', '$frest')";
@@ -119,7 +127,7 @@ public function getInfo($id){
 		return $this->ProdByRestID;
 	}
 
-    public function getProduct1($restID){
+    public function getAllProducts($restID){
 		$sql = "SELECT * FROM products Where RestID = '$restID'";
 		$result = $this->dbobj->selectsql($sql);
 		$i=0;
