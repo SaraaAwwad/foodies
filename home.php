@@ -3,7 +3,6 @@ session_start();
 require("classes/user.php");
 ?>
 <?php 
-	$user = new User();
 	$upmode = 0;
 	$inmode = 0;
 
@@ -21,7 +20,7 @@ require("classes/user.php");
 			$phonenum ='+2'.$phonenum;
 			$storePw = password_hash($psw, PASSWORD_BCRYPT, array('cost'=>8));
 
-				if($user->signup($storePw, $em, $fn, $ln , $ar, $st, $bld, $phonenum)){
+				if(User::signup($storePw, $em, $fn, $ln , $ar, $st, $bld, $phonenum)){
 					header('Location: user/userhome.php');
 	     		}else{
 					outputsignup('block');
@@ -39,7 +38,7 @@ require("classes/user.php");
 	 			$em = test_input($_POST["emailIn"]);
 				$psw = test_input($_POST["pswIn"]);
 
-				if($user->login($em, $psw)){
+				if(User::login($em, $psw)){
 					header('Location: user/userhome.php');
 					//exit();
 				}else{

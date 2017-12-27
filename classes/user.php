@@ -21,25 +21,27 @@ class User{
 		}
 	}
 
-	public function signup($password, $email, $fname, $lname, $area, $street, $building, $phone){
+	Static function signup($password, $email, $fname, $lname, $area, $street, $building, $phone){
+		
+		$dbobj = new dbconnect;
 
-		$res = $this->isExist($email);
+		$res = self::isExist($email);
 		if($res){
 			return false;
 		}else{	
 		$sql = "INSERT INTO user (Password, Email, FName, LName, Area, Street, Building, PhoneNum) VALUES ('$password', '$email' , '$fname', '$lname', '$area', '$street', '$building' ,'$phone')";
 
-		$qresult = $this->dbobj->insertsql($sql);
+		$qresult = $dbobj->insertsql($sql);
 		session_start();
 		$_SESSION["userID"] = $qresult;
 		return true;
 		}
 	}
 
-	private function isExist($email){
-
+	Static function isExist($email){
+		$dbobj = new dbconnect;
 		$sql = "SELECT * FROM user Where Email = '$email' ";
-		$qresult = $this->dbobj->selectsql($sql);
+		$qresult = $dbobj->selectsql($sql);
 
 		if($qresult->num_rows > 0){
 			return $qresult;
@@ -48,8 +50,9 @@ class User{
 		}
 	}
 
-	public function login($em, $pw){
-		$result = $this->isExist($em);
+	Static function login($em, $pw){
+
+		$result = self::isExist($em);
 
 		if ($result){
 			$row = mysqli_fetch_array($result);
