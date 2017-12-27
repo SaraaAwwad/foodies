@@ -23,10 +23,13 @@ class Restaurant{
 	private $dbobj;
     public $GetS = array();
 
-	public function __construct(){
+	public function __construct($id=""){
 		$this->dbobj = new dbconnect;
 		$this->cuisine = new Cuisine();
 		$this->areas = new Area();
+		if($id!=""){
+			$this->getInfo($id);
+		}
 	}
 
 
@@ -103,26 +106,27 @@ class Restaurant{
 		}
 	}
 
-    public function getRestaurants(){
+    Static function getRestaurants(){
+    	$dbobj = new dbconnect;
+    	$cuisine = new Cuisine;
+    	$areas = new Area;
+
 		$sql = "SELECT * FROM restaurant";
-		$result = $this->dbobj->selectsql($sql);
+		$result = $dbobj->selectsql($sql);
 		$i=0;
+		$Rests = array();
+
 		while ($row = mysqli_fetch_assoc($result)){
-			$this->RestByRestID[$i] = array();
-			$this->type[$i] = array();
-			$this->Areas[$i] = array();
-			$this->RestByRestID[$i]['ID'] = $row['ID'];
-			$this->type[$i] = $this->cuisine->getType($row['ID']);
-			$this->Areas[$i] = $this->areas->getType($row['ID']);
-			$this->RestByRestID[$i]['Image'] = $row['Image'];
-			$this->RestByRestID[$i]['Name'] = $row['Name'];
-			$this->RestByRestID[$i]['Hotline'] = $row['Hotline'];
-			$this->RestByRestID[$i]['DelvFees'] = $row['DelvFees'];
-			$this->RestByRestID[$i]['DelvTime'] = $row['DelvTime'];
-			$this->RestByRestID[$i]['Status'] = $row['Status'];
+
+			$RestObj= new Restaurant($row["ID"]);
+
+			$RestObj->type[$i] = array();
+			$RestObj->type[$i] = $cuisine->getType($row['ID']);
+			$RestObj->Areas[$i] = $areas->getType($row['ID']);
+			$Rests[$i]=$RestObj;
 			$i++;
 		}
-		return $this->RestByRestID;
+		return $Rests;
 	}
 
 	public function getSelect($id){
@@ -155,25 +159,24 @@ class Restaurant{
 		return $qresult;
 	}
 
-	public function getByArea($ar){
+	Static function getByArea($ar){
+		$cuisine = new Cuisine;
+		$dbobj= new dbconnect;
 		$sql="SELECT restaurant.ID, restaurant.Name, restaurant.Hotline, restaurant.DelvTime, restaurant.DelvFees, restaurant.Image FROM restaurant INNER JOIN areas ON areas.RestID = restaurant.ID Where restaurant.Status = 1 AND areas.Area= '$ar' ";
-		$result = $this->dbobj->selectsql($sql);
+		$result = $dbobj->selectsql($sql);
 		$i=0;
-		while ($row = mysqli_fetch_assoc($result)){
-			$this->RestByArea[$i] = array();
-			$this->type[$i] = array();
+		$Rests = array();
 
-			$this->RestByArea[$i]['ID'] = $row['ID'];
-			$this->type[$i] = $this->cuisine->getType($row['ID']);
+		while($row = mysqli_fetch_assoc($result)){
+			$RestObj= new Restaurant($row["ID"]);
 
-			$this->RestByArea[$i]['Name'] = $row['Name'];
-			$this->RestByArea[$i]['Hotline'] = $row['Hotline'];
-			$this->RestByArea[$i]['DelvTime'] = $row['DelvTime'];
-			$this->RestByArea[$i]['DelvFees'] = $row['DelvFees'];
-			$this->RestByArea[$i]['Image'] = $row['Image'];
+			$RestObj->type[$i] = array();
+			$RestObj->type[$i] = $cuisine->getType($row['ID']);
+
+			$Rests[$i]=$RestObj;
 			$i++;
 		}
-		return $this->RestByArea;
+		return $Rests;
 	}
 
 	public function getName($rid){

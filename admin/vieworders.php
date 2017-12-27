@@ -2,10 +2,9 @@
 
 require_once("/../classes/orders.php");
 session_start();
-$order = new Order;
+
 $allorders = array();
-$allorders = $order->getOrders();
-$orders = new Order;
+$allorders = Order::getOrders();
 
 ?>
 <!DOCTYPE html>
@@ -62,14 +61,14 @@ $orders = new Order;
 
 			for($i=0; $i<count($allorders); $i++){ 
            	echo' <tr id="row1">';
-           	echo ' <td class="tdID"><strong>'. $allorders[$i]['ID'].'</strong></td>';
-			echo'<td>'. $allorders[$i]['UserID'].'</td>';
-			echo'<td><strong>'. $allorders[$i]['Name'].'</strong></td>';
-			echo'<td>'.$allorders[$i]['Area'].'</td>';
-			echo'<td>'.$allorders[$i]['Street'].'</td>';
-			echo'<td>'.$allorders[$i]['Building'].'</td>';
-			echo'<td>'.$allorders[$i]['DateOrder'].'</td>';
-			echo'<td>'.$allorders[$i]['TotalPrice'].'</td>';
+           	echo ' <td class="tdID"><strong>'. $allorders[$i]->ID.'</strong></td>';
+			echo'<td>'. $allorders[$i]->UserID.'</td>';
+			echo'<td>'. $allorders[$i]->RestName.'</td>';
+			echo'<td>'.$allorders[$i]->Area.'</td>';
+			echo'<td>'.$allorders[$i]->Street.'</td>';
+			echo'<td>'.$allorders[$i]->Building.'</td>';
+			echo'<td>'.$allorders[$i]->DateOrder.'</td>';
+			echo'<td>'.$allorders[$i]->TotalPrice.'</td>';
 
 			echo'</tr>';
 		}

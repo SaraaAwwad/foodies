@@ -3,9 +3,9 @@ require_once("/../classes/restaurant.php");
 require_once("/../classes/cuisine.php");
 require_once("/../classes/areas.php");
 session_start();
-$rest = new Restaurant;
+
 $allRest = array();
-$allRest = $rest->getRestaurants();
+$allRest = Restaurant::getRestaurants();
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,28 +65,28 @@ $allRest = $rest->getRestaurants();
 		<?php 
 			for($i=0; $i<count($allRest); $i++){ ?>
             <tr id="row1">
-            <td class="tdID"><strong><?php echo $allRest[$i]['ID'];?></strong></td>
-			<td><img src="../css/images/<?php echo $allRest[$i]['Image'];?>" width="50" height="50"></td>
-            <td><?php echo '<a class = "anchor" href="allproducts.php?id='.$allRest[$i]['ID'].'"> '.$allRest[$i]['Name'].'</a>';?></td>
-			<td><?php echo $allRest[$i]['Hotline'];?></td>
-			<td><?php echo $allRest[$i]['DelvFees'];?></td>
-			<td><?php echo $allRest[$i]['DelvTime'];?></td>
-			<td><?php for ($j=0; $j<count($rest->type[$i]); $j++){ ?>
-			<span><?php echo $rest->type[$i][$j]; ?></span><br>
+            <td class="tdID"><strong><?php echo $allRest[$i]->ID;?></strong></td>
+			<td><img src="../css/images/<?php echo $allRest[$i]->Image;?>" width="50" height="50"></td>
+            <td><?php echo '<a class = "anchor" href="allproducts.php?id='.$allRest[$i]->ID.'"> '.$allRest[$i]->Name.'</a>';?></td>
+			<td><?php echo $allRest[$i]->Hotline;?></td>
+			<td><?php echo $allRest[$i]->DelvFees;?></td>
+			<td><?php echo $allRest[$i]->DelvTime;?></td>
+			<td><?php for ($j=0; $j<count($allRest[$i]->type[$i]); $j++){ ?>
+			<span><?php echo $allRest[$i]->type[$i][$j]; ?></span><br>
 	        <?php } ?>
-			<td><?php for ($j=0; $j<count($rest->Areas[$i]); $j++){ ?>
-			<span><?php echo $rest->Areas[$i][$j]; ?></span><br>
+			<td><?php for ($j=0; $j<count($allRest[$i]->Areas[$i]); $j++){ ?>
+			<span><?php echo $allRest[$i]->Areas[$i][$j]; ?></span><br>
 	        <?php } ?></td>
-	        <?php if($allRest[$i]['Status'] == '1' ){
+	        <?php if($allRest[$i]->Status == '1' ){
 	        echo '<td id="active"> Active </td>'; }
-	        else if ($allRest[$i]['Status'] == '0'){
+	        else if ($allRest[$i]->Status == '0'){
 	        echo '<td id="inactive"> Inactive</td>';} ?>
-			<td align="center"><?php echo '<a class = "butt" href="editForm.php?id='.$allRest[$i]['ID'].'">Update</a>'; ?><br>
+			<td align="center"><?php echo '<a class = "butt" href="editForm.php?id='.$allRest[$i]->ID.'">Update</a>'; ?><br>
 
-            <?php if($allRest[$i]['Status'] == '1' ){
-	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]['ID'].'">Inactivate</a></td>'; }else if ($allRest[$i]['Status'] == '0'){
-	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]['ID'].'">Activate</a></td>'; } ?><br></td>
-           <!-- <td align="center"><?php echo '<a class = "butt" href="delete.php?id='.$allRest[$i]['ID'].'">Delete</a>'; ?></td> -->
+            <?php if($allRest[$i]->Status == '1' ){
+	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Inactivate</a></td>'; }else if ($allRest[$i]->Status == '0'){
+	        echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Activate</a></td>'; } ?><br></td>
+           <!-- <td align="center"><?php echo '<a class = "butt" href="delete.php?id='.$allRest[$i]->ID.'">Delete</a>'; ?></td> -->
 			</tr>
 		  <?php } ?>
         </tbody>

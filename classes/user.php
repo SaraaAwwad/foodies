@@ -131,8 +131,6 @@ class User{
 		}
 	}
 
-
-    //should be static func.
     Static function getallCount(){
 	  $sql="SELECT UID FROM user";
 	  $dbobj= new dbconnect;
