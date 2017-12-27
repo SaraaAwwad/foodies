@@ -1,12 +1,12 @@
 <?php
 session_start();
 require("../classes/user.php");
-$user = new User;
+$user = null;
 $id=null;
 
  if(isset($_SESSION['userID'])){
  	$id=$_SESSION['userID'];
-		$user->getInfo($id);
+		$user= new User($id);
 	}
 
 	if (isset($_POST['savepsw'])){
@@ -14,8 +14,8 @@ $id=null;
 		$old = $_POST["oldpw"];
 		$new = $_POST["newpw"];
 
-		if($user->updatePw($old, $new ,$id)){
-			echo 'success';
+		if($user->updatePw($old, $new)){
+		//	echo 'success';
 		}else{
 			echo 'fail';
 		}

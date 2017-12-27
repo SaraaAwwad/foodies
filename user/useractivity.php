@@ -24,7 +24,6 @@ session_start();
 					<li><a href="userprofile.php">My Account</a></li>
 					<li><a href="useractivity.php" class="sideactive">View Activity</a></li>
 					<li><a href="useractivity.php" class="sub subactive">View Reviews</a></li>
-					<li><a href="useraddress.php" class="sub">Address Book</a></li>
 					<li><a href="userhistory.php">View History</a></li>
 				</ul>
 			</div>

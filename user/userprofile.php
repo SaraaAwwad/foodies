@@ -2,12 +2,12 @@
 session_start();
 require("../classes/user.php");
 
-$user = new User;
+$user=null;
 $id = null;
 
  if(isset($_SESSION['userID'])){
  		$id=$_SESSION['userID'];
-		$user->getInfo($id);
+		$user = new User($id);
 	}
 
 	if (isset($_GET['saveInfo'])){
@@ -19,7 +19,7 @@ $id = null;
 		$ar = $_GET["areaName"];
 		$ph = $_GET["phoneName"];
 
-		if($user->updateInfo($id, $fn, $ln, $bld, $st, $ar, $ph)){
+		if($user->updateInfo( $fn, $ln, $bld, $st, $ar, $ph)){
 			
 		}else{
 			echo 'fail, pls try again';

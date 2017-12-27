@@ -109,7 +109,7 @@ $shopping_session = "shoppingcart".$place;
                             	?>
                             		<tr>  
                                          <td><?php echo $values["product_name"]; ?></td>  
-                                         <td><input type="number" min="1" class="quantity"  id ="qt.<?php echo $values["product_id"] ?>" value="<?php echo $values["product_quantity"]?>"> </td> 
+                                         <td><input type="number" min="1" class="quantity"  id ="qt.<?php echo $values["product_id"] ?>" value="<?php echo $values["product_quantity"]?>"></td> 
 
                                          <td align="right">EGP <?php echo $values["product_price"]; ?></td>  
                                          <td align="right">EGP <?php echo number_format($values["product_quantity"] * $values["product_price"], 2); ?></td>  
