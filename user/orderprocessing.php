@@ -65,7 +65,8 @@ if(isset($_POST["Rest"])){
 			$_SESSION[$sdone]="yes";
 			header("Location: orderdone.php?Rest=$place",TRUE,303);
 		}else{
-			header("Location: userhome.php",TRUE,303);
+			//header("Location: userhome.php",TRUE,303);
+			header("Location: orderdone.php?Rest=$place",TRUE,303);
 		}
 	}
 

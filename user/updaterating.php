@@ -3,7 +3,7 @@ require_once("../classes/rating.php");
 session_start();
 header('Content-Type: application/json');
 
-$newtable= '';
+$newtable = '';
 
 if(isset($_POST["rating_id"]))  { 
 
@@ -17,15 +17,42 @@ if(isset($_POST["rating_id"]))  {
 		//insert here in table orders 
 		$review = new Review();
 		$newid = $review->insertRating($user,$rest,$value);
+		
+		if($newid){
+			$newtable .= '<div id="table'.$newid.'_'.$rest.'">';
 
+				for($i=0; $i<$value; $i++){
+					$newtable .= '<div class="star ratings_stars" id="'.$newid.'_'.$rest.'_'.$i.'""></div>';
+				}
+
+				for($i; $i<5; $i++){
+					$newtable .= '<div class="star ratings_vote" id="'.$newid.'_'.$rest.'_'.$i.'""></div>';
+				}
+			$newtable .= '</div>';	
+		}
+
+		
 	}else{
 		//update here 
 		$review = new Review($reviewid);
 		$updated = $review->updateRating($value, $reviewid);
+		//$newtable .="sara";
+
+		if($updated){
+			$newtable .= '<div id="table'.$reviewid.'_'.$rest.'">';
+				for($i=0; $i<$value; $i++){
+					$newtable .= '<div class="star ratings_stars" id="'.$reviewid.'_'.$rest.'_'.$i.'""></div>';
+				}
+				for($i; $i<5; $i++){
+					$newtable .= '<div class="star ratings_vote" id="'.$reviewid.'_'.$rest.'_'.$i.'""></div>';
+				}
+			$newtable .= '</div>';
+		}
+
 	}
 
 	$output = array(  
-    	'newtable' => ""
+    	'newtable' => $newtable
     );    
  echo json_encode($output);   
 }

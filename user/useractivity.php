@@ -39,7 +39,7 @@ $user = new User($_SESSION['userID']);
 				
 				$r = $user->getRatings();
 				if($r){
-					echo '<h2 style="text-align:center;">You Can Find/Change Ratings You\'ve Made On Restaurants You\'ve Ordered From. </h2><hr>';
+					echo '<h2 id="tes" style="text-align:center;">View/Change Ratings You\'ve Made On Restaurants You\'ve Ordered From. </h2><hr>';
 					for($i=0; $i<count($user->Rests); $i++){
 						echo '<span> '.$user->Rests[$i]->Name.' </span>';
 						
@@ -72,10 +72,11 @@ $user = new User($_SESSION['userID']);
 <script>
 	$(document).ready(function(data){
 		
-		$('.star').click(function(){
+		 $(document).on('click', '.star', function() {
 
 			var rating_id = $(this).attr("id");
 			//alert(rating_id);
+			
 			var temp = rating_id.split("_"); // should contain restid_0->4
 
 			for(var i=0; i<=temp[temp.length-1]; i++){
@@ -90,7 +91,8 @@ $user = new User($_SESSION['userID']);
 				$("#"+temp[0]+"_"+temp[1]+"_"+i).removeClass('ratings_stars');	
 			}
 
-				$table = temp[0]+"_"+temp[1];
+			$table = "table"+temp[0]+"_"+temp[1];
+				
 
 		        $.ajax({  
                     url:"updaterating.php",  
@@ -101,7 +103,7 @@ $user = new User($_SESSION['userID']);
                     },  
                     success:function(data)  
                      {  
-                     	//alert("Review is done!");
+                     	$("#"+$table).replaceWith(data.newtable); 
                      },
     				error: function (jqXHR, exception) {
 				        var msg = '';
