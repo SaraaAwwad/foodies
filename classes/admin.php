@@ -4,23 +4,25 @@
 	class Admin{
 
 	public $ID;
-	public $Email;
-	public $Fname;
-	public $Lname;
-	public $CreationDate;
-	public $Image;
-	public $LastVisited;
-	public $Password;
-	public $dbobj;
+	private $Email;
+	private $FName;
+	private $LName;
+	private $CreationDate;
+	private $Image;
+	private $dbobj;
 
-	public function __construct(){
+	public function __construct($id=""){
 		$this->dbobj = new dbconnect;
+		if($id!="")
+		{	$this->ID=$id;
+			$this->getInfo($id);
+		}
 	}
 
-	public function isExist($email){
-
+	Static function isExist($email){
+		$dbobj = new dbconnect;
 		$sql = "SELECT * FROM admin Where Email = '$email' ";
-		$qresult = $this->dbobj->selectsql($sql);
+		$qresult = $dbobj->selectsql($sql);
 		if($qresult->num_rows > 0){
 			return $qresult;
 		}else{
@@ -28,70 +30,19 @@
 		}
 	}
 
-	public function login($em, $pw){
-		$result = $this->isExist($em);
+	Static function login($em, $pw){
+		$result = self::isExist($em);
 		if ($result){
 			$row = mysqli_fetch_array($result);
 			if($pw == $row['Password']) {
-				//try to comment it?
 				session_start();
 				$_SESSION["adminID"] = $row['ID'];
 				$_SESSION["adminImage"] = $row['Image'];
 				return true;
 			}
 		}
-		
 		return false;
 	}
-
-public function getSelect($id){
-		$sql = "SELECT * FROM admin Where ID = '$id' ";
-		$userinfo = $this->dbobj->selectsql($sql);
-		if($userinfo){
-			$row = mysqli_fetch_array($userinfo);
-			return $row;
-		}
-	}
-	/* public function updateInfo($id, $fn, $ln, $bld, $st, $ar){
-
-		$fn = $this->dbobj->test_input($fn);
-		$ln = $this->dbobj->test_input($ln);
-		$bld = $this->dbobj->test_input($bld);
-		$st = $this->dbobj->test_input($st);
-		$ar = $this->dbobj->test_input($ar);
-		
-		$sql = "UPDATE user SET FName= '$fn' ,LName='$ln',Area='$ar', Street= '$st', Building='$bld' WHERE UID='$id'";
-		$res = $this->dbobj->executesql2($sql);
-
-		if($res){
-			$this->getInfo($id);
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	public function updatePw($oldpw, $newpw, $id){
-		//trim data first
-		$old = $this->dbobj->test_input($oldpw);
-		$new = $this->dbobj->test_input($newpw);
-		$storePw = password_hash($new, PASSWORD_BCRYPT, array('cost'=>8));
-
-		if(!password_verify($old, $this->Password)){
-			return false;
-		}
-
-		$sql = "UPDATE user SET Password = '$storePw' WHERE UID='$id' ";
-		$res = $this->dbobj->executesql($sql);
-
-		if($res){
-			$this->getInfo($id);
-			return true;
-		}else{
-			return false;
-		}
-			
-	} */
 
 	public function getInfo($id){
 
@@ -99,14 +50,32 @@ public function getSelect($id){
 		$userinfo = $this->dbobj->selectsql($sql);
 		if($userinfo){
 			$row = mysqli_fetch_array($userinfo);
-			$this->Fname = $row['FName'];
-			$this->Lname = $row['LName'];
+			$this->FName = $row['FName'];
+			$this->LName = $row['LName'];
 			$this->Email = $row['Email'];
 			$this->CreationDate = $row['CreationDate'];
 			$this->Image = $row['Image'];
-			$this->LastVisited = $row['LastVisited'];
-			$this->Password = $row['Password'];
 		}
+	}
+
+	public function getFName(){
+		return $this->FName;
+	}
+
+	public function getLName(){
+		return $this->LName;
+	}
+
+	public function getEmail(){
+		return $this->Email;
+	}
+	
+	public function getCreationDate(){
+		return $this->CreationDate;
+	}
+
+	public function getImage(){
+		return $this->Image;
 	}
 }
 

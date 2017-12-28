@@ -5,17 +5,14 @@ require_once("/../classes/user.php");
 require_once("/../classes/restaurant.php");
 session_start();
 
-$order = new Order;
-$qresult = $order->getCount();
-$qresult2 = $order->getallCount();
+$qresult = Order::getCount();
+$qresult2 = Order::getallCount();
 
-$prod = new Product;
-$res = $prod->getallCount();
+$res = Product::getallCount();
 
 $allusers = User::getallCount();
 
-$restaurant = new Restaurant;
-$allrest = $restaurant->getallCount();
+$allrest = Restaurant::getallCount();
 ?>
 <!DOCTYPE html>
 <html>

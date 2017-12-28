@@ -7,12 +7,11 @@ class Product{
 	public $ID;
 	public $Name;
 	public $Description;
-	//public $DelvFees;
 	public $Status;
 	public $Image;
 	public $Category;
 	public $RestID;
-	public $values = array();
+	public $values;
 	private $ProdVal;
 	private $dbobj;
 	public $ProdByRestID = array();
@@ -28,9 +27,10 @@ class Product{
 		}
 	}
 
-public function getallCount(){
+	Static function getallCount(){
+	  $dbobj = new dbconnect;
 	  $sql="SELECT ID FROM products";
-	  $result=$this->dbobj->selectsql2($sql);
+	  $result=$dbobj->selectsql2($sql);
       return $result;
 	}
 
@@ -47,6 +47,7 @@ public function getallCount(){
 			$this->Category = $row['Category'];
 			$this->Status = $row['Status'];
 			$this->RestID = $row['RestID'];
+			$this->values = array();
 		}
 	}
 
@@ -78,20 +79,8 @@ public function getallCount(){
 		return $result;
 	}
 
-
-    public function getstatus($id){
-		$sql = "SELECT Status,RestID FROM products Where ID = '$id' ";
-		$userinfo = $this->dbobj->selectsql($sql);
-		while ($row = mysqli_fetch_assoc($userinfo)){
-			$this->GetS = array();
-			$this->GetS['Status'] = $row['Status'];
-			$this->GetS['RestID'] = $row['RestID'];
-		}
-		return $this->GetS;
-	}
-
-    public function changetoactive($status,$id){
-		$sql = "UPDATE products SET Status= '$status' WHERE ID='$id'";
+    public function changetoactive($status){
+		$sql = "UPDATE products SET Status= '$status' WHERE ID='$this->ID'";
 		$res = $this->dbobj->executesql2($sql);
 		if($res){
 			$this->getInfo($id);
@@ -107,24 +96,26 @@ public function getallCount(){
 		return $userinfo;
 	}
 
-	public function getProduct($restID){
+	Static function getProduct($restID){
+		//active products
+
+		$dbobj= new dbconnect;
+		//$ProdVal = new ProductValue;
+
 		$sql = "SELECT * FROM products Where RestID = '$restID' AND Status = 1 ";
-		$result = $this->dbobj->selectsql($sql);
-		
+		$result = $dbobj->selectsql($sql);
+		$Prods= array();
+
 		$i=0;
 
 		while ($row = mysqli_fetch_assoc($result)){
-			$this->ProdByRestID[$i] = array();
-			$this->values[$i] = array();
-
-			$this->ProdByRestID[$i]['ID'] = $row['ID'];
-			$this->values[$i] = $this->ProdVal->getValue($row['ID']);
-			$this->ProdByRestID[$i]['Image'] = $row['Image'];
-			$this->ProdByRestID[$i]['Name'] = $row['Name'];
-			$this->ProdByRestID[$i]['Description'] = $row['Description'];
+			$ProdObj = new Product($row['ID']);
+			$ProdObj->val = array();
+			$ProdObj->val = ProductValue::getAllValue($row['ID']);
+			$Prods[$i] = $ProdObj;
 			$i++;
 		}
-		return $this->ProdByRestID;
+		return $Prods;
 	}
 
     public function getAllProducts($restID){
@@ -145,6 +136,7 @@ public function getallCount(){
 		}
 		return $this->ProdByRestID;
 	}
+
 	public function getSelectProduct($id){
 		$sql = "SELECT * FROM products Where ID = '$id' ";
 		$userinfo = $this->dbobj->selectsql($sql);

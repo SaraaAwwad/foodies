@@ -2,9 +2,6 @@
 session_start();
 require("/../classes/admin.php");
 ?>
-<?php
-$admin = new Admin;
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,18 +22,19 @@ $admin = new Admin;
 
 <?php 
 $id = $_SESSION['adminID'];
-$result = $admin->getSelect($id);
-$fname = $result['FName'];
-$lname = $result['LName'];
-$email = $result['Email'];
-$creation = $result['CreationDate'];
-$id = $result['ID'];
-$image = $result['Image'];
-$pass = $result['Password'];
-render($id,$fname,$lname,$email,$creation,$image,$pass);
+$admin = new Admin($id);
+
+$fname = $admin->getFName();
+$lname = $admin->getLName();
+$email = $admin->getEmail();
+$creation = $admin->getCreationDate();
+$id = $admin->ID;
+$image = $admin->getImage();
+
+render($id,$fname,$lname,$email,$creation,$image);
 ?>
 
-<?php function render($id,$fname,$lname,$email,$creation,$image,$pass){ ?>
+<?php function render($id,$fname,$lname,$email,$creation,$image){ ?>
 <div class="main2">
 
   <!-- Header -->

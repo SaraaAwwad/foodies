@@ -82,7 +82,7 @@ $allRest = Restaurant::getByArea($place);
 					echo'<tr>
 						<td>
 							<div>
-								<img src="../css/images/'.$allRest[$i]->Image.'" width="100" height="100">
+								<img src="'.$allRest[$i]->Image.'" width="100" height="100">
 							</div>
 							<div class="right-info"> 
 								<h2><a href="userviewmenu.php?Rest='.$allRest[$i]->ID.'&Area='.$place.'">'.$allRest[$i]->Name.'</a></h2>

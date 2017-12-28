@@ -112,9 +112,9 @@ if(isset($_POST['update'])) {
   $upload_image=$_FILES['myimage']['name'];
   move_uploaded_file($_FILES['myimage']['tmp_name'], "$folder".$_FILES['myimage']['name']);
   $images = "../css/images/".$_FILES['myimage']['name'].""; 
-  Restaurant::updateInfo($id,$a,$b,$c,$d,$images,'');
+  $RestObj->updateInfo($a,$b,$c,$d,$images,'');
   }else{
-  Restaurant::updateInfoWithoutImage($id,$a,$b,$c,$d,'');
+  $RestObj->updateInfoWithoutImage($a,$b,$c,$d,'');
   }
   header("Location: addrestaurant.php");
 }

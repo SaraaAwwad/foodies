@@ -3,7 +3,6 @@ session_start();
 require_once("../classes/orders.php");
 require_once("../classes/order_details.php");
 
-$order = new Order;
 $orderdetails= new OrderDetails;
 ?>
 
@@ -40,7 +39,7 @@ $orderdetails= new OrderDetails;
 			<div class="centview">
 				<?php
 
-				$allDates = $order->getHistoryDates($_SESSION["userID"]);
+				$allDates = Order::getHistoryDates($_SESSION["userID"]);
 				if(!$allDates){
 					echo'<h3 style="text-align: center;">You didn\'t make your first order, yet!<br>
 				Here\'s to remind you how easy it is:</h3>
@@ -48,7 +47,7 @@ $orderdetails= new OrderDetails;
 				}else{
 				for($i=0; $i<count($allDates); $i++){ 
 					echo'<h2><img src="../css/images/history.png" width="35">'.$allDates[$i].'</h2><hr>'; 
-					$allOrders = $order->getOrderByDate($allDates[$i],$_SESSION["userID"]);
+					$allOrders = Order::getOrderByDate($allDates[$i],$_SESSION["userID"]);
 					if($allOrders){
 						echo '<h3 style="color:#ff99cc;"> You Made '.count($allOrders).' Order(s) </h3> ';
 						
@@ -56,12 +55,12 @@ $orderdetails= new OrderDetails;
 
 						for($j=0; $j<count($allOrders); $j++){
 							echo ' <li> <p><strong>
-								From: '.$allOrders[$j]['RestName'].'</strong><br>
-								<strong>Total Price (including taxes and delivery fees):'.$allOrders[$j]['TotalPrice'].' EGP</strong>
-								<br><strong> Delivery Address: '.$allOrders[$j]['Building'].', '.$allOrders[$j]['Street'].', '.$allOrders[$j]['Area'].'</strong> </p> </li> <button class="showorder show" id="'.$allOrders[$j]['ID'].'">Show Order Details</button> <button style="display:none;" class="showorder hide" id="h_'.$allOrders[$j]['ID'].'">Hide Order Details</button> ';
+								From: '.$allOrders[$j]->RestName.'</strong><br>
+								<strong>Total Price (including taxes and delivery fees):'.$allOrders[$j]->TotalPrice.' EGP</strong>
+								<br><strong> Delivery Address: '.$allOrders[$j]->Building.', '.$allOrders[$j]->Street.', '.$allOrders[$j]->Area.'</strong> </p> </li> <button class="showorder show" id="'.$allOrders[$j]->ID.'">Show Order Details</button> <button style="display:none;" class="showorder hide" id="h_'.$allOrders[$j]->ID.'">Hide Order Details</button> ';
 
-							$allItems = $orderdetails->getOrderItemById($allOrders[$j]['ID']);
-							echo'<p class="orderitems" style="display:none;" id="p'.$allOrders[$j]['ID'].'">';
+							$allItems = $orderdetails->getOrderItemById($allOrders[$j]->ID);
+							echo'<p class="orderitems" style="display:none;" id="p'.$allOrders[$j]->ID.'">';
 
 							for($k=0; $k<count($allItems); $k++){
 								echo 'x'.$allItems[$k]['Quantity'].'  '.$allItems[$k]['ProdName'].', with a price of: '.$allItems[$k]['Price'].' each <br>';

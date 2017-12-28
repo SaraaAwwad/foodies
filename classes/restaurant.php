@@ -33,26 +33,16 @@ class Restaurant{
 		}
 	}
 
-
-	public function getallCount(){
+	Static function getallCount(){
+	  $dbobj = new dbconnect;
 	  $sql="SELECT ID FROM restaurant";
-	  $result=$this->dbobj->selectsql2($sql);
+	  $result=$dbobj->selectsql2($sql);
       return $result;
 	}
 
-/*	public function updateInfo($id, $name, $hot, $fees, $time, $image,$adminid){
-		$name = $this->dbobj->test_input($name);
-		$hot = $this->dbobj->test_input($hot);
-		$fees = $this->dbobj->test_input($fees);
-		$time = $this->dbobj->test_input($time);
-		$image = $this->dbobj->test_input($image);
-*/
-
-	Static function updateInfo($id,$name, $hot, $fees, $time, $image,$adminid){
-		$dbobj = new dbconnect;
-
-		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time', Image='$image' WHERE ID='$id'";
-		$res = $dbobj->executesql2($sql);
+	public function updateInfo($name, $hot, $fees, $time, $image,$adminid){
+		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time', Image='$image' WHERE ID='$this->ID'";
+		$res = $this->dbobj->executesql2($sql);
 		if($res){
 			return true;
 		}else{
@@ -60,10 +50,9 @@ class Restaurant{
 		}
 	}
 
-	Static function updateInfoWithoutImage($id,$name, $hot, $fees, $time,$adminid){
-		$dbobj = new dbconnect;
-		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time' WHERE ID='$id'";
-		$res = $dbobj->executesql2($sql);
+	public function updateInfoWithoutImage($name, $hot, $fees, $time,$adminid){
+		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time' WHERE ID='$this->ID'";
+		$res = $this->dbobj->executesql2($sql);
 		if($res){
 			return true;
 		}else{
@@ -98,18 +87,8 @@ class Restaurant{
 		}
 	}
 
-    public function getstatus($id){
-		$sql = "SELECT Status FROM restaurant Where ID = '$id' ";
-		$userinfo = $this->dbobj->selectsql($sql);
-		while ($row = mysqli_fetch_assoc($userinfo)){
-			$this->GetS = array();
-			$this->GetS['Status'] = $row['Status'];
-		}
-		return $this->GetS;
-	}
-
-    public function changetoactive($status,$id){
-		$sql = "UPDATE restaurant SET Status= '$status' WHERE ID='$id'";
+    public function changetoactive($status){
+		$sql = "UPDATE restaurant SET Status= '$status' WHERE ID='$this->ID'";
 		$res = $this->dbobj->executesql2($sql);
 		if($res){
 			$this->getInfo($id);
@@ -132,7 +111,6 @@ class Restaurant{
 		while ($row = mysqli_fetch_assoc($result)){
 
 			$RestObj= new Restaurant($row["ID"]);
-			$RestObj->type[$i] = array();
 			$RestObj->type[$i] = $cuisine->getType($row['ID']);
 			$RestObj->Areas[$i] = $areas->getType($row['ID']);
 			$Rests[$i]=$RestObj;
@@ -140,34 +118,6 @@ class Restaurant{
 		}
 		return $Rests;
 	}
-
-	public function getSelect($id){
-		$sql = "SELECT * FROM restaurant Where ID = '$id' ";
-		$userinfo = $this->dbobj->selectsql($sql);
-		if($userinfo){
-			$row = mysqli_fetch_array($userinfo);
-			return $row;
-		}
-	}
-
-    public function getAllSelect(){
-		$sql = "SELECT * FROM restaurant";
-		$userinfo = $this->dbobj->selectsql($sql);
-		return $userinfo;
-	}
-
-	public function DeleteRest($id){
-		$sql = "Delete FROM restaurant WHERE ID = '$id'";
-		$userinfo = $this->dbobj->executesql($sql);
-		return $userinfo;
-	}
-	
-
-	/*public function InsertRest($name, $cuisine, $delvarea, $hotline, $area, $street, $building, $img){
-		$sql = "INSERT INTO user (Password, Email, FName, LName, Area, Street, Building) VALUES ('$password', '$email' , '$fname', '$lname', '$area', '$street', '$building')";
-		$qresult = $this->dbobj->executesql($sql);
-		return $qresult;
-	}*/
 
 	Static function getByArea($ar){
 		$cuisine = new Cuisine;
@@ -187,17 +137,6 @@ class Restaurant{
 			$i++;
 		}
 		return $Rests;
-	}
-
-	public function getName($rid){
-		$sql = "SELECT Name from restaurant Where ID = '$rid' ";
-		$result = $this->dbobj->selectsql($sql);
-
-		if($result){
-			$row = mysqli_fetch_array($result);
-			$this->Name= $row['Name'];
-		}
-	return $this->Name;
 	}
 
 	public function getAvgRating(){
