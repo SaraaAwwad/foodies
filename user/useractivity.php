@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require_once("../classes/user.php");
-$user = new User($_SESSION['userID']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +16,8 @@ $user = new User($_SESSION['userID']);
 	<script src="../js/notify.min.js"></script>
 	<title>User-Profile</title>	
 </head>
-<?php include("header.php"); ?>
+<?php include("header.php"); 
+$user = new User($_SESSION['userID']);?>
 <body>
 	
 	<main>
@@ -133,5 +133,6 @@ $user = new User($_SESSION['userID']);
 
 	});
 </script>
+
 </body>
 </html>
