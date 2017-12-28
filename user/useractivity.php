@@ -36,9 +36,10 @@ $user = new User($_SESSION['userID']);
 		<div class="col-8">
 			<div class="centview">
 				<?php 
-				echo '<h2 style="text-align:center;">You Can Find/Change Ratings You\'ve Made On Restaurants You\'ve Ordered From. </h2><hr>';
+				
 				$r = $user->getRatings();
 				if($r){
+					echo '<h2 style="text-align:center;">You Can Find/Change Ratings You\'ve Made On Restaurants You\'ve Ordered From. </h2><hr>';
 					for($i=0; $i<count($user->Rests); $i++){
 						echo '<span> '.$user->Rests[$i]->Name.' </span>';
 						

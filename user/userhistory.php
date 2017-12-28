@@ -3,7 +3,6 @@ session_start();
 require_once("../classes/orders.php");
 require_once("../classes/order_details.php");
 
-$orderdetails= new OrderDetails;
 ?>
 
 <!DOCTYPE html>
@@ -59,11 +58,11 @@ $orderdetails= new OrderDetails;
 								<strong>Total Price (including taxes and delivery fees):'.$allOrders[$j]->TotalPrice.' EGP</strong>
 								<br><strong> Delivery Address: '.$allOrders[$j]->Building.', '.$allOrders[$j]->Street.', '.$allOrders[$j]->Area.'</strong> </p> </li> <button class="showorder show" id="'.$allOrders[$j]->ID.'">Show Order Details</button> <button style="display:none;" class="showorder hide" id="h_'.$allOrders[$j]->ID.'">Hide Order Details</button> ';
 
-							$allItems = $orderdetails->getOrderItemById($allOrders[$j]->ID);
+							$allItems = OrderDetails::getOrderItemById($allOrders[$j]->ID);
 							echo'<p class="orderitems" style="display:none;" id="p'.$allOrders[$j]->ID.'">';
 
 							for($k=0; $k<count($allItems); $k++){
-								echo 'x'.$allItems[$k]['Quantity'].'  '.$allItems[$k]['ProdName'].', with a price of: '.$allItems[$k]['Price'].' each <br>';
+								echo 'x'.$allItems[$k]->Quantity.'  '.$allItems[$k]->ProdName.', with a price of: '.$allItems[$k]->Price.' each <br>';
 							}
 							echo'</p><br><br>';
 						}

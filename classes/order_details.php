@@ -8,7 +8,7 @@
 		public $Price;
 		public $Quantity;
 
-		public function __construct(){
+		public function __construct($id=""){
 		$this->dbobj = new dbconnect;
 		}
 
@@ -18,19 +18,21 @@
 		return $qresult;
 		}
 
-		public function getOrderItemById($OID){
+		Static function getOrderItemById($OID){
+			$dbobj = new dbconnect;
 			$sql = "SELECT * FROM order_item WHERE OrderID = '$OID'";
-			$res = $this->dbobj->selectsql($sql);
+			$res = $dbobj->selectsql($sql);
 
 			if($res){
 				$i=0;
 				$getItems= array();
 
 				while ($row = mysqli_fetch_assoc($res)){
-					$getItems[$i] = array();
-					$getItems[$i]['ProdName'] = $row['ProdName'];
-					$getItems[$i]['Price'] = $row['Price'];
-					$getItems[$i]['Quantity'] = $row['Quantity'];
+					$ItemObj = new OrderDetails;
+					$ItemObj->ProdName = $row['ProdName'];
+					$ItemObj->Price = $row['Price'];
+					$ItemObj->Quantity = $row['Quantity'];
+					$getItems[$i] = $ItemObj;
 					$i++;
 				}
 			

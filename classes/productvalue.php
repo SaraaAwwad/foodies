@@ -11,6 +11,7 @@ class ProductValue{
 		$this->dbobj = new dbconnect;
 	}
 
+	//remove get value..
 	public function getValue($prodID){
 		$sql = "SELECT Price, Size FROM prod_value WHERE ProdID = '$prodID' ";
 		$result = $this->dbobj->selectsql($sql);
@@ -22,9 +23,9 @@ class ProductValue{
 			$values[$i+1] = $row['Size'];
 			$i+=2;
 		}
-
 	return $values;
 	}
+
 
 	Static function getAllValue($prodID){
 		$dbobj = new dbconnect;
