@@ -36,7 +36,6 @@ if(isset($_POST["rating_id"]))  {
 		//update here 
 		$review = new Review($reviewid);
 		$updated = $review->updateRating($value, $reviewid);
-		//$newtable .="sara";
 
 		if($updated){
 			$newtable .= '<div id="table'.$reviewid.'_'.$rest.'">';
