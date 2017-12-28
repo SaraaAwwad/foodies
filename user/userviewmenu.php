@@ -2,7 +2,7 @@
 session_start();
 require_once("../classes/product.php");
 require_once("../classes/restaurant.php");
-$prod = new Product;
+//$prod = new Product;
 $rest = new Restaurant;
 
 $allProd = array();
@@ -16,7 +16,7 @@ $area =$_GET['Area'];
 if(isset($_GET['Rest'])){
 $place =$_GET['Rest'];
 $rest->getInfo($place);
-$allProd = $prod->getProduct($place);
+$allProd = Product::getProduct($place);
 }
 
 $ur ="Rest=".$place."&Area=".$area;
@@ -62,21 +62,22 @@ $shopping_session = "shoppingcart".$place;
 						<tr>
 						<td style="width: 70%;">
 							<div>
-								<img src="'.$allProd[$i]['Image'].'" width="100" height="100">
+								<img src="'.$allProd[$i]->Image.'" width="100" height="100">
 							</div>
 							<div class="right-info"> 
-								<h2 id="Name'.$allProd[$i]['ID'].'">'.$allProd[$i]['Name'].'</h2>
-								<p>'.$allProd[$i]['Description'].'</p>
+								<h2 id="Name'.$allProd[$i]->ID.'">'.$allProd[$i]->Name.'</h2>
+								<p>'.$allProd[$i]->Description.'</p>
 							</div>
 						</td>
 
 						<td style="width:30%; text-align:left;" >';
+						//echo ($allProd[$i]->val[0]->Price);
 
-						for ($j=0; $j<count($prod->values[$i]); $j+=2){
-							if($prod->values[$i][$j]!=0){
-							echo'<button class="add-prd addtocart" id="'.$j.'_'.$allProd[$i]['ID'].'"></button>
-							 <span id="Price'.$j.'_'.$allProd[$i]['ID'].'">'.$prod->values[$i][$j].'</span> EGP -
-							<span>'.$prod->values[$i][$j+1].'</span> <hr>';
+						for ($j=0; $j<3; $j++){
+							if($allProd[$i]->val[$j]->Price!=0){
+							echo'<button class="add-prd addtocart" id="'.$j.'_'.$allProd[$i]->ID.'"></button>
+							 <span id="Price'.$j.'_'.$allProd[$i]->ID.'">'.$allProd[$i]->val[$j]->Price.'</span> EGP -
+							<span>'.$allProd[$i]->val[$j]->Size.'</span> <hr>';
 							}
 						}
 						echo'</td>

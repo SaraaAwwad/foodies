@@ -38,12 +38,14 @@ class User{
 		$sql = "INSERT INTO user (Password, Email, FName, LName, Area, Street, Building, PhoneNum) VALUES ('$password', '$email' , '$fname', '$lname', '$area', '$street', '$building' ,'$phone')";
 
 		$qresult = $dbobj->insertsql($sql);
-		if($qresult){
-			session_start();
-			$_SESSION["userID"] = $qresult;
-			return true;
-		}else{
-			return false;
+
+			if($qresult){
+				session_start();
+				$_SESSION["userID"] = $qresult;
+				return true;
+			}else{
+				return false;
+			}
 		}
 	}
 
@@ -151,6 +153,7 @@ class User{
 		//to get the places he ordered from
 		$sql = "SELECT DISTINCT RestID from orders WHERE UserID = '$this->ID'";
 		$selectrests = $this->dbobj->selectsql($sql);
+		
 		if($selectrests->num_rows < 1){
 			//no rest was found
 			return false;

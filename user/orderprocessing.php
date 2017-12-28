@@ -11,8 +11,7 @@ use Twilio\Rest\Client;
 	$order = new Order;
 	$orderdetails = new OrderDetails;
 
-	$user = new User;
-	$user->getInfo($_SESSION["userID"]);
+	$user = new User($_SESSION["userID"]);
 	$phonenum = $user->PhoneNum;
 	$send = false;
 	
@@ -42,7 +41,6 @@ if(isset($_POST["Rest"])){
 			}
 			$added=true;
 			
-			$_SESSION["test"] ="hal tasma3oni";
 			
 			//leave commented...
 			/*if($send){

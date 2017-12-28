@@ -17,38 +17,15 @@ if(isset($_POST["rating_id"]))  {
 		//insert here in table orders 
 		$review = new Review();
 		$newid = $review->insertRating($user,$rest,$value);
-		/*if($newid){
-			$newtable .= '<div id="table'.$newid.'_'.$rest.'">';
 
-				for($i=0; $i<$value; $i++){
-					$newtable .= '<div class="star ratings_stars" id="'.$newid.'_'.$rest.'_'.$i.'""></div>';
-				}
-
-				for($i; $i<5; $i++){
-					$newtable .= '<div class="star ratings_stars" id="'.$newid.'_'.$rest.'_'.$i.'""></div>';
-				}
-			$newtable .= '</div>';	
-		}*/
 	}else{
 		//update here 
 		$review = new Review($reviewid);
 		$updated = $review->updateRating($value, $reviewid);
-			
-		/*	if($updated){
-				$newtable .= '<div id="table'.$orderid.'_'.$rest.'">';
-				for($i=0; $i<$value; $i++){
-					$newtable .= '<div class="star ratings_stars" id="'.$orderid.'_'.$rest.'_'.$i.'""></div>';
-				}
-				for($i; $i<5; $i++){
-					$newtable .= '<div class="star ratings_stars" id="'.$orderid.'_'.$rest.'_'.$i.'""></div>';
-				}
-			$newtable .= '</div>';	
-			}*/
-	
 	}
 
 	$output = array(  
-    	'newtable' => "sara"
+    	'newtable' => ""
     );    
  echo json_encode($output);   
 }

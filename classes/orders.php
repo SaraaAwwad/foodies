@@ -39,57 +39,59 @@ class Order{
 		return $qresult;
 	}
 
-    public function getCount(){
+    Static function getCount(){
+      $dbobj = new dbconnect;
       $sql="SELECT ID FROM orders WHERE DateOrder = date(CURRENT_TIMESTAMP)";
-	  $result=$this->dbobj->selectsql2($sql);
+	  $result=$dbobj->selectsql2($sql);
       return $result;
 	}
 
-	public function getallCount(){
+	Static function getallCount(){
+	  $dbobj = new dbconnect;
 	  $sql="SELECT ID FROM orders WHERE DateOrder < date(CURRENT_TIMESTAMP)";
-	  $result=$this->dbobj->selectsql2($sql);
+	  $result=$dbobj->selectsql2($sql);
       return $result;
 	}
 
-	public function getHistoryDates($uid){
-
+	Static function getHistoryDates($uid){
+		$dbobj = new dbconnect;
 		$sql = "SELECT DISTINCT DateOrder FROM orders WHERE UserID= '$uid' ORDER BY DateOrder DESC ";
-		$result = $this->dbobj->selectsql($sql);
+		$result = $dbobj->selectsql($sql);
 
 		if($result->num_rows > 0){
 
 			$i=0;
 
 			while ($row = mysqli_fetch_assoc($result)){
-				$this->getDates[$i] = $row['DateOrder'];
+				$getDates[$i] = $row['DateOrder'];
 				$i++;
 				}
 			
-			return $this->getDates;	
+			return $getDates;	
 		}
 		return false;
 	}
 
 
-	public function getOrderByDate($dte, $uid){
+	Static function getOrderByDate($dte, $uid){
+
+		$dbobj = new dbconnect;
 
 		$sql = "SELECT * from orders WHERE DateOrder = '$dte' AND UserID='$uid'";
-		$res = $this->dbobj->selectsql($sql);
+		$res = $dbobj->selectsql($sql);
 
 		if($res){
 
 			$i=0;
-			
-			//unset($this->getOrders);
-				$getOrders= array();
+
+			$getOrders= array();
+
 			while ($row = mysqli_fetch_assoc($res)){
-				$getOrders[$i] = array();
-				$getOrders[$i]['ID'] = $row['ID'];
-				$getOrders[$i]['RestName'] = $this->restaurant->getName($row['RestID']);
-				$getOrders[$i]['TotalPrice'] = $row['TotalPrice'];
-				$getOrders[$i]['Area'] = $row['Area'];
-				$getOrders[$i]['Street'] = $row['Street'];
-				$getOrders[$i]['Building'] = $row['Building'];
+				$OrderObj = new Order($row['ID']);
+				$restid = $row['RestID'];
+				$rest = new Restaurant($restid);
+				$OrderObj->RestName = $rest->Name;
+				$getOrders[$i] = $OrderObj;
 				$i++;
 			}
 		return $getOrders;
