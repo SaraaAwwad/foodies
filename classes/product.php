@@ -51,22 +51,15 @@ class Product{
 		}
 	}
 
-	public function updateInfo($id,$name,$des,$cat,$image){
-		$sql = "UPDATE products SET Name= '$name' , Description='$des', Category='$cat', Image = '$image' WHERE ID='$id'";
-		$res = $this->dbobj->executesql2($sql);
-		if($res){
-			$this->getInfo($id);
-			return true;
-		}else{
-			return false;
-		}
-	}
+	public function updateInfo($name,$des,$cat,$image){
+		if($image == ''){
+		$sql = "UPDATE products SET Name= '$name' , Description='$des', Category='$cat' WHERE ID='$this->ID'";
+		$res = $this->dbobj->executesql2($sql);}
+		else{
+		$sql = "UPDATE products SET Name= '$name' , Description='$des', Category='$cat', Image = '$image' WHERE ID='$this->ID'";
+		$res = $this->dbobj->executesql2($sql);}
 
-    public function updateInfoWithoutImage($id,$name,$des,$cat){
-		$sql = "UPDATE products SET Name= '$name' , Description='$des', Category='$cat' WHERE ID='$id'";
-		$res = $this->dbobj->executesql2($sql);
 		if($res){
-			$this->getInfo($id);
 			return true;
 		}else{
 			return false;
@@ -90,24 +83,21 @@ class Product{
 		}
 	}
 
-    public function DeleteProduct($id){
-		$sql = "Delete FROM products WHERE ID = '$id'";
-		$userinfo = $this->dbobj->executesql($sql);
+    public function DeleteProduct(){
+    	$dbobj= new dbconnect;
+		$sql = "DELETE FROM products WHERE ID = '$this->ID'";
+		$userinfo = $dbobj->executesql($sql);
 		return $userinfo;
 	}
 
 	Static function getProduct($restID){
 		//active products
-
 		$dbobj= new dbconnect;
 		//$ProdVal = new ProductValue;
-
 		$sql = "SELECT * FROM products Where RestID = '$restID' AND Status = 1 ";
 		$result = $dbobj->selectsql($sql);
 		$Prods= array();
-
 		$i=0;
-
 		while ($row = mysqli_fetch_assoc($result)){
 			$ProdObj = new Product($row['ID']);
 			$ProdObj->val = array();
@@ -118,58 +108,32 @@ class Product{
 		return $Prods;
 	}
 
-    public function getAllProducts($restID){
+    Static function getAllProducts($restID){
+    	$dbobj= new dbconnect;
 		$sql = "SELECT * FROM products Where RestID = '$restID'";
-		$result = $this->dbobj->selectsql($sql);
+		$result = $dbobj->selectsql($sql);
+		$Prods= array();
 		$i=0;
 		while ($row = mysqli_fetch_assoc($result)){
-			$this->ProdByRestID[$i] = array();
-			$this->values[$i] = array();
-			$this->ProdByRestID[$i]['ID'] = $row['ID'];
-			$this->values[$i] = $this->ProdVal->getValue($row['ID']);
-			$this->ProdByRestID[$i]['Image'] = $row['Image'];
-			$this->ProdByRestID[$i]['Name'] = $row['Name'];
-			$this->ProdByRestID[$i]['Description'] = $row['Description'];
-			$this->ProdByRestID[$i]['Status'] = $row['Status'];
-			$this->ProdByRestID[$i]['Category'] = $row['Category'];
+			$ProdObj = new Product($row['ID']);
+			$ProdObj->val = array();
+		    $ProdObj->val = ProductValue::getAllValue($row['ID']);
+			$Prods[$i] = $ProdObj;
 			$i++;
 		}
-		return $this->ProdByRestID;
+		return $Prods;
 	}
 
-	public function getSelectProduct($id){
-		$sql = "SELECT * FROM products Where ID = '$id' ";
-		$userinfo = $this->dbobj->selectsql($sql);
-		if($userinfo){
-			$row = mysqli_fetch_array($userinfo);
-			return $row;
-		}
-	}
-
-    public function getPValue($id,$size){
-		$sql = "SELECT * FROM prod_value Where ProdID = '$id' AND Size = '$size'";
-		$userinfo = $this->dbobj->selectsql($sql);
-		if($userinfo){
-			$row = mysqli_fetch_array($userinfo);
-			return $row;
-		}
-	}
-
-	public function delSmallProducts($id,$size,$sizev){
-        $sql2 = "DELETE FROM prod_value WHERE ProdID ='$id' And Size ='$size'";
+	public function delOldProducts($size,$sizev){
+        $sql2 = "DELETE FROM prod_value WHERE ProdID ='$this->ID' And Size ='$size'";
 		$this->dbobj->executesql2($sql2);
-		$sql = "INSERT INTO prod_value (ProdID, Price, Size) VALUES ('$id', '$sizev','$size')";
+		$sql = "INSERT INTO prod_value (ProdID, Price, Size) VALUES ('$this->ID', '$sizev','$size')";
 		$this->dbobj->executesql2($sql);
 	} 
 
-	public function delP($id,$size){
-        $sql2 = "DELETE FROM prod_value WHERE ProdID ='$id' And Size ='$size'";
-		$this->dbobj->executesql2($sql2);
-	    }
-    public function InsertPr($id,$size,$sizev){
+	public function InsertNewValue($id,$size,$sizev){
 		$sql = "INSERT INTO prod_value (ProdID, Price, Size) VALUES ('$id', '$sizev','$size')";
 		$this->dbobj->executesql2($sql);
 	} 
-
 }
 ?>

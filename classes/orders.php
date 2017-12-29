@@ -107,9 +107,7 @@ class Order{
 		$sql= "SELECT orders.* , restaurant.Name FROM orders, restaurant WHERE orders.RestID = restaurant.ID";
 		$result = $dbobj->selectsql($sql);
 		$i=0;
-		
 		$Orders = array();
-		
 		while ($row = mysqli_fetch_assoc($result)){
 			$OrderObj = new Order($row['ID']);
 			$OrderObj->RestName = $row['Name'];

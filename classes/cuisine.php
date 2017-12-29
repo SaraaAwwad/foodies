@@ -30,7 +30,7 @@ class Cuisine{
          $sql = "INSERT INTO cuisine (RestID, Type) VALUES ('$id', '$selectedOption')";
 		 $this->dbobj->executesql2($sql);
 	}
-
+    //same
     public function getInfo2($id){
 		$sql = "SELECT * FROM cuisine Where RestID = '$id' ";
 		$userinfo = $this->dbobj->selectsql($sql);

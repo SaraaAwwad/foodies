@@ -13,7 +13,7 @@
 	}
 
 
-public function getType($restID){
+    public function getType($restID){
 		$sql = "SELECT Area from areas WHERE RestID = $restID";		
 		$result = $this->dbobj->selectsql($sql);
 		$i=0;
@@ -50,7 +50,7 @@ public function getType($restID){
 		return $userinfo;
 	}
 
-	public function updateInfo3($id,$area){
+	/*public function updateInfo3($id,$area){
 		$area = $this->dbobj->test_input($area);
 		$sql = "UPDATE areas SET Area= '$area' WHERE RestID='$id'";
 		$res = $this->dbobj->executesql2($sql);
@@ -60,7 +60,7 @@ public function getType($restID){
 		}else{
 			return false;
 		}
-	}
+	}*/
 
     public function getInfo3($id){
 		$sql = "SELECT * FROM areas Where RestID = '$id' ";
@@ -72,7 +72,7 @@ public function getType($restID){
 		}
 	}
 
-public function getRestAreas($restID){
+   public function getRestAreas($restID){
 		$sql = "SELECT DISTINCT Area from areas WHERE restID= '$restID'";
 		$res = $this->dbobj->selectsql($sql);
 		$areas= array();

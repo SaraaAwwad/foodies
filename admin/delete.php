@@ -3,7 +3,6 @@ require("/../classes/restaurant.php");
 session_start();
 $id = $_GET['id'];
 $rest = new Restaurant($id);
-//$allRest = array();
 $allRest = $rest->Status;
 if($allRest == '1'){
 	$status = '0';

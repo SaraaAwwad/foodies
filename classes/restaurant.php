@@ -41,18 +41,11 @@ class Restaurant{
 	}
 
 	public function updateInfo($name, $hot, $fees, $time, $image,$adminid){
-		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time', Image='$image' WHERE ID='$this->ID'";
-		$res = $this->dbobj->executesql2($sql);
-		if($res){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	public function updateInfoWithoutImage($name, $hot, $fees, $time,$adminid){
+		if($image == ''){
 		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time' WHERE ID='$this->ID'";
-		$res = $this->dbobj->executesql2($sql);
+		$res = $this->dbobj->executesql2($sql); }
+		else{$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time', Image='$image' WHERE ID='$this->ID'";
+		$res = $this->dbobj->executesql2($sql); }
 		if($res){
 			return true;
 		}else{

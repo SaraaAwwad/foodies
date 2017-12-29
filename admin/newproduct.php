@@ -83,33 +83,34 @@ if(isset($_POST['update']) && $_FILES['myimage']['size'] > 0){
   $upload_image=$_FILES['myimage']['name'];
   move_uploaded_file($_FILES['myimage']['tmp_name'], "$folder".$_FILES['myimage']['name']);
   $images = '../css/images/'.$_FILES['myimage']['name'].'';
+
   $resultid = $prod->InsertInfo($aname,$bdes,$ccat,$images,$estatus,$frest);
 
-  if(isset($_POST['smallvalue']))
-  {
-    $prod->InsertPr($resultid,$small,$smallv);
-  }
+  if(!empty($_POST['smallvalue']))
+  { $prod->InsertNewValue($resultid,$small,$smallv); }
+  else if(empty($_POST['smallvalue']))
+  {$prod->InsertNewValue($resultid,$small,'0'); }
 
-  if(isset($_POST['mediumvalue']))
-  {
-    $prod->InsertPr($resultid,$medium,$mediumv);
-  }
+  if(!empty($_POST['mediumvalue']))
+  { $prod->InsertNewValue($resultid,$medium,$mediumv); }
+  else if(empty($_POST['mediumvalue']))
+  {$prod->InsertNewValue($resultid,$medium,'0'); }
 
-  if(isset($_POST['largevalue']))
-  {
-    $prod->InsertPr($resultid,$large,$largev);
-  }
+
+  if(!empty($_POST['largevalue']))
+  { $prod->InsertNewValue($resultid,$large,$largev); }
+  else if(empty($_POST['largevalue']))
+  {$prod->InsertNewValue($resultid,$large,'0'); }
+
   header('Location: allproducts.php?id='.$restid.'');
 }
-
 ?>
-
 <script type="text/javascript" src="../js/AdminPage.js"></script>
 <script type="text/javascript">
 var cncl = document.getElementById("cancelrest");
 cncl.addEventListener("click", cnclFunc);
 function cnclFunc(){
- window.location.href="allproducts.php?id=<?php echo''.$restid.'';?>";
+window.location.href="allproducts.php?id=<?php echo''.$restid.'';?>";
 }
 </script>
 </body>

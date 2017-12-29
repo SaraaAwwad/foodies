@@ -106,7 +106,6 @@ if(isset($_POST['update'])) {
   foreach ($_POST['test'] as $selected)
   { $areato->updateArea($id,$selected); }}
 
-
   if(!empty($_FILES['myimage']['name'])) {
   $folder= dirname(dirname(__FILE__)) ."\css\images\\";
   $upload_image=$_FILES['myimage']['name'];
@@ -114,8 +113,9 @@ if(isset($_POST['update'])) {
   $images = "../css/images/".$_FILES['myimage']['name'].""; 
   $RestObj->updateInfo($a,$b,$c,$d,$images,'');
   }else{
-  $RestObj->updateInfoWithoutImage($a,$b,$c,$d,'');
+  $RestObj->updateInfo($a,$b,$c,$d,'','');
   }
+  
   header("Location: addrestaurant.php");
 }
 

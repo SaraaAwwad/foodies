@@ -1,9 +1,9 @@
 <?php
 require_once("/../classes/product.php");
+require_once("/../classes/productvalue.php");
 require_once("/../classes/cuisine.php");
 require_once("/../classes/areas.php");
 session_start();
-$prod = new Product;
 ?>
 
 <!DOCTYPE html>
@@ -34,24 +34,14 @@ $prod = new Product;
 <?php
 $id = $_GET['id'];
 $ProdObj = array();
-$ProdObj= new Product($id);
+$ProdObj = new Product($id);
+$ProdVal= array();
+$ProdVal = ProductValue::getAllValue($id);
 
-$lsmall = "Small";
-$value1 = $prod->getPValue($id,$lsmall);
-$Small = $value1['Price'];
-
-$lmedium = "Medium";
-$value2 = $prod->getPValue($id,$lmedium);
-$Medium = $value2['Price'];
-
-$llarge = "Large";
-$value3 = $prod->getPValue($id,$llarge);
-$Large = $value3['Price'];
-
-render($ProdObj->ID,$ProdObj->Name,$ProdObj->Description,$ProdObj->Category,$Small,$Medium,$Large);
+render($ProdObj->ID,$ProdObj->Name,$ProdObj->Description,$ProdObj->Category,$ProdVal);
 ?>
 
-<?php function render($id,$name,$des,$cat,$Small,$Medium,$Large){ ?>
+<?php function render($id,$name,$des,$cat,$ProdVal){ ?>
 		
 <form action="" method="POST" enctype="multipart/form-data">
 <fieldset>
@@ -73,20 +63,20 @@ render($ProdObj->ID,$ProdObj->Name,$ProdObj->Description,$ProdObj->Category,$Sma
 </fieldset>
 <fieldset>
 <legend>Prices</legend>
-<input type="text" name="smallarea" id="restarea1" value="Small" readonly>
-<input type="text" name="smallvalue" id="restarea2" value="<?php echo $Small;?>"><br> 
-<input type="text" name="mediumarea" id="restarea1" value="Medium" readonly> 
-<input type="text" name="mediumvalue" id="restarea2" value="<?php echo $Medium;?>"><br> 
-<input type="text" name="largearea" id="restarea1" value="Large" readonly> 
-<input type="text" name="largevalue" id="restarea2" value="<?php echo $Large;?>"><br> 
+<?php for ($j=0; $j<1; $j++){ ?>
+<input type="text" name="smallarea" id="restarea1" value="<?php echo $ProdVal[$j+2]->Size;?>" readonly>
+<input type="text" name="smallvalue" id="restarea2" value="<?php echo $ProdVal[$j+2]->Price;?>"><br> 
+
+<input type="text" name="mediumarea" id="restarea1" value="<?php echo $ProdVal[$j+1]->Size;?>" readonly> 
+<input type="text" name="mediumvalue" id="restarea2" value="<?php echo $ProdVal[$j+1]->Price;?>"><br> 
+
+<input type="text" name="largearea" id="restarea1" value="<?php echo $ProdVal[$j]->Size;?>" readonly> 
+<input type="text" name="largevalue" id="restarea2" value="<?php echo $ProdVal[$j]->Price;?>"><br>
+<?php } ?> 
 </fieldset>
 <input type="submit" name="update" id="saverest" value="Update"/>
 <input type="button" id="cancelrest" value="Cancel"/>
 </form>
-
-
-
-
 <?php  }  ?>
 
 <?php
@@ -102,26 +92,29 @@ if(isset($_POST['update'])){
   $large = $_POST['largearea'];
   $largev = $_POST['largevalue'];
   
-  if(isset($_POST['smallvalue']))
-  { $prod->delSmallProducts($id,$small,$smallv); }else{
-    $prod->delP($id,$small); } 
+  if(!empty($_POST['smallvalue']))
+  { $ProdObj->delOldProducts($small,$smallv); }   
+  else if(empty($_POST['smallvalue']))
+  {$ProdObj->delOldProducts($small,'0'); } 
 
-  if(isset($_POST['mediumvalue']))
-  { $prod->delSmallProducts($id,$medium,$mediumv); }else{ 
-    $prod->delP($id,$medium); } 
+  if(!empty($_POST['mediumvalue']))
+  { $ProdObj->delOldProducts($medium,$mediumv); }
+  else if(empty($_POST['mediumvalue']))
+  {$ProdObj->delOldProducts($medium,'0'); }  
 
-  if(isset($_POST['largevalue']))
-  { $prod->delSmallProducts($id,$large,$largev); }else
-  { $prod->delP($id,$large); } 
+  if(!empty($_POST['largevalue']))
+  { $ProdObj->delOldProducts($large,$largev);}
+  else if(empty($_POST['largevalue']))
+  {$ProdObj->delOldProducts($large,'0'); }
 
   if(!empty($_FILES['myimage']['name'])) {
   $folder= dirname(dirname(__FILE__)) ."\css\images\\";
   $upload_image=$_FILES['myimage']['name'];
   move_uploaded_file($_FILES['myimage']['tmp_name'], "$folder".$_FILES['myimage']['name']);
   $images = "../css/images/".$_FILES['myimage']['name'].""; 
-  $prod->updateInfo($id,$aname,$bdes,$ccat,$images);
+  $ProdObj->updateInfo($aname,$bdes,$ccat,$images);
   }else{
-  $prod->updateInfoWithoutImage($id,$aname,$bdes,$ccat);
+  $ProdObj->updateInfo($aname,$bdes,$ccat,'');
   }
   header('Location: allproducts.php?id='.$ProdObj->RestID.'');
 }
@@ -133,7 +126,7 @@ if(isset($_POST['update'])){
 var cncl = document.getElementById("cancelrest");
 cncl.addEventListener("click", cnclFunc);
 function cnclFunc(){
- window.location.href="allproducts.php?id=<?php echo''.$restid.'';?>";
+ window.location.href="allproducts.php?id=<?php echo''.$ProdObj->RestID.'';?>";
 }
 
 function adjust_textarea(h) {
