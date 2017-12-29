@@ -2,14 +2,19 @@
 session_start();
 
 require ('..\twilio-php-master\Twilio\autoload.php');
-require("../classes/orders.php");
-require("../classes/order_details.php");
-require("../classes/user.php");
+require_once("../classes/orders.php");
+require_once("../classes/order_details.php");
+require_once("../classes/user.php");
+require_once("../classes/restaurant.php");
+require("../sendgrid-php/sendgrid-php.php");
+require("credentials.php");
 
 use Twilio\Rest\Client;
 
 	$order = new Order;
 	$orderdetails = new OrderDetails;
+
+if(isset($_SESSION["userID"])){
 
 	$user = new User($_SESSION["userID"]);
 	$phonenum = $user->PhoneNum;
@@ -24,6 +29,7 @@ use Twilio\Rest\Client;
 if(isset($_POST["Rest"])){
 
 		$place =$_POST['Rest'];
+		$restaurant = new Restaurant($place);
 
 		$s = "shoppingcart".$place;
 		$sdone = $s."done";
@@ -41,7 +47,25 @@ if(isset($_POST["Rest"])){
 			}
 			$added=true;
 			
+			//to send mail
 			
+			/**/
+			$from = new SendGrid\Email("Foodies", "orders@foodies.com");
+			$subject = "Order Confirmation";
+
+			$toemail=$user->Email;
+			$toname = $user->FirstName;
+			$to = new SendGrid\Email($toname, $toemail);
+
+			$rname = $restaurant->Name;
+
+			$content = new SendGrid\Content("text/plain", "Hey, $toname thank you for ordering from foodies. Your order from $rname is on its way!");
+			$mail = new SendGrid\Mail($from, $subject, $to, $content);
+
+			$sg = new \SendGrid($API_KEY);
+			$response = $sg->client->mail()->send()->post($mail);
+			/**/
+
 			//leave commented...
 			/*if($send){
 				$sid = 'AC215c06e0ddcbf694c43bb63025a2b58a';
@@ -69,6 +93,6 @@ if(isset($_POST["Rest"])){
 			header("Location: orderdone.php?Rest=$place",TRUE,303);
 		}
 	}
-
+}
 
 ?>

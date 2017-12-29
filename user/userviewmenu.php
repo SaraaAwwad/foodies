@@ -2,7 +2,7 @@
 session_start();
 require_once("../classes/product.php");
 require_once("../classes/restaurant.php");
-//$prod = new Product;
+
 $rest = new Restaurant;
 
 $allProd = array();
