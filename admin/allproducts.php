@@ -5,7 +5,8 @@ $prod = new Product;
 $allProd = array();
 if(isset($_GET['id'])){
 $place = $_GET['id'];
-$allProd = $prod->getAllProducts($place);
+$allProd = Product::getAllProducts($place);
+
 }
 
 ?>
@@ -63,25 +64,27 @@ $allProd = $prod->getAllProducts($place);
 
         <tbody id="restaurantTable">
 		<?php 
-			for($i=0; $i<count($allProd); $i++){ ?>
-            <tr id="row1">
-            <td><strong><?php echo $allProd[$i]['ID'];?></strong></td>
-			<td><img src="<?php echo $allProd[$i]['Image'];?>" width="50" height="50"></td>
-            <td><strong><?php echo $allProd[$i]['Name']; ?></strong></td>
-			<td><?php echo $allProd[$i]['Description'];?></td>
-			<td><?php echo $allProd[$i]['Category'];?></td>
-			<td><?php for ($j=0; $j<count($prod->values[$i]); $j+=2){ ?>
-			<span><?php if($j>0){ ?> <br><br> <?php } ?><?php echo $prod->values[$i][$j]; ?></span>$<br><span><?php echo $prod->values[$i][$j+1]; ?></span>
-	        <?php } ?></td>
-	        <?php if($allProd[$i]['Status'] == '1' ){
-	        echo '<td id="active"> Active </td>'; }
-	        else if ($allProd[$i]['Status'] == '0'){
-	        echo '<td id="inactive"> Inactive</td>';} ?>
-			<td align="center"><?php echo '<a class = "butt" href="editProduct.php?id='.$allProd[$i]['ID'].'">Update</a>'; ?><br>
-            <?php if($allProd[$i]['Status'] == '1' ){
-	        echo ' <a class = "butt" href="inactivateProduct.php?id='.$allProd[$i]['ID'].'">Inactivate</a>'; }else if ($allProd[$i]['Status'] == '0'){
-	        echo ' <a class = "butt" href="inactivateProduct.php?id='.$allProd[$i]['ID'].'">Activate</a>'; } ?><br>
-            <?php echo '<a class = "butt" href="deleteProduct.php?id='.$allProd[$i]['ID'].'">Delete</a>'; ?></td>
+			for($i=0; $i<count($allProd); $i++){ 
+            echo '<tr id="row1">
+            <td><strong>'.$allProd[$i]->ID.'</strong></td>
+			<td><img src="'.$allProd[$i]->Image.'" width="50" height="50"></td>
+            <td><strong>'.$allProd[$i]->Name.'</strong></td>
+			<td>'.$allProd[$i]->Description.'</td>
+			<td>'.$allProd[$i]->Category.'</td>'; ?>
+			<td><?php for ($j=0; $j<3; $j++){ 
+			  if($allProd[$i]->val[$j]->Price!=0){ ?>
+			<span><?php if($j>0){ ?> <br><br> <?php } 
+			  echo ''.$allProd[$i]->val[$j]->Price.'</span>$<br><span>'.$allProd[$i]->val[$j]->Size.'</span>'; }} ?></td>
+	        <?php if($allProd[$i]->Status == '1' ){
+	          echo '<td id="active"> Active </td>'; }
+	        else if ($allProd[$i]->Status == '0'){
+	          echo '<td id="inactive"> Inactive</td>'; }
+			  echo '<td align="center"><a class = "butt" href="editProduct.php?id='.$allProd[$i]->ID.'">Update</a><br>'; ?>
+            <?php if($allProd[$i]->Status == '1' ){
+	          echo ' <a class = "butt" href="inactivateProduct.php?id='.$allProd[$i]->ID.'">Inactivate</a>'; }
+	        else if ($allProd[$i]->Status == '0'){
+	          echo ' <a class = "butt" href="inactivateProduct.php?id='.$allProd[$i]->ID.'">Activate</a>'; } ?><br>
+            <?php echo '<a class = "butt" href="deleteProduct.php?id='.$allProd[$i]->ID.'">Delete</a>'; ?></td>
 			</tr>
 		    <?php } ?>
         </tbody>
@@ -92,16 +95,12 @@ $allProd = $prod->getAllProducts($place);
 		<script type="text/javascript" src="../js/AdminPage.js"></script>
 		<script>
 			if (screen.width < 500) {
-  
-  $("body").addClass("nohover");
-  $("td, th")
-    .attr("tabindex", "1")
-    .on("touchstart", function() {
-      $(this).focus();
-    });
-  
-}
-
+            $("body").addClass("nohover");
+            $("td, th")
+            .attr("tabindex", "1")
+            .on("touchstart", function() {
+            $(this).focus();
+            }); }
 		</script>
 </body>
 </html>

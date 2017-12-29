@@ -41,18 +41,11 @@ class Restaurant{
 	}
 
 	public function updateInfo($name, $hot, $fees, $time, $image,$adminid){
-		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time', Image='$image' WHERE ID='$this->ID'";
-		$res = $this->dbobj->executesql2($sql);
-		if($res){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	public function updateInfoWithoutImage($name, $hot, $fees, $time,$adminid){
+		if($image == ''){
 		$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time' WHERE ID='$this->ID'";
-		$res = $this->dbobj->executesql2($sql);
+		$res = $this->dbobj->executesql2($sql); }
+		else{$sql = "UPDATE restaurant SET Name= '$name' , Hotline='$hot', DelvFees='$fees', DelvTime= '$time', Image='$image' WHERE ID='$this->ID'";
+		$res = $this->dbobj->executesql2($sql); }
 		if($res){
 			return true;
 		}else{
@@ -63,6 +56,7 @@ class Restaurant{
 
 	public function insertInfo($name, $hot, $fees, $time, $image,$adminid,$status){
 		$dbobj = new dbconnect;
+		$name = $dbobj->test_input($name);
 		$image = $dbobj->test_input($image);
 		$sql = "INSERT INTO restaurant (Name, Hotline, DelvFees, DelvTime, Image, AdminID, Status) VALUES ('$name', '$hot' , '$fees', '$time', '$image', '$adminid', '$status')";
 		$result = $dbobj->insertsql($sql);
