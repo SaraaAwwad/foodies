@@ -45,10 +45,12 @@ $added = false;
 				<img src="../css/images/done.gif" style="margin-left:35%;">
 				<h1>Order on the way!</h1>
 				<h4 style="text-align:center;">Thank you for ordering from foodies! Your order is getting prepared and soon will be in your hands to enjoy. You will receive a confirmation email/SMS shortly.<br>
-					<a class="twitter-share-button"
+				
+				<button class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i> <a class="twitter-share-button"
 					  href="https://twitter.com/intent/tweet?text=I%20just%20ordered%20from%20<?php echo $restname; ?>!;hashtags=foodies,yummy;via=foodies"
 					  data-size="large" target="_blank">
-					Tweet about it! </a>
+					Tweet about it! </a></button>
+					
 				</h4>
 				<?php } else{ ?>
 				<img src="../css/images/taco-trip.gif" height="400" width="620">

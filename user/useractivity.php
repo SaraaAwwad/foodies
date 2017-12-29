@@ -37,7 +37,7 @@ $user = new User($_SESSION['userID']);?>
 		<div class="col-8">
 			<div class="centview">
 				<?php 
-				
+
 				$r = $user->getRatings();
 				if($r){
 					echo '<h2 id="tes" class="testt" style="text-align:center;">View/Change Ratings You\'ve Made On Restaurants You\'ve Ordered From. </h2><hr>';
