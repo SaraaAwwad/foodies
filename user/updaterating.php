@@ -15,6 +15,7 @@ if(isset($_POST["rating_id"]))  {
 	
 	if($reviewid==0){
 		//insert here in table orders 
+		
 		$review = new Review();
 		$newid = $review->insertRating($user,$rest,$value);
 		

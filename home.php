@@ -221,8 +221,6 @@ require("classes/user.php");
 <div class="row-gap"></div>
 
 	<?php
-
-	include("user/footer.php");
 	
 		if($inmode<1)
 		{outputsignin('none');}

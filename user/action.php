@@ -7,64 +7,85 @@ $message = '';
 
 if(isset($_POST["product_id"]))  
 {   
-	$shoppingrest =$_POST["rest_id"];
+	$shoppingrest =$_POST["rest_id"]; //session name
 
   //to be used when place order is clicked
   $cart_url = $_POST["cart_url"];
 
-      if($_POST["action"] == "add")  {  
+    //the add case
+      if($_POST["action"] == "add")  {
+
       	if(isset($_SESSION[$shoppingrest]))  
            {  
                 $is_available = 0;  
+
                 foreach($_SESSION[$shoppingrest] as $keys => $values)  
                 {  
-                     if($_SESSION[$shoppingrest][$keys]['product_id'] == $_POST["product_id"])  
+                    /*if($_SESSION[$shoppingrest][$keys]['product_id'] == $_POST["product_id"])  
+                    {  
+                      $is_available++;  
+                      $_SESSION[$shoppingrest][$keys]['product_quantity'] += $_POST["product_quantity"];
+                    }*/ //works both ways..
+                
+                     if($values['product_id'] == $_POST["product_id"])  
                      {  
                           $is_available++;  
-                          $_SESSION[$shoppingrest][$keys]['product_quantity'] = $_SESSION[$shoppingrest][$keys]['product_quantity'] + $_POST["product_quantity"];  
+                          $_SESSION[$shoppingrest][$keys]['product_quantity'] += $_POST["product_quantity"];  
                      }  
                 }  
                 if($is_available < 1)  
                 {  
                      $item_array = array(  
-                          'product_id'               =>     $_POST["product_id"],  
-                          'product_name'               =>     $_POST["product_name"],  
-                          'product_price'               =>     $_POST["product_price"],  
-                          'product_quantity'          =>     $_POST["product_quantity"]  
+                          'product_id'         =>     $_POST["product_id"],  
+                          'product_name'       =>     $_POST["product_name"],  
+                          'product_price'      =>     $_POST["product_price"],  
+                          'product_quantity'   =>     $_POST["product_quantity"]  
                      );  
                      $_SESSION[$shoppingrest][] = $item_array;  
                 }  
            }  
-           else  
+        else  
            {  
                 $item_array = array(  
-                     'product_id'               =>     $_POST["product_id"],  
-                     'product_name'               =>     $_POST["product_name"],  
-                     'product_price'               =>     $_POST["product_price"],  
-                     'product_quantity'          =>     $_POST["product_quantity"]  
+                     'product_id'          =>     $_POST["product_id"],  
+                     'product_name'        =>     $_POST["product_name"],  
+                     'product_price'       =>     $_POST["product_price"],  
+                     'product_quantity'    =>     $_POST["product_quantity"]  
                 );  
                 $_SESSION[$shoppingrest][] = $item_array;  
            }  
       } 
 
-      if($_POST["action"] == "remove"){  
+
+      if($_POST["action"] == "remove"){ 
+
            foreach($_SESSION[$shoppingrest] as $keys => $values)  
            {  
+
+               /*if($_SESSION[$shoppingrest][$keys]['product_id'] == $_POST["product_id"])  
+                {  
+                     unset($_SESSION[$shoppingrest][$keys]);  
+                }*/ 
+                //works both ways..
                 if($values["product_id"] == $_POST["product_id"])  
                 {  
                      unset($_SESSION[$shoppingrest][$keys]);  
-         
-                }  
+                } 
            }  
       }
 
       if($_POST["action"] == "quantity_change"){  
            foreach($_SESSION[$shoppingrest] as $keys => $values)  
            {  
-                if($_SESSION[$shoppingrest][$keys]['product_id'] == $_POST["product_id"])  
+                /*if($_SESSION[$shoppingrest][$keys]['product_id'] == $_POST["product_id"])  
                 {  
                      $_SESSION[$shoppingrest][$keys]['product_quantity'] = $_POST["quantity"];  
-                }  
+                }*/ 
+                if($values['product_id'] == $_POST["product_id"])  
+                {  
+                     $_SESSION[$shoppingrest][$keys]['product_quantity']= $_POST["quantity"];  
+                }
+
            }  
       } 
 
@@ -95,7 +116,7 @@ if(isset($_POST["product_id"]))
                 $total = $total + ($values["product_quantity"] * $values["product_price"]);  
            }  
        
-           $_SESSION['total']=number_format($total, 2);
+           $_SESSION[$shoppingrest.'total']=number_format($total, 2);
            
            $order_table .= '
             

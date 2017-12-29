@@ -50,9 +50,9 @@ $ur = true;
 
                           echo $values["product_quantity"].'x , '. $values["product_name"]. ' with price of:  '. $values["product_price"] .' each <br>';
                      }  
-                     $ordertotal= $_SESSION['total'];
+                     $ordertotal= $_SESSION[$s.'total'];
                      $total = $ordertotal + $rest->DelvFees;
-                     $_SESSION['total']=$total;
+                     $_SESSION[$s.'total']=$total;
                      echo 'Order Cost = '. $ordertotal.'<br> Delivery Fees ='.$rest->DelvFees.'<br> Total = '.$total;
 				}else{
 					echo 'No Order Found..';

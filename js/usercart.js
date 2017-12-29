@@ -2,7 +2,7 @@ $(document).ready(function(data){
 
 	$('.addtocart').click(function(){
 
-		  var product_value = $(this).attr("id");
+		  var product_value = $(this).attr("id"); // it would be smth as 2_3 , 2=> for which prod size , 3=> for prod id 
 
 		  var product_id = product_value.split("_"); 
 
@@ -12,8 +12,9 @@ $(document).ready(function(data){
 
       var product_quantity = 1;
 
-      var rest_id = $('#shoppingrest').val();
-      var cart_url = $('#carturl').val();
+      var rest_id = $('#shoppingrest').val(); //session name
+
+      var cart_url = $('#carturl').val(); // to go to when "place product" is clicked
         
       var action = "add";
 

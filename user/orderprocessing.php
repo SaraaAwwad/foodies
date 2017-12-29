@@ -39,7 +39,7 @@ if(isset($_POST["Rest"])){
 			$st = $_POST["street"];
 			$bld = $_POST["build"];
 
-			$res = $order->addorder($_SESSION["userID"], $ar, $st, $bld, $_SESSION["total"], $place);
+			$res = $order->addorder($_SESSION["userID"], $ar, $st, $bld, $_SESSION[$s."total"], $place);
 
 			foreach($_SESSION[$s] as $keys => $values)  
 	        {

@@ -41,6 +41,7 @@ $user = new User($_SESSION['userID']);?>
 				$r = $user->getRatings();
 				if($r){
 					echo '<h2 id="tes" class="testt" style="text-align:center;">View/Change Ratings You\'ve Made On Restaurants You\'ve Ordered From. </h2><hr>';
+
 					for($i=0; $i<count($user->Rests); $i++){
 						echo '<span id= '.$user->Rests[$i]->ID.'> '.$user->Rests[$i]->Name.' </span>';
 						
@@ -76,7 +77,6 @@ $user = new User($_SESSION['userID']);?>
 		 $(document).on('click', '.star', function() {
 
 			var rating_id = $(this).attr("id");
-			//alert(rating_id);
 			
 			var temp = rating_id.split("_"); // temp 0 if the order id , temp 1 is the rest id , temp 2 is the star rating 
 
