@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require_once("../classes/user.php");
-$user = new User($_SESSION['userID']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,9 +13,11 @@ $user = new User($_SESSION['userID']);
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="../js/notify.min.js"></script>
 	<title>User-Profile</title>	
 </head>
-<?php include("header.php"); ?>
+<?php include("header.php"); 
+$user = new User($_SESSION['userID']);?>
 <body>
 	
 	<main>
@@ -36,11 +37,12 @@ $user = new User($_SESSION['userID']);
 		<div class="col-8">
 			<div class="centview">
 				<?php 
-				echo '<h2 style="text-align:center;">You Can Find/Change Ratings You\'ve Made On Restaurants You\'ve Ordered From. </h2><hr>';
+				
 				$r = $user->getRatings();
 				if($r){
+					echo '<h2 id="tes" class="testt" style="text-align:center;">View/Change Ratings You\'ve Made On Restaurants You\'ve Ordered From. </h2><hr>';
 					for($i=0; $i<count($user->Rests); $i++){
-						echo '<span> '.$user->Rests[$i]->Name.' </span>';
+						echo '<span id= '.$user->Rests[$i]->ID.'> '.$user->Rests[$i]->Name.' </span>';
 						
 						$r = $user->Ratings[$i]->Rating;
 
@@ -71,11 +73,12 @@ $user = new User($_SESSION['userID']);
 <script>
 	$(document).ready(function(data){
 		
-		$('.star').click(function(){
+		 $(document).on('click', '.star', function() {
 
 			var rating_id = $(this).attr("id");
 			//alert(rating_id);
-			var temp = rating_id.split("_"); // should contain restid_0->4
+			
+			var temp = rating_id.split("_"); // temp 0 if the order id , temp 1 is the rest id , temp 2 is the star rating 
 
 			for(var i=0; i<=temp[temp.length-1]; i++){
 				if($("#"+temp[0]+"_"+temp[1]+"_"+i).hasClass( "ratings_vote" )){
@@ -89,8 +92,8 @@ $user = new User($_SESSION['userID']);
 				$("#"+temp[0]+"_"+temp[1]+"_"+i).removeClass('ratings_stars');	
 			}
 
-				$table = temp[0]+"_"+temp[1];
-
+			$table = "table"+temp[0]+"_"+temp[1];
+				
 		        $.ajax({  
                     url:"updaterating.php",  
                     method:'POST',  
@@ -100,7 +103,8 @@ $user = new User($_SESSION['userID']);
                     },  
                     success:function(data)  
                      {  
-                     	//alert("Review is done!");
+                     	$("#"+$table).replaceWith(data.newtable); 
+                     	$.notify("Thank You!", "success");
                      },
     				error: function (jqXHR, exception) {
 				        var msg = '';
@@ -129,5 +133,6 @@ $user = new User($_SESSION['userID']);
 
 	});
 </script>
+
 </body>
 </html>

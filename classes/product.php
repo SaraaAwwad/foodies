@@ -91,9 +91,7 @@ class Product{
 	}
 
 	Static function getProduct($restID){
-		//active products
 		$dbobj= new dbconnect;
-		//$ProdVal = new ProductValue;
 		$sql = "SELECT * FROM products Where RestID = '$restID' AND Status = 1 ";
 		$result = $dbobj->selectsql($sql);
 		$Prods= array();

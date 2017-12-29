@@ -97,7 +97,7 @@ $allRest = Restaurant::getByArea($place);
 							echo'<span class="fa fa-star"></span>';}
 
 							echo'<p>Delivers in '.$allRest[$i]->DelvTime.'</p>
-							<p>'.$allRest[$i]->Hotline.'</p>
+							<p><span class="fa fa-phone" aria-hidden="true"></span>'.$allRest[$i]->Hotline.'</p>
 						</td>
 					</tr>';
 				 }?>

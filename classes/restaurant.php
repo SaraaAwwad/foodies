@@ -125,7 +125,6 @@ class Restaurant{
 
 			$RestObj->type[$i] = array();
 			$RestObj->type[$i] = $cuisine->getType($row['ID']);
-
 			$Rests[$i]=$RestObj;
 			$i++;
 		}

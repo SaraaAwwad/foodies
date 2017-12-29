@@ -94,12 +94,10 @@ class Order{
 				$getOrders[$i] = $OrderObj;
 				$i++;
 			}
-		return $getOrders;
-		}
-	
+			return $getOrders;
+		}	
 		return false;
 	}
-
 
 
 	Static function getOrders() {
