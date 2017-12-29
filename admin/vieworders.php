@@ -43,7 +43,12 @@ $allorders = Order::getOrders();
   <li><a href="../admin/AdminPage.php">Admin</a></li>
   <li>View Orders</li>
 </ul>
-<table class="highlight">
+
+
+<div class="centview srch">
+<input type="text" placeholder="Search for Restaurants Here.." id="searchrest">
+</div>
+<table id="otable" class="highlight">
         <thead>
           <tr>
               <th>ID</th>
@@ -67,7 +72,7 @@ $allorders = Order::getOrders();
            	echo' <tr id="row1">';
            	echo ' <td class="tdID"><strong>'. $allorders[$i]->ID.'</strong></td>';
 			echo'<td>'. $allorders[$i]->UserID.'</td>';
-			echo'<td>'. $allorders[$i]->RestName.'</td>';
+			echo'<td id="restname">'. $allorders[$i]->RestName.'</td>';
 			echo'<td>'.$allorders[$i]->Area.'</td>';
 			echo'<td>'.$allorders[$i]->Street.'</td>';
 			echo'<td>'.$allorders[$i]->Building.'</td>';
@@ -95,6 +100,7 @@ $allorders = Order::getOrders();
 		</div>
 		</main>
 		<script type="text/javascript" src="../js/AdminPage.js"></script>
+		<script type="text/javascript" src="../js/ordersearch.js"></script>
 </body>
 
 </html>

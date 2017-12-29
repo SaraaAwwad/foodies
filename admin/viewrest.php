@@ -10,7 +10,7 @@ $allRest = Restaurant::getRestaurants();
 <!DOCTYPE html>
 <html>
 <head>
-<title> Add </title>
+<title> View Restaurants </title>
 <link rel="stylesheet" type="text/css" href="..//css/topnav.css">
 <link rel="stylesheet" type="text/css" href="..//css/AdminPage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -43,7 +43,10 @@ $allRest = Restaurant::getRestaurants();
   <li>Manage</li>
 </ul>
  </div>
- <table class="highlight">
+ <div class="centview srch">
+<input type="text" placeholder="Search for Restaurants Here.." id="searchrest">
+</div>
+ <table id="otable" class="highlight">
         <thead>
           <tr>
               <th>ID</th>
@@ -87,6 +90,7 @@ $allRest = Restaurant::getRestaurants();
 		</div>
 		</main>
 		<script type="text/javascript" src="../js/AdminPage.js"></script>
+		<script type="text/javascript" src="../js/ordersearch.js"></script>
 </body>
 
 </html>
