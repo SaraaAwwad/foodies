@@ -47,7 +47,6 @@ $ur = true;
 				if (isset($_SESSION[$s]) && $ur){
 					foreach($_SESSION[$s] as $keys => $values)  
                      {  
-
                           echo $values["product_quantity"].'x , '. $values["product_name"]. ' with price of:  '. $values["product_price"] .' each <br>';
                      }  
                      $ordertotal= $_SESSION[$s.'total'];

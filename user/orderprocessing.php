@@ -55,11 +55,12 @@ if(isset($_POST["Rest"])){
 
 			$toemail=$user->Email;
 			$toname = $user->FirstName;
+
 			$to = new SendGrid\Email($toname, $toemail);
 
 			$rname = $restaurant->Name;
 
-			$content = new SendGrid\Content("text/plain", "Hey, $toname thank you for ordering from foodies. Your order from $rname is on its way!");
+			$content = new SendGrid\Content("text/plain", "Hey $toname, thank you for ordering from foodies. Your order from $rname is on its way!");
 			$mail = new SendGrid\Mail($from, $subject, $to, $content);
 
 			$sg = new \SendGrid($API_KEY);
@@ -85,7 +86,8 @@ if(isset($_POST["Rest"])){
 				    	)
 					); 
 			}*/
-			//to ensureee validity
+
+			//to ensureee validity (that user passed by here first and not directly to orderdone)
 			$_SESSION[$sdone]="yes";
 			header("Location: orderdone.php?Rest=$place",TRUE,303);
 		}else{

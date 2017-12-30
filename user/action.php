@@ -61,7 +61,6 @@ if(isset($_POST["product_id"]))
 
            foreach($_SESSION[$shoppingrest] as $keys => $values)  
            {  
-
                /*if($_SESSION[$shoppingrest][$keys]['product_id'] == $_POST["product_id"])  
                 {  
                      unset($_SESSION[$shoppingrest][$keys]);  

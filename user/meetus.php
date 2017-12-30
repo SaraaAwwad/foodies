@@ -15,12 +15,27 @@ session_start();
 	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
 </head>
 <body>
-<header class="footerpage">
+	<?php if (isset($_SESSION["userID"])){ 
+echo'<header class="footerpage">
 		<nav class="menu" id="navmenu">
-				<li class="logo"> <a href= "home.php" class="log"> Foo<span class="org">d</span>ies </a></li>
-		</ul>
+			<ul>
+				<li class="logo"> <a href= "userhome.php" class="log"> Foo<span class="org">d</span>ies </a></li>
+			</ul>
 		</nav>
-	</header>
+	</header>';
+
+		}else{
+
+	echo'<header class="footerpage">
+		<nav class="menu" id="navmenu">
+			<ul>
+				<li class="logo"> <a href= "../home.php" class="log"> Foo<span class="org">d</span>ies </a></li>
+			</ul>
+		</nav>
+		</header>';
+
+		}
+	?>
 
 	<div class="teamboard">
 			
