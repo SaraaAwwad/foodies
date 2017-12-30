@@ -68,7 +68,7 @@ if(isset($_POST["Rest"])){
 			/**/
 
 			//leave commented...
-			/*if($send){
+			if($send){
 				$sid = 'AC215c06e0ddcbf694c43bb63025a2b58a';
 				$token = 'd748e26a74f22794642e51dd857943b6';
 				$client = new Client($sid, $token);
@@ -85,7 +85,7 @@ if(isset($_POST["Rest"])){
 				        'body' => $bodycontent
 				    	)
 					); 
-			}*/
+			}
 
 			//to ensureee validity (that user passed by here first and not directly to orderdone)
 			$_SESSION[$sdone]="yes";
