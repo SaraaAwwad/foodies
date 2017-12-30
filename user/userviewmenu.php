@@ -2,7 +2,24 @@
 session_start();
 require_once("../classes/product.php");
 require_once("../classes/restaurant.php");
-//$prod = new Product;
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" type="text/css" href="../css/topnav.css">
+	<link rel="stylesheet" type="text/css" href="../css/userstyle.css">
+	<link rel="stylesheet" type="text/css" href="../css/style1.css">
+	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Menu</title>	
+</head>
+
+<?php include("header.php"); 
+
 $rest = new Restaurant;
 
 $allProd = array();
@@ -23,21 +40,6 @@ $ur ="Rest=".$place."&Area=".$area;
 $shopping_session = "shoppingcart".$place;
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="stylesheet" type="text/css" href="../css/topnav.css">
-	<link rel="stylesheet" type="text/css" href="../css/userstyle.css">
-	<link rel="stylesheet" type="text/css" href="../css/style1.css">
-	<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Chewy|Source+Sans+Pro" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>User-Menu</title>	
-</head>
-
-<?php include("header.php"); ?>
 
 <body>
 	
@@ -119,7 +121,7 @@ $shopping_session = "shoppingcart".$place;
                         <?php  
                                 $total = $total + ($values["product_quantity"] * $values["product_price"]);}
 
-                                $_SESSION['total']=number_format($total, 2);
+                                $_SESSION[$shopping_session.'total']=number_format($total, 2);
                         ?>			
 
                         			<tr>  

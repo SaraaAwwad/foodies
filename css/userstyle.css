@@ -64,9 +64,19 @@ input[type=number] {
     border-color: grey;
 }
 
+.twitter{
+  width:140px;
+  border-radius: 10px;
+  background-color:#1DA1F2; 
+  height:40px;
+}
+
+.twitter a {
+  text-decoration: none;
+   color:white;
+}
 
 .deletefromcart{
-
   background: url("images/remove.png") no-repeat transparent;
   width:30px;
   height: 30px;

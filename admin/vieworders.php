@@ -1,10 +1,12 @@
 <?php
 
 require_once("/../classes/orders.php");
+require_once("/../classes/order_details.php");
 session_start();
 
 $allorders = array();
 $allorders = Order::getOrders();
+
 
 ?>
 <!DOCTYPE html>
@@ -41,7 +43,12 @@ $allorders = Order::getOrders();
   <li><a href="../admin/AdminPage.php">Admin</a></li>
   <li>View Orders</li>
 </ul>
-<table class="highlight">
+
+
+<div class="centview srch">
+<input type="text" placeholder="Search for Restaurants Here.." id="searchrest">
+</div>
+<table id="otable" class="highlight">
         <thead>
           <tr>
               <th>ID</th>
@@ -52,6 +59,8 @@ $allorders = Order::getOrders();
 			  <th>Building</th>
 			  <th>Date</th>
 			  <th>Total Price</th>
+			  <th>Product</th>
+			  
 			  
 </tr>
         </thead>
@@ -63,13 +72,23 @@ $allorders = Order::getOrders();
            	echo' <tr id="row1">';
            	echo ' <td class="tdID"><strong>'. $allorders[$i]->ID.'</strong></td>';
 			echo'<td>'. $allorders[$i]->UserID.'</td>';
-			echo'<td>'. $allorders[$i]->RestName.'</td>';
+			echo'<td id="restname">'. $allorders[$i]->RestName.'</td>';
 			echo'<td>'.$allorders[$i]->Area.'</td>';
 			echo'<td>'.$allorders[$i]->Street.'</td>';
 			echo'<td>'.$allorders[$i]->Building.'</td>';
 			echo'<td>'.$allorders[$i]->DateOrder.'</td>';
 			echo'<td>'.$allorders[$i]->TotalPrice.'</td>';
 
+			$allItems = OrderDetails::getOrderItemById($allorders[$i]->ID);
+						
+						echo '<td>';
+						for($j=0; $j<count($allItems); $j++){
+							
+							echo'x'.$allItems[$j]->Quantity.'  '.$allItems[$j]->ProdName.', with a price of: '.$allItems[$j]->Price.' each <br>';
+
+							}
+							echo '</td>';
+			
 			echo'</tr>';
 		}
  ?>
@@ -81,6 +100,7 @@ $allorders = Order::getOrders();
 		</div>
 		</main>
 		<script type="text/javascript" src="../js/AdminPage.js"></script>
+		<script type="text/javascript" src="../js/ordersearch.js"></script>
 </body>
 
 </html>

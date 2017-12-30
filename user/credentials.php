@@ -1,0 +1,3 @@
+<?php
+	$API_KEY = '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';
+?>

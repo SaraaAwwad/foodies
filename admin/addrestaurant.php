@@ -42,9 +42,12 @@ $allRest = Restaurant::getRestaurants();
     <li>Restaurants</li>
     <li>Manage</li>
 </ul>
+<div class="centview srch">
+<input type="text" placeholder="Search for Restaurants Here.." id="searchrest">
+</div>
 <?php echo '<a id="addrest" href="newrestaurant.php"><i class="fa fa-plus"></i>Add Restaurant</a>'; ?>
 </div>
-<table class="highlight" >
+<table id="otable" class="highlight" >
         <thead>
           <tr>
               <th>ID</th>
@@ -97,5 +100,6 @@ $allRest = Restaurant::getRestaurants();
 		</div>
 		</main>
 		<script type="text/javascript" src="../js/AdminPage.js"></script>
+		<script type="text/javascript" src="../js/ordersearch.js"></script>
 </body>
 </html>
