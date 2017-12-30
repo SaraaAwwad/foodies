@@ -47,18 +47,18 @@ render($RestObj->ID,$RestObj->Name,$RestObj->Hotline,$RestObj->DelvFees,$RestObj
 <fieldset>
 <legend>Restaurant Information</legend>  
 <label id="namelink">ID</label><br>
-<input type="text" name="idarea" id="restarea" value="<?php echo $id; ?>" disabled="true"><br>	
+<input type="text" name="idarea" class="restarea" value="<?php echo $id; ?>" disabled="true"><br>	
 <label id="namelink">Restaurant Name</label><br>
-<input type="text" name="namearea" id="restarea" value="<?php echo $name; ?>" ><br>
+<input type="text" name="namearea" class="restarea" value="<?php echo $name; ?>" ><br>
 <label id="namelink">Hotline</label><br>
-<input type="text" name="hotarea" id="restarea" value="<?php echo $hot; ?>"><br>
+<input type="text" name="hotarea" class="restarea" value="<?php echo $hot; ?>"><br>
 </fieldset>
 <fieldset>
 <legend>Delivery Details</legend> 
 <label id="namelink">Delivery Fees</label><br>
-<input type="text" name="feesarea" id="restarea" value="<?php echo $delvfees;?>"><br>
+<input type="text" name="feesarea" class="restarea" value="<?php echo $delvfees;?>"><br>
 <label id="namelink">Delivery Time</label><br>
-<input type="text" name="timearea" id="restarea" value="<?php echo $delvtime;?>"><br>
+<input type="text" name="timearea" class="restarea" value="<?php echo $delvtime;?>"><br>
 </fieldset>
 <fieldset>
 <legend>Description</legend>
